@@ -1,29 +1,24 @@
 import React, { useState } from "react";
 import { SafeAreaView, StyleSheet } from "react-native";
-import {
-  Container,
-  Header,
-  Content,
-  Input,
-  Item,
-  Button,
-  Text,
-} from "native-base";
+import { Input, Icon,Button } from "react-native-elements";
 import axios, { AxiosRequestConfig } from "axios";
 
 export default function App() {
   const [place, setPlace] = useState("pune");
+  const [loading, setLoading] = useState(false)
 
-  const call = (cityName:string) => {
+  const call = (cityName: string) => {
+    setLoading(true);
     let config: AxiosRequestConfig = {
       method: "get",
       url: `http://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=c1e64b484782aada5e07d493b0c358fb&units=metric`,
       headers: {},
     };
-    console.log(`getting value for ${cityName}`)
+    console.log(`getting value for ${cityName}`);
     axios(config)
       .then((response) => {
         console.log(response.data);
+        setLoading(false)
       })
       .catch((error) => {
         console.log(error);
@@ -31,24 +26,23 @@ export default function App() {
   };
 
   return (
-    <Container>
-      <Header />
-      <Content>
-        <Item regular>
-          <Input
-            placeholder="Regular Textbox"
-            onChangeText={(text) => {
-              setPlace(text);
-            }}
-          />
-        </Item>
-        <Button block success onPress={()=>{
+    <SafeAreaView style={styles.container}>
+      <Input
+        placeholder="INPUT WITH CUSTOM ICON"
+        leftIcon={<Icon name="sc-telegram" type="evilicon" color="#517fa4" />}
+        onChangeText={(text) => {
+          setPlace(text);
+        }}
+      />
+      <Button 
+        title="Submit" 
+        buttonStyle={{width:'100%'}}
+        loading={loading}
+        onPress={()=>{
           call(place)
-        }}>
-          <Text>Success</Text>
-        </Button>
-      </Content>
-    </Container>
+        }}
+      />
+    </SafeAreaView>
   );
 }
 
@@ -57,6 +51,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#fff",
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "flex-start",
+    marginTop: 15,
   },
 });
