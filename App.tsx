@@ -1,28 +1,24 @@
 import React, { useState } from "react";
 import { SafeAreaView, StyleSheet } from "react-native";
-import { Input, Icon,Button } from "react-native-elements";
-import axios, { AxiosRequestConfig } from "axios";
+import { Input, Icon, Button } from "react-native-elements";
+import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from "axios";
+import { getCityAtmosphereDetails } from "./components/utils/RestUtils";
 
 export default function App() {
   const [place, setPlace] = useState("pune");
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
 
-  const call = (cityName: string) => {
+  const getCityDetails = async (cityName: string) => {
     setLoading(true);
-    let config: AxiosRequestConfig = {
-      method: "get",
-      url: `http://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=c1e64b484782aada5e07d493b0c358fb&units=metric`,
-      headers: {},
-    };
-    console.log(`getting value for ${cityName}`);
-    axios(config)
-      .then((response) => {
-        console.log(response.data);
-        setLoading(false)
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    await getCityAtmosphereDetails(cityName, onSuccess, onError);
+    setLoading(false);
+  };
+
+  const onSuccess = (response: AxiosResponse) => {
+    console.log(response?.data);
+  };
+  const onError = (error: AxiosError) => {
+    console.log(error);
   };
 
   return (
@@ -34,12 +30,12 @@ export default function App() {
           setPlace(text);
         }}
       />
-      <Button 
-        title="Submit" 
-        buttonStyle={{width:'100%'}}
+      <Button
+        title="Submit"
+        buttonStyle={{ width: "100%" }}
         loading={loading}
-        onPress={()=>{
-          call(place)
+        onPress={() => {
+          getCityDetails(place);
         }}
       />
     </SafeAreaView>
