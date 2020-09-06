@@ -78,9 +78,9 @@ export class DailyWeather {
     rain: number;
     uvi: number;
     constructor(data: any) {
-        this.date = new Date(data?.dt);
-        this.sunrise = new Date(data?.sunrise)
-        this.sunset = new Date(data?.sunset);
+        this.date = new Date(data?.dt *1000);
+        this.sunrise = new Date(data?.sunrise*1000)
+        this.sunset = new Date(data?.sunset*1000);
         this.temperature_day = data?.temp?.day;
         this.temperature_min = data?.temp?.min;
         this.temperature_max = data?.temp?.max;
@@ -118,7 +118,7 @@ export class HourlyWeather {
     probablity_precipitation: number;
     rain: number;
     constructor(response: any) {
-        this.time = new Date(response?.dt);
+        this.time = new Date(response?.dt * 1000);
         this.temperature = response?.temp;
         this.pressure = response?.pressure;
         this.humidity = response?.humidity;
