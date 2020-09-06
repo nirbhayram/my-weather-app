@@ -1,5 +1,5 @@
 import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from "axios";
-import {City} from "../pojo/City";
+import {City, DailyWeather, HourlyWeather} from "../pojo/City";
 
 export const getCityAtmosphereDetails = async (
     cityName: string,
@@ -11,17 +11,19 @@ export const getCityAtmosphereDetails = async (
         url: `http://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=c1e64b484782aada5e07d493b0c358fb&units=metric`,
         headers: {},
     };
+
     console.log(`getting value for ${cityName}`);
+
     try {
         let response: AxiosResponse = await axios(config);
         let city: City = new City(response);
-        console.log(city.weather.currentWeather)
         try {
             let res: any = await getCityHourlyAndDailyReport(
                 response.data?.coord?.lat,
-                response.data?.coord?.lon
+                response.data?.coord?.lon,
+                city
             );
-            onSuccess(response);
+            onSuccess(city);
         } catch (error) {
             onError(error);
         }
@@ -30,11 +32,24 @@ export const getCityAtmosphereDetails = async (
     }
 };
 
-const getCityHourlyAndDailyReport = async (lat: number, lon: number) => {
+const getCityHourlyAndDailyReport = async (lat: number, lon: number,city: City) => {
     let config: AxiosRequestConfig = {
         method: "get",
         url: `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely,current&appid=c1e64b484782aada5e07d493b0c358fb&units=metric`,
         headers: {},
     };
-    return await axios(config);
+    let response =  await axios(config);
+    setHourlyAndDailyData(response.data,city);
+    return response;
 };
+
+const setHourlyAndDailyData = (data: AxiosResponse,city : City) => {
+    data?.hourly.forEach(element => {
+        let temp_hourlyWeather: HourlyWeather = new HourlyWeather(element);
+        city.addHourlyData = temp_hourlyWeather;
+    });
+    data?.daily.forEach(element => {
+        let temp_dailyWeather: DailyWeather = new DailyWeather(element);
+        city.addDailyData = temp_dailyWeather;
+    });
+}
