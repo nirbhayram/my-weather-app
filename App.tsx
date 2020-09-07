@@ -5,6 +5,7 @@ import { AxiosError } from "axios";
 import { LinearGradient } from "expo-linear-gradient";
 import { getCityAtmosphereDetails } from "./components/utils/RestUtils";
 import { City } from "./components/pojo/City";
+import TitleBanner from "./components/TitleBanner";
 
 export default function App() {
   const [place, setPlace] = useState("pune");
@@ -81,9 +82,10 @@ export default function App() {
   return (
     <LinearGradient colors={["#4064e0", "#b6c5fb"]} style={styles.container}>
       <SafeAreaView style={styles.child}>
+        <TitleBanner/>
         <Input
-          placeholder="INPUT WITH CUSTOM ICON"
-          leftIcon={<Icon name="sc-telegram" type="evilicon" color="#517fa4" />}
+          style={styles.input}
+          leftIcon={<Icon name="sc-telegram" type="evilicon" color="#fff" />}
           onChangeText={(text) => {
             setPlace(text);
           }}
@@ -96,7 +98,7 @@ export default function App() {
             getCityDetails(place);
           }}
         />
-        {cityValue?.name ? <Text>{cityValue?.name}</Text> : <></>}
+        {cityValue?.name ? <Text style={styles.input}>{cityValue?.name}</Text> : <></>}
       </SafeAreaView>
     </LinearGradient>
   );
@@ -113,4 +115,12 @@ const styles = StyleSheet.create({
   child: {
     paddingTop: 15,
   },
+  input:{
+    color:"#fff",
+  },
+  textView:{
+    fontSize: 20,
+    justifyContent: "center",
+    alignItems: "center"
+  }
 });
