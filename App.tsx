@@ -1,13 +1,15 @@
 import React, { useState } from "react";
 import { SafeAreaView, StyleSheet } from "react-native";
-import { Input, Icon, Button } from "react-native-elements";
-import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from "axios";
+import { Input, Icon, Button, Text } from "react-native-elements";
+import { AxiosError } from "axios";
+import { LinearGradient } from "expo-linear-gradient";
 import { getCityAtmosphereDetails } from "./components/utils/RestUtils";
 import { City } from "./components/pojo/City";
 
 export default function App() {
   const [place, setPlace] = useState("pune");
   const [loading, setLoading] = useState(false);
+  const [cityValue, setCityValue] = useState(Object);
 
   const getCityDetails = async (cityName: string) => {
     setLoading(true);
@@ -16,6 +18,7 @@ export default function App() {
   };
 
   const onSuccess = (city: City) => {
+    setCityValue(city);
     console.log(city.name);
     console.log(city.lat);
     console.log(city.lon);
@@ -46,7 +49,7 @@ export default function App() {
     console.log(city.hourlyData[0].weather.description);
     console.log(city.hourlyData[0].weather.icon);
     console.log(city.hourlyData[0].probablity_precipitation);
-    console.log(city.hourlyData[0].rain);
+    console.log(city.hourlyData[4].rain);
     console.log(city.dailyData[0].date.toString());
     console.log(city.dailyData[0].sunrise.toString());
     console.log(city.dailyData[0].sunset.toString());
@@ -70,28 +73,32 @@ export default function App() {
     console.log(city.dailyData[0].rain);
     console.log(city.dailyData[0].uvi);
   };
+
   const onError = (error: AxiosError) => {
     console.log(error);
   };
 
   return (
-    <SafeAreaView style={styles.container}>
-      <Input
-        placeholder="INPUT WITH CUSTOM ICON"
-        leftIcon={<Icon name="sc-telegram" type="evilicon" color="#517fa4" />}
-        onChangeText={(text) => {
-          setPlace(text);
-        }}
-      />
-      <Button
-        title="Submit"
-        buttonStyle={{ width: "100%" }}
-        loading={loading}
-        onPress={() => {
-          getCityDetails(place);
-        }}
-      />
-    </SafeAreaView>
+    <LinearGradient colors={["#4064e0", "#b6c5fb"]} style={styles.container}>
+      <SafeAreaView style={styles.child}>
+        <Input
+          placeholder="INPUT WITH CUSTOM ICON"
+          leftIcon={<Icon name="sc-telegram" type="evilicon" color="#517fa4" />}
+          onChangeText={(text) => {
+            setPlace(text);
+          }}
+        />
+        <Button
+          title="Submit"
+          buttonStyle={{ width: "100%" }}
+          loading={loading}
+          onPress={() => {
+            getCityDetails(place);
+          }}
+        />
+        {cityValue?.name ? <Text>{cityValue?.name}</Text> : <></>}
+      </SafeAreaView>
+    </LinearGradient>
   );
 }
 
@@ -101,6 +108,9 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "flex-start",
-    marginTop: 15,
+    paddingTop: 15,
+  },
+  child: {
+    paddingTop: 15,
   },
 });

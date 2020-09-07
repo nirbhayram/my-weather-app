@@ -43,12 +43,12 @@ const getCityHourlyAndDailyReport = async (lat: number, lon: number,city: City) 
     return response;
 };
 
-const setHourlyAndDailyData = (data: AxiosResponse,city : City) => {
-    data?.hourly.forEach(element => {
+const setHourlyAndDailyData = (data:any ,city : City) => {
+    data?.hourly.forEach( (element:any) => {
         let temp_hourlyWeather: HourlyWeather = new HourlyWeather(element);
         city.addHourlyData = temp_hourlyWeather;
     });
-    data?.daily.forEach(element => {
+    data?.daily.forEach( (element:any) => {
         let temp_dailyWeather: DailyWeather = new DailyWeather(element);
         city.addDailyData = temp_dailyWeather;
     });
