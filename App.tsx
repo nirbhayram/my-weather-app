@@ -82,7 +82,7 @@ export default function App() {
   return (
     <LinearGradient colors={["#4064e0", "#b6c5fb"]} style={styles.container}>
       <SafeAreaView style={styles.child}>
-        <TitleBanner/>
+        <TitleBanner />
         <Input
           style={styles.input}
           leftIcon={<Icon name="sc-telegram" type="evilicon" color="#fff" />}
@@ -115,10 +115,10 @@ const styles = StyleSheet.create({
   child: {
     paddingTop: 15,
   },
-  input:{
-    color:"#fff",
+  input: {
+    color: "#fff",
   },
-  textView:{
+  textView: {
     fontSize: 20,
     justifyContent: "center",
     alignItems: "center"
