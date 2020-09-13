@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
     },
     titleBarIcon: {
         // height: 20,
-        borderBottomColor: '#5C5C5C',
+        borderBottomColor: '#EBEBEB',
         borderBottomWidth: 4,
         paddingTop:10,
         marginBottom: 20,
