@@ -10,6 +10,7 @@ import { City } from "./components/pojo/City";
 import TitleBanner from "./components/TitleBanner";
 import HeroSection from './components/HeroSection';
 import ForcastSection from './components/ForcastSection';
+import BottomSection from './components/BottomSection';
 
 const App = () => {
 	const [place, setPlace] = React.useState("kodinar");
@@ -84,15 +85,7 @@ const App = () => {
 	};
 
 	const renderContent = () => (
-		<View
-			style={{
-				backgroundColor: 'white',
-				padding: 16,
-				height: `100%`,
-			}}
-		>
-			<Text>Swipe down to close</Text>
-		</View>
+		<BottomSection/>
 	);
 
 	const sheetRef = React.useRef(null);
@@ -124,7 +117,7 @@ const App = () => {
 			<BottomSheet
 				initialSnap={2}
 				ref={sheetRef}
-				snapPoints={[`80%`, `12%`, `12%`]}
+				snapPoints={[`70%`, `12%`, `12%`]}
 				borderRadius={20}
 				renderContent={renderContent}
 			/>
