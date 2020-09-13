@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyleSheet, View, SafeAreaView } from 'react-native';
+import { StyleSheet, View, SafeAreaView, Dimensions } from 'react-native';
 import Animated from 'react-native-reanimated';
 import BottomSheet from 'reanimated-bottom-sheet';
 import { Input, Icon, Button, Text } from "react-native-elements";
@@ -8,6 +8,7 @@ import { getCityAtmosphereDetails } from "./components/utils/RestUtils";
 import { AxiosError } from "axios";
 import { City } from "./components/pojo/City";
 import TitleBanner from "./components/TitleBanner";
+import HeroSection from './components/HeroSection';
 
 const App = () => {
 	const [place, setPlace] = React.useState("kodinar");
@@ -102,15 +103,16 @@ const App = () => {
 					<View style={styles.titleBanner}>
 						<TitleBanner />
 					</View>
-					<View style={styles.button}>
-						<Button
+					<View style={styles.heroSection}>
+						{/* <Button
 							title="Submit"
 							buttonStyle={{ width: "100%" }}
 							loading={loading}
 							onPress={() => {
 								getCityDetails(place);
 							}}
-						/>
+						/> */}
+						<HeroSection/>
 					</View>
 					<View style={styles.textView}>
 						{cityValue?.name ? <Text style={[{color:"#fff"}]}>{cityValue?.name}</Text> : <></>}
@@ -142,11 +144,12 @@ const styles = StyleSheet.create({
 		justifyContent: "center",
 		paddingTop: 15,
 	},
-	button: {
-		flex: 1,
+	heroSection: {
+		flex: 0.8,
 		alignItems: "center",
 		justifyContent: "center",
 		paddingTop: 15,
+		width:Dimensions.get('window').width
 	},
 	textView: {
 		flex: 1,
