@@ -104,9 +104,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgba(99, 128, 226,0.6)',
         flexWrap:"wrap",
         alignContent:"center",
-        flexGrow:3
-        // shadowOpacity:1,
-        // backgroundColor:"#6380e2"
+        flexGrow:1
     },
     labelView: {
         minWidth:"25%",
@@ -114,6 +112,7 @@ const styles = StyleSheet.create({
         flex: 1,
         paddingTop:20,
         paddingBottom:20,
+        flexGrow:1
         // backgroundColor:"#000",
         // borderWidth:5,
         // borderColor:"#fff"

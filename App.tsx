@@ -10,7 +10,7 @@ import { City } from "./components/pojo/City";
 import TitleBanner from "./components/TitleBanner";
 import HeroSection from './components/HeroSection';
 import ForcastSection from './components/ForcastSection';
-import BottomSection from './components/BottomSection';
+import BottomSection from './components/bottomSheet/BottomSection';
 
 const App = () => {
 	const [place, setPlace] = React.useState("kodinar");

@@ -84,7 +84,7 @@ export default BottomSectionFlatList
 const styles = StyleSheet.create({
     container: {
         flexDirection: "column",
-        backgroundColor: "#fff",
+        backgroundColor: 'rgba(255,255,255,0.6)',
         borderRadius: 15,
         // backgroundColor: "#000",
     },
