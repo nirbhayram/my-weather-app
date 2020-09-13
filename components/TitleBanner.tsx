@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { View, Text, StyleSheet, Dimensions } from 'react-native'
 import { Icon } from 'react-native-elements'
 
@@ -11,14 +11,12 @@ export default function TitleBanner({ primaryText = "South Purwokerto", secondar
                     name='navicon'
                     type='font-awesome'
                     color='#fff'
-                    size={25}
-                    onPress={() => console.log('hello')} />
+                    size={25} />
                 <Icon
                     name='bell-o'
                     type='font-awesome'
                     color='#fff'
-                    size={25}
-                    onPress={() => console.log('hello')} />
+                    size={25} />
             </View>
             <View style={[styles.textContainer]}>
                 <Text style={styles.primary_title}>{primaryText}</Text>
@@ -26,32 +24,14 @@ export default function TitleBanner({ primaryText = "South Purwokerto", secondar
             </View>
             <View style={styles.climateStatus}>
                 <Icon
-                    style={{paddingRight:10}}
+                    style={styles.climateStatusIcon}
                     name='cloud'
                     type='font-awesome'
                     color='#fff'
-                    size={100}
-                    onPress={() => console.log('hello')} />
+                    size={100} />
                 <View style={{ flexDirection: "column", justifyContent: "center", alignItems: "flex-start" }}>
-                    <Text
-                        style={
-                            {
-                                fontSize: 40,
-                                color: "#fff",
-                                fontWeight: "bold",
-                                paddingLeft: 10,
-                            }
-                        }
-                    >27°</Text>
-                    <Text
-                        style={
-                            {
-                                fontSize: 25,
-                                color: "#ccc",
-                                paddingLeft:10
-                            }
-                        }
-                    >cloudy</Text>
+                    <Text style={styles.climateStatusTemperature}>27°</Text>
+                    <Text style={styles.climateStatusDescription}>cloudy</Text>
                 </View>
             </View>
         </View>
@@ -72,7 +52,6 @@ const styles = StyleSheet.create({
         justifyContent: "space-between",
         alignItems: "flex-start",
         width: Dimensions.get('window').width,
-        // backgroundColor:"#000"
     },
     textContainer: {
         flex: 0.7,
@@ -87,6 +66,20 @@ const styles = StyleSheet.create({
         alignItems: "center",
         width: Dimensions.get('window').width,
 
+    },
+    climateStatusIcon: {
+        paddingRight: 10
+    },
+    climateStatusTemperature: {
+        fontSize: 40,
+        color: "#fff",
+        fontWeight: "bold",
+        paddingLeft: 10,
+    },
+    climateStatusDescription: {
+        fontSize: 25,
+        color: "#ccc",
+        paddingLeft: 10
     },
     primary_title: {
         fontSize: 20,

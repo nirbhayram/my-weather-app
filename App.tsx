@@ -1,16 +1,12 @@
 import * as React from 'react';
-import { StyleSheet, View, SafeAreaView, Dimensions } from 'react-native';
-import Animated from 'react-native-reanimated';
+import { StyleSheet, SafeAreaView } from 'react-native';
 import BottomSheet from 'reanimated-bottom-sheet';
-import { Input, Icon, Button, Text } from "react-native-elements";
 import { LinearGradient } from "expo-linear-gradient";
 import { getCityAtmosphereDetails } from "./components/utils/RestUtils";
 import { AxiosError } from "axios";
 import { City } from "./components/pojo/City";
-import TitleBanner from "./components/TitleBanner";
-import HeroSection from './components/HeroSection';
-import ForcastSection from './components/ForcastSection';
 import BottomSection from './components/bottomSheet/BottomSection';
+import MainScreen from './components/MainScreen';
 
 const App = () => {
 	const [place, setPlace] = React.useState("kodinar");
@@ -85,7 +81,7 @@ const App = () => {
 	};
 
 	const renderContent = () => (
-		<BottomSection/>
+		<BottomSection />
 	);
 
 	const sheetRef = React.useRef(null);
@@ -94,24 +90,7 @@ const App = () => {
 		<>
 			<LinearGradient colors={["#4064e0", "#b6c5fb"]} style={styles.container}>
 				<SafeAreaView style={styles.container}>
-					<View style={styles.titleBanner}>
-						<TitleBanner />
-					</View>
-					<View style={styles.heroSection}>
-						{/* <Button
-							title="Submit"
-							buttonStyle={{ width: "100%" }}
-							loading={loading}
-							onPress={() => {
-								getCityDetails(place);
-							}}
-						/> */}
-						<HeroSection/>
-					</View>
-					<View style={styles.forcastSection}>
-						{/* {cityValue?.name ? <Text style={[{color:"#fff"}]}>{cityValue?.name}</Text> : <></>} */}
-						<ForcastSection/>
-					</View>
+					<MainScreen />
 				</SafeAreaView>
 			</LinearGradient>
 			<BottomSheet
@@ -132,26 +111,6 @@ const styles = StyleSheet.create({
 		alignItems: "center",
 		justifyContent: "center",
 		paddingTop: 15,
-	},
-	titleBanner: {
-		flex: 1,
-		alignItems: "center",
-		justifyContent: "center",
-		paddingTop: 15,
-	},
-	heroSection: {
-		flex: 0.8,
-		alignItems: "center",
-		justifyContent: "center",
-		paddingTop: 15,
-		width:Dimensions.get('window').width
-	},
-	forcastSection: {
-		flex: 1,
-		fontSize: 20,
-		justifyContent: "flex-start",
-		alignItems: "center",
-		paddingTop:30
 	}
 });
 
