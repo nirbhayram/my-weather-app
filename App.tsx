@@ -117,7 +117,7 @@ const App = () => {
 			<BottomSheet
 				initialSnap={2}
 				ref={sheetRef}
-				snapPoints={[`70%`, `12%`, `12%`]}
+				snapPoints={[`75%`, `12%`, `12%`]}
 				borderRadius={20}
 				renderContent={renderContent}
 			/>
