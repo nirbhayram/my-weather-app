@@ -9,6 +9,7 @@ import { AxiosError } from "axios";
 import { City } from "./components/pojo/City";
 import TitleBanner from "./components/TitleBanner";
 import HeroSection from './components/HeroSection';
+import ForcastSection from './components/ForcastSection';
 
 const App = () => {
 	const [place, setPlace] = React.useState("kodinar");
@@ -114,8 +115,9 @@ const App = () => {
 						/> */}
 						<HeroSection/>
 					</View>
-					<View style={styles.textView}>
-						{cityValue?.name ? <Text style={[{color:"#fff"}]}>{cityValue?.name}</Text> : <></>}
+					<View style={styles.forcastSection}>
+						{/* {cityValue?.name ? <Text style={[{color:"#fff"}]}>{cityValue?.name}</Text> : <></>} */}
+						<ForcastSection/>
 					</View>
 				</SafeAreaView>
 			</LinearGradient>
@@ -151,11 +153,12 @@ const styles = StyleSheet.create({
 		paddingTop: 15,
 		width:Dimensions.get('window').width
 	},
-	textView: {
+	forcastSection: {
 		flex: 1,
 		fontSize: 20,
-		justifyContent: "center",
-		alignItems: "center"
+		justifyContent: "flex-start",
+		alignItems: "center",
+		paddingTop:30
 	}
 });
 

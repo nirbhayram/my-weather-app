@@ -10,7 +10,7 @@ const HeroSection = () => {
                 <Icon
                     name='sun-o'
                     type='font-awesome'
-                    color='#fff'
+                    color='#EBEBEB'
                     size={25}
                     onPress={() => console.log('hello')} />
                 <View style={styles.labelViewTextView}>
@@ -23,12 +23,12 @@ const HeroSection = () => {
                 <Icon
                     name='sun'
                     type='font-awesome-5'
-                    color='#fff'
+                    color='#EBEBEB'
                     size={25}
                     onPress={() => console.log('hello')} />
                 <View style={styles.labelViewTextView}>
                     <Text style={styles.labelViewTextViewText}>
-                        6:15 am
+                        5:26 pm
                     </Text>
                 </View>
             </View>
@@ -36,12 +36,12 @@ const HeroSection = () => {
                 <Icon
                     name='wind'
                     type='font-awesome-5'
-                    color='#fff'
+                    color='#EBEBEB'
                     size={25}
                     onPress={() => console.log('hello')} />
                 <View style={styles.labelViewTextView}>
                     <Text style={styles.labelViewTextViewText}>
-                        6:15 am
+                        17 km/hr
                     </Text>
                 </View>
             </View>
@@ -49,12 +49,12 @@ const HeroSection = () => {
                 <Icon
                     name='cloud-sun-rain'
                     type='font-awesome-5'
-                    color='#fff'
+                    color='#EBEBEB'
                     size={25}
                     onPress={() => console.log('hello')} />
                 <View style={styles.labelViewTextView}>
                     <Text style={styles.labelViewTextViewText}>
-                        6:15 am
+                        11%
                     </Text>
                 </View>
             </View>
@@ -62,12 +62,12 @@ const HeroSection = () => {
                 <Icon
                     name='bolt'
                     type='font-awesome-5'
-                    color='#fff'
+                    color='#EBEBEB'
                     size={25}
                     onPress={() => console.log('hello')} />
                 <View style={styles.labelViewTextView}>
                     <Text style={styles.labelViewTextViewText}>
-                        6:15 am
+                        UV: 3
                     </Text>
                 </View>
             </View>
@@ -75,12 +75,12 @@ const HeroSection = () => {
                 <Icon
                     name='tint'
                     type='font-awesome'
-                    color='#fff'
+                    color='#EBEBEB'
                     size={25}
                     onPress={() => console.log('hello')} />
                 <View style={styles.labelViewTextView}>
                     <Text style={styles.labelViewTextViewText}>
-                        6:15 am
+                        17%
                     </Text>
                 </View>
             </View>
@@ -116,15 +116,15 @@ const styles = StyleSheet.create({
         paddingBottom:20,
         // backgroundColor:"#000",
         // borderWidth:5,
-        borderColor:"#fff"
+        // borderColor:"#fff"
     },
     labelViewTextView: {
         justifyContent: "center",
         alignItems: "center"
     },
     labelViewTextViewText: {
-        color: "#fff",
-        fontSize: 12,
+        color: "#EBEBEB",
+        fontSize: 15,
         padding: 10
     }
 })
