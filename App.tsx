@@ -5,7 +5,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import { getCityAtmosphereDetails } from "./components/utils/RestUtils";
 import { AxiosError } from "axios";
 import { City } from "./components/pojo/City";
-import BottomSection from './components/bottomSheet/BottomSection';
+import BottomSection from './components/BottomSheet/BottomSection';
 import MainScreen from './components/MainScreen';
 
 const App = () => {

@@ -2,13 +2,17 @@ import React from 'react'
 import { Dimensions, StyleSheet, Text, View } from 'react-native'
 import ForcastSection from './ForcastSection'
 import HeroSection from './HeroSection/HeroSection'
-import TitleBanner from './TitleBanner'
+import ClimateStatus from './TitleSection/ClimateStatus'
+import HeaderSection from './TitleSection/HeaderSection'
+import Title from './TitleSection/Title'
 
 const MainScreen = () => {
     return (
         <>
             <View style={styles.titleBanner}>
-                <TitleBanner />
+                <HeaderSection />
+                <Title />
+                <ClimateStatus />
             </View>
             <View style={styles.heroSection}>
                 <HeroSection />

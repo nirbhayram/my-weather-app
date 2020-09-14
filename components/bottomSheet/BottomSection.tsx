@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, View } from 'react-native'
 import BottomSectionFlatList from './BottomSectionFlatList'
 import BottomSectionHeroSection from './BottomSectionHeroSection'
 import BottomSectionTitle from './BottomSectionTitle'

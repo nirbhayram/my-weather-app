@@ -69,15 +69,15 @@ const DATA = [
 ];
 
 const Item = ({ id, time, icon, text }) => (
-    <View style={[time==="Now"?styles.componentNow:styles.component]}>
-        <Text style={styles.componentTitleText}>{time}</Text>
+    <View style={[time === "Now" ? styles.componentNow : styles.component]}>
+        <Text style={[time === "Now" ? styles.componentTitleTextNow : styles.componentTitleText]}>{time}</Text>
         <Icon
             style={styles.componentIcon}
             name={icon}
             type='font-awesome-5'
-            color={time==="Now"?'#ccc':'#f0f3f5'}
-            size={30}/>
-        <Text style={styles.componentBottomText}>{text}</Text>
+            color={time === "Now" ? '#ccc' : '#f0f3f5'}
+            size={30} />
+        <Text style={[time === "Now" ? styles.componentBottomTextNow : styles.componentBottomText]}>{text}</Text>
     </View>
 );
 
@@ -133,6 +133,11 @@ const styles = StyleSheet.create({
         marginRight: 10
     },
     componentTitleText: {
+        color: "#fff",
+        fontSize: 15,
+        paddingBottom: 10,
+    },
+    componentTitleTextNow: {
         fontSize: 15,
         paddingBottom: 10,
     },
@@ -140,6 +145,11 @@ const styles = StyleSheet.create({
         paddingBottom: 10,
     },
     componentBottomText: {
+        color: "#fff",
+        fontSize: 15,
+        paddingBottom: 10,
+    },
+    componentBottomTextNow: {
         fontSize: 15,
         paddingBottom: 10,
     }
