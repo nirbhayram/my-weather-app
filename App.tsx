@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyleSheet, SafeAreaView } from 'react-native';
+import { StyleSheet, SafeAreaView, StatusBar } from 'react-native';
 import BottomSheet from 'reanimated-bottom-sheet';
 import { LinearGradient } from "expo-linear-gradient";
 import { getCityAtmosphereDetails } from "./components/utils/RestUtils";
@@ -89,6 +89,9 @@ const App = () => {
 	return (
 		<>
 			<LinearGradient colors={["#4064e0", "#b6c5fb"]} style={styles.container}>
+				<StatusBar
+					barStyle="light-content"
+				/>
 				<SafeAreaView style={styles.container}>
 					<MainScreen />
 				</SafeAreaView>
