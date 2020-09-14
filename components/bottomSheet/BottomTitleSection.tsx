@@ -14,8 +14,7 @@ const BottomSectionTitle = () => {
                     name='ellipsis-h'
                     type='font-awesome-5'
                     color='#5C5C5C'
-                    size={30}
-                    onPress={() => console.log('hello')} />
+                    size={30} />
             </View>
         </View>
     )
@@ -25,22 +24,20 @@ export default BottomSectionTitle
 
 const styles = StyleSheet.create({
     container: {
-        // backgroundColor:"#000"
-        justifyContent:"center",
-        alignItems:"center",
+        justifyContent: "center",
+        alignItems: "center",
     },
     titleBarIcon: {
-        // height: 20,
         borderBottomColor: '#EBEBEB',
         borderBottomWidth: 4,
-        paddingTop:10,
+        paddingTop: 10,
         marginBottom: 20,
-        width:"20%",
-        justifyContent:"center",
-        alignItems:"center"
+        width: "20%",
+        justifyContent: "center",
+        alignItems: "center"
     },
     titleContainer: {
-        width:"100%",
+        width: "100%",
         flexDirection: "row",
         justifyContent: "space-between"
     },
