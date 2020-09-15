@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { Dimensions, StyleSheet, Text, View } from 'react-native'
 import { Icon } from 'react-native-elements'
 
 const TinyInfoDisplay = ({icon="sun-o",text="6:15 am"}) => {
@@ -21,12 +21,13 @@ export default TinyInfoDisplay
 
 const styles = StyleSheet.create({
     labelView: {
-        minWidth: "25%",
+        minWidth: Dimensions.get('window').width*0.20,
         flexDirection: "column",
         flex: 1,
-        paddingTop: 20,
-        paddingBottom: 20,
-        flexGrow: 1
+        paddingTop: "5%",
+        paddingBottom: "5%",
+        flexGrow: 1,
+        // backgroundColor:"#000"
     },
     labelViewTextView: {
         justifyContent: "center",
