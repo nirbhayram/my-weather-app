@@ -21,11 +21,11 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         flexDirection: "row",
-        padding: 10,
+        padding: "5%",
         width: "80%",
         justifyContent: "center",
         alignItems: "center",
-        opacity: 1,
+        // opacity: 1,
         borderRadius: 20,
         backgroundColor: 'rgba(99, 128, 226,0.6)',
         flexWrap: "wrap",

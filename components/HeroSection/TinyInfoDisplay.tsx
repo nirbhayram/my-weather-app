@@ -9,7 +9,7 @@ const TinyInfoDisplay = ({icon="sun-o",text="6:15 am"}) => {
                 name={icon}
                 type='font-awesome-5'
                 color='#EBEBEB'
-                size={25} />
+                size={Dimensions.get('window').width*0.06} />
             <View style={styles.labelViewTextView}>
                 <Text style={styles.labelViewTextViewText}>{text}</Text>
             </View>
@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
     },
     labelViewTextViewText: {
         color: "#EBEBEB",
-        fontSize: 15,
-        padding: 10
+        fontSize: Dimensions.get('window').width*0.04,
+        padding: "10%"
     }
 })

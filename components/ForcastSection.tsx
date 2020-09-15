@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { StyleSheet, Text, View, FlatList } from 'react-native'
+import { StyleSheet, Text, View, FlatList, Dimensions } from 'react-native'
 import { Icon } from "react-native-elements";
 
 const DATA = [
@@ -76,7 +76,7 @@ const Item = ({ id, time, icon, text }) => (
             name={icon}
             type='font-awesome-5'
             color={time === "Now" ? '#ccc' : '#f0f3f5'}
-            size={30} />
+            size={Dimensions.get('window').width*0.06} />
         <Text style={[time === "Now" ? styles.componentBottomTextNow : styles.componentBottomText]}>{text}</Text>
     </View>
 );
