@@ -15,7 +15,7 @@ const BottomSectionTitle = observer(() => {
                     <View style={styles.titleBarIcon}></View>
                     <View style={styles.titleContainer}>
                         <Text style={styles.titleText}>
-                            Previous 7 days
+                            Next 7 days
                         </Text>
                         <Icon
                             name='ellipsis-h'

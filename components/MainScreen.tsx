@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center",
         paddingTop: 15,
-        width: Dimensions.get('window').width
+        alignSelf:'stretch'
     },
     forcastSection: {
         flex: 1,

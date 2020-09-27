@@ -1,7 +1,7 @@
 import { observer } from 'mobx-react';
 import { Spinner } from 'native-base';
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, View } from 'react-native'
 import store from '../../store/mobx/CityStore';
 import TinyInfoDisplay from './TinyInfoDisplay';
 
@@ -11,7 +11,7 @@ const HeroSection = observer(() => {
     }
 
     return (
-        <View style={styles.container}>
+        <View style={[styles.container,]}>
             {
                 store.isEmpty ? (
                     <>
@@ -39,11 +39,11 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         flexDirection: "row",
-        padding: "5%",
-        width: "80%",
+        padding: 10,
+        marginHorizontal:30,
         justifyContent: "center",
         alignItems: "center",
-        // opacity: 1,
+        alignSelf:'stretch',
         borderRadius: 20,
         backgroundColor: 'rgba(99, 128, 226,0.6)',
         flexWrap: "wrap",

@@ -5,7 +5,7 @@ import { StyleSheet, Text, View } from 'react-native'
 import store from '../../store/mobx/CityStore'
 
 
-const Title = observer(({ primaryText = "South Purwokerto", secondaryText = "Sunday, 13 September" }) => {
+const Title = observer(() => {
     return (
         <View style={[styles.textContainer]}>
             {

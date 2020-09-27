@@ -73,7 +73,7 @@ const onError = (error: AxiosError) => {
 
 const HeaderSection = () => {
     return (
-        <View style={styles.navigationControl}>
+        <View style={[styles.navigationControl,{width:Dimensions.get('window').width}]}>
             <Icon
                 name='navicon'
                 type='font-awesome'
@@ -98,6 +98,5 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         justifyContent: "space-between",
         alignItems: "flex-start",
-        width: Dimensions.get('window').width,
     },
 })
