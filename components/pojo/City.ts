@@ -1,22 +1,23 @@
 import { AxiosResponse } from "axios";
+import { action, computed, observable } from "mobx";
 
 export class City {
-    name: string;
-    lat: number;
-    lon: number;
-    weather: Weather;
-    temperature: number;
-    temperature_min: number;
-    temperature_max: number;
-    pressure: number;
-    humidity: number;
-    sea_level: number;
-    grnd_level: number;
-    visibility: number;
-    wind_speed: number;
-    wind_degree: number;
-    hourlyData: Array<HourlyWeather>;
-    dailyData: Array<DailyWeather>;
+    @observable name: string;
+    @observable lat: number;
+    @observable lon: number;
+    @observable weather: Weather;
+    @observable temperature: number;
+    @observable temperature_min: number;
+    @observable temperature_max: number;
+    @observable pressure: number;
+    @observable humidity: number;
+    @observable sea_level: number;
+    @observable grnd_level: number;
+    @observable visibility: number;
+    @observable wind_speed: number;
+    @observable wind_degree: number;
+    @observable hourlyData: Array<HourlyWeather>;
+    @observable dailyData: Array<DailyWeather>;
     constructor(repsonse: AxiosResponse) {
         this.lat = repsonse?.data?.coord?.lat;
         this.lon = repsonse?.data?.coord?.lon;
@@ -41,42 +42,42 @@ export class City {
         this.dailyData = new Array<DailyWeather>();
     }
 
-    public set addHourlyData(newHourlyData  : HourlyWeather) {
+    @action addHourlyData(newHourlyData  : HourlyWeather) {
         this.hourlyData.push(newHourlyData);
     }
 
     
-    public set addDailyData(v : DailyWeather) {
+    @action addDailyData(v : DailyWeather) {
         this.dailyData.push(v);
     }
     
     
-    public get temperatureValue() : string {
+    @computed temperatureValue() : string {
         return `current tmeperature is ${this.temperature} max and min are ${this.temperature_max} ${this.temperature_min} respectively`
     }
 
 }
 
 export class DailyWeather {
-    date: Date;
-    sunrise: Date;
-    sunset: Date;
-    temperature_day: number;
-    temperature_min: number;
-    temperature_max: number;
-    temperature_evening: number;
-    temperature_night: number;
-    temperature_morning: number;
-    pressure: number;
-    humidity: number;
-    dew_drops: number;
-    wind_speed: number;
-    wind_deg: number;
-    weather: Weather;
-    clouds: number;
-    probablity_precipitation: number;
-    rain: number;
-    uvi: number;
+    @observable date: Date;
+    @observable sunrise: Date;
+    @observable sunset: Date;
+    @observable temperature_day: number;
+    @observable temperature_min: number;
+    @observable temperature_max: number;
+    @observable temperature_evening: number;
+    @observable temperature_night: number;
+    @observable temperature_morning: number;
+    @observable pressure: number;
+    @observable humidity: number;
+    @observable dew_drops: number;
+    @observable wind_speed: number;
+    @observable wind_deg: number;
+    @observable weather: Weather;
+    @observable clouds: number;
+    @observable probablity_precipitation: number;
+    @observable rain: number;
+    @observable uvi: number;
     constructor(data: any) {
         this.date = new Date(data?.dt *1000);
         this.sunrise = new Date(data?.sunrise*1000)
@@ -106,17 +107,17 @@ export class DailyWeather {
 }
 
 export class HourlyWeather {
-    time: Date;
-    temperature: number;
-    pressure: number;
-    humidity: number;
-    clouds: number;
-    visibility: number;
-    wind_speed: number;
-    wind_deg: number;
-    weather: Weather;
-    probablity_precipitation: number;
-    rain: number;
+    @observable time: Date;
+    @observable temperature: number;
+    @observable pressure: number;
+    @observable humidity: number;
+    @observable clouds: number;
+    @observable visibility: number;
+    @observable wind_speed: number;
+    @observable wind_deg: number;
+    @observable weather: Weather;
+    @observable probablity_precipitation: number;
+    @observable rain: number;
     constructor(response: any) {
         this.time = new Date(response?.dt * 1000);
         this.temperature = response?.temp;
@@ -138,10 +139,10 @@ export class HourlyWeather {
 }
 
 export class Weather {
-    id: number;
-    main: string;
-    description: string;
-    icon: string;
+    @observable id: number;
+    @observable main: string;
+    @observable description: string;
+    @observable icon: string;
     constructor(id:number, main:string, description:string,icon:string){
         this.id = id;
         this.main = main;
@@ -149,7 +150,7 @@ export class Weather {
         this.icon = icon;
     }
     
-    public get currentWeather() : string {
+    @computed  currentWeather() : string {
         return `main: ${this.main} description: ${this.description}`
     }
     

@@ -8,6 +8,7 @@
     "skipLibCheck": true,
     "resolveJsonModule": true,
     "strict": true,
-    "target": "ES5"
+    "target": "ES5",
+    "experimentalDecorators": true
   },
 }
