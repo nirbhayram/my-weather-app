@@ -1,13 +1,16 @@
-import React, { useState } from 'react'
-import { StyleSheet, Text, View, FlatList, Dimensions } from 'react-native'
+import { observer } from 'mobx-react';
+import { Spinner } from 'native-base';
+import React from 'react'
+import { StyleSheet, Text, View, FlatList, Image } from 'react-native'
 import { Icon } from "react-native-elements";
+import store from "../store/mobx/CityStore";
 
 const DATA = [
     {
         id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
         title: 'First Item',
         time: 'Now',
-        icon: 'cloud-sun-rain',
+        icon: 'http://openweathermap.org/img/wn/10d@2x.png',
         text: '27°'
     },
     {
@@ -68,34 +71,44 @@ const DATA = [
     }
 ];
 
-const Item = ({ id, time, icon, text }) => (
+const Item = observer(({ id, time, icon, text }) => (
     <View style={[time === "Now" ? styles.componentNow : styles.component]}>
         <Text style={[time === "Now" ? styles.componentTitleTextNow : styles.componentTitleText]}>{time}</Text>
-        <Icon
-            style={styles.componentIcon}
-            name={icon}
-            type='font-awesome-5'
-            color={time === "Now" ? '#ccc' : '#f0f3f5'}
-            size={Dimensions.get('window').width*0.06} />
+        <Image
+            style={styles.imageView}
+            source={{uri:`http://openweathermap.org/img/wn/${icon}@2x.png`}}
+        />
         <Text style={[time === "Now" ? styles.componentBottomTextNow : styles.componentBottomText]}>{text}</Text>
     </View>
-);
+))
 
-const ForcastSection = () => {
+const ForcastSection = observer(() => {
+
+    function getTime(date:Date):string{
+        return `${date.getHours()}:${date.getMinutes()}`;
+    }
 
     const renderItem = ({ item }) => (
-        <Item id={item.id} time={item.time} icon={item.icon} text={item.text} />
+        <Item id={`${item.time.getTime()}`} time={getTime(item.time)} icon={item.weather.icon} text={item.temperature} />
     );
 
     return (
-        <FlatList
-            horizontal={true}
-            data={DATA}
-            renderItem={renderItem}
-            keyExtractor={item => item.id}
-        />
+        <>
+            {
+                store.isEmpty ? (
+                    <Spinner color='white' />
+                ) : (
+                        <FlatList
+                            horizontal={true}
+                            data={store.listCity[0].hourlyData.slice().filter((item,i)=>i<5)}
+                            renderItem={renderItem}
+                            keyExtractor={item => `${item.time.getTime()}`}
+                        />
+                    )
+            }
+        </>
     )
-}
+})
 
 export default ForcastSection
 
@@ -152,5 +165,9 @@ const styles = StyleSheet.create({
     componentBottomTextNow: {
         fontSize: 15,
         paddingBottom: 10,
+    },
+    imageView:{
+        width:50,
+        height:40
     }
 })

@@ -1,23 +1,35 @@
+import { observer } from 'mobx-react';
+import { Spinner } from 'native-base';
 import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import { Icon } from "react-native-elements";
+import store from '../../store/mobx/CityStore';
 import BottomHeroSectionLabel from "./BottomHeroSectionLabel";
 import BottomHeroTitleSection from './BottomHeroTitleSection';
 
-const BottomSectionHeroSection = () => {
+const BottomSectionHeroSection = observer(() => {
     return (
         <View style={styles.container}>
-            <BottomHeroTitleSection/>
-            <View style={styles.horizontalRuler}></View>
-            <View style={styles.contentContainer}>
-                <BottomHeroSectionLabel keyText='Humidity' valueText='17%' />
-                <BottomHeroSectionLabel keyText='Wind' valueText='17 km/hr' />
-                <BottomHeroSectionLabel keyText='UV Index' valueText='3' />
-                <BottomHeroSectionLabel keyText='Rain' valueText='11%' />
-            </View>
+            {
+                store.isEmpty ? (
+                    <Spinner color='#5C5C5C' />
+                ) : (
+                        <>
+                            <BottomHeroTitleSection />
+                            <View style={styles.horizontalRuler}></View>
+                            <View style={styles.contentContainer}>
+                                <BottomHeroSectionLabel keyText='Humidity' valueText={`${store.listCity[0].dailyData[0].humidity} %`} />
+                                <BottomHeroSectionLabel keyText='Wind' valueText={`${store.listCity[0].dailyData[0].wind_speed} m/s`}  />
+                                <BottomHeroSectionLabel keyText='UV Index' valueText={`${store.listCity[0].dailyData[0].uvi}`} />
+                                <BottomHeroSectionLabel keyText='Rain' valueText={`${store.listCity[0].dailyData[0].probablity_precipitation*100} %`} />
+                            </View>
+                        </>
+                    )
+            }
+
         </View>
     )
-}
+})
 
 export default BottomSectionHeroSection
 

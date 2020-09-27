@@ -1,24 +1,34 @@
+import { observer } from 'mobx-react';
+import { Spinner } from 'native-base';
 import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import { Icon } from "react-native-elements";
+import store from '../../store/mobx/CityStore';
 
-const BottomSectionTitle = () => {
+const BottomSectionTitle = observer(() => {
     return (
         <View style={styles.container}>
-            <View style={styles.titleBarIcon}></View>
-            <View style={styles.titleContainer}>
-                <Text style={styles.titleText}>
-                    Previous 7 days
-                </Text>
-                <Icon
-                    name='ellipsis-h'
-                    type='font-awesome-5'
-                    color='#5C5C5C'
-                    size={30} />
-            </View>
+            {
+                store.isEmpty ? (
+                    <Spinner color='#5C5C5C' />
+                ) : (<>
+                    <View style={styles.titleBarIcon}></View>
+                    <View style={styles.titleContainer}>
+                        <Text style={styles.titleText}>
+                            Previous 7 days
+                        </Text>
+                        <Icon
+                            name='ellipsis-h'
+                            type='font-awesome-5'
+                            color='#5C5C5C'
+                            size={30} />
+                    </View>
+                </>)
+            }
+
         </View>
     )
-}
+})
 
 export default BottomSectionTitle
 

@@ -78,7 +78,7 @@ const HeaderSection = () => {
                 name='navicon'
                 type='font-awesome'
                 color='#fff'
-                onPress={()=>{getCityDetails('Kodinar')}}
+                onPress={()=>{getCityDetails('kodinar')}}
                 size={25} />
             <Icon
                 name='bell-o'
