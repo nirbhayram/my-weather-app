@@ -24,8 +24,8 @@ const styles = StyleSheet.create({
         minWidth: Dimensions.get('window').width*0.20,
         flexDirection: "column",
         flex: 1,
-        paddingTop: "5%",
-        paddingBottom: "5%",
+        paddingTop: 10,
+        paddingBottom: 10,
         flexGrow: 1,
         // backgroundColor:"#000"
     },
