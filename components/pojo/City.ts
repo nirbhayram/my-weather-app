@@ -42,17 +42,17 @@ export class City {
         this.dailyData = new Array<DailyWeather>();
     }
 
-    @action addHourlyData(newHourlyData  : HourlyWeather) {
+    public set addHourlyData(newHourlyData: HourlyWeather) {
         this.hourlyData.push(newHourlyData);
     }
 
-    
-    @action addDailyData(v : DailyWeather) {
+
+    public set addDailyData(v: DailyWeather) {
         this.dailyData.push(v);
     }
-    
-    
-    @computed temperatureValue() : string {
+
+
+    public get temperatureValue(): string {
         return `current tmeperature is ${this.temperature} max and min are ${this.temperature_max} ${this.temperature_min} respectively`
     }
 
@@ -79,9 +79,9 @@ export class DailyWeather {
     @observable rain: number;
     @observable uvi: number;
     constructor(data: any) {
-        this.date = new Date(data?.dt *1000);
-        this.sunrise = new Date(data?.sunrise*1000)
-        this.sunset = new Date(data?.sunset*1000);
+        this.date = new Date(data?.dt * 1000);
+        this.sunrise = new Date(data?.sunrise * 1000)
+        this.sunset = new Date(data?.sunset * 1000);
         this.temperature_day = data?.temp?.day;
         this.temperature_min = data?.temp?.min;
         this.temperature_max = data?.temp?.max;
@@ -143,15 +143,15 @@ export class Weather {
     @observable main: string;
     @observable description: string;
     @observable icon: string;
-    constructor(id:number, main:string, description:string,icon:string){
+    constructor(id: number, main: string, description: string, icon: string) {
         this.id = id;
         this.main = main;
         this.description = description;
         this.icon = icon;
     }
-    
-    @computed  currentWeather() : string {
+
+    public get getcurrentWeather(): string {
         return `main: ${this.main} description: ${this.description}`
     }
-    
+
 }

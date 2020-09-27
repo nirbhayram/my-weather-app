@@ -1,19 +1,22 @@
+import { observer } from 'mobx-react'
 import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
+import store from '../../store/mobx/CityStore'
 
-const Title = ({ primaryText = "South Purwokerto", secondaryText = "Sunday, 13 September" }) => {
+
+const Title = observer(({ primaryText = "South Purwokerto", secondaryText = "Sunday, 13 September" }) => {
     return (
         <View style={[styles.textContainer]}>
-            <Text style={styles.primary_title}>{primaryText}</Text>
+            <Text style={styles.primary_title}>{store.listCity.length!=0?store.listCity[0].name:primaryText}</Text>
             <Text style={styles.secondary_title}> {secondaryText} </Text>
         </View>
     )
-}
+})
 
 export default Title
 
 const styles = StyleSheet.create({
-     textContainer: {
+    textContainer: {
         flex: 0.7,
         flexDirection: "column",
         justifyContent: "flex-start",
