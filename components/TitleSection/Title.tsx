@@ -1,4 +1,5 @@
 import { observer } from 'mobx-react'
+import { Spinner } from 'native-base'
 import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import store from '../../store/mobx/CityStore'
@@ -7,8 +8,18 @@ import store from '../../store/mobx/CityStore'
 const Title = observer(({ primaryText = "South Purwokerto", secondaryText = "Sunday, 13 September" }) => {
     return (
         <View style={[styles.textContainer]}>
-            <Text style={styles.primary_title}>{store.listCity.length!=0?store.listCity[0].name:primaryText}</Text>
-            <Text style={styles.secondary_title}> {secondaryText} </Text>
+            {
+                store.isEmpty ?
+                    (<>
+                        <Spinner color='white'/>
+                    </>
+                    ) : (
+                        <>
+                            <Text style={styles.primary_title}>{store.listCity[0].name}</Text>
+                            <Text style={styles.secondary_title}> {store.listCity[0].temp_current_time.toString()} </Text>
+                        </>
+                    )
+            }
         </View>
     )
 })

@@ -1,23 +1,35 @@
+import { observer } from 'mobx-react'
+import { Spinner } from 'native-base'
 import React from 'react'
 import { Dimensions, StyleSheet, Text, View } from 'react-native'
 import { Icon } from 'react-native-elements'
+import store from '../../store/mobx/CityStore'
 
-const ClimateStatus = () => {
+const ClimateStatus = observer(() => {
     return (
         <View style={styles.climateStatus}>
-            <Icon
-                style={styles.climateStatusIcon}
-                name='cloud'
-                type='font-awesome'
-                color='#fff'
-                size={100} />
-            <View style={{ flexDirection: "column", justifyContent: "center", alignItems: "flex-start" }}>
-                <Text style={styles.climateStatusTemperature}>27°</Text>
-                <Text style={styles.climateStatusDescription}>cloudy</Text>
-            </View>
+            {
+                store.isEmpty ?
+                    (
+                        <Spinner color='white'/>
+                    ) : (
+                        <>
+                            <Icon
+                                style={styles.climateStatusIcon}
+                                name='cloud'
+                                type='font-awesome'
+                                color='#fff'
+                                size={100} />
+                            <View style={{ flexDirection: "column", justifyContent: "center", alignItems: "flex-start" }}>
+                                <Text style={styles.climateStatusTemperature}>{store.listCity[0].temperature}°</Text>
+                                <Text style={styles.climateStatusDescription}>{store.listCity[0].weather.main}</Text>
+                            </View>
+                        </>
+                    )
+            }
         </View>
     )
-}
+})
 
 export default ClimateStatus
 

@@ -18,6 +18,7 @@ export class City {
     @observable wind_degree: number;
     @observable hourlyData: Array<HourlyWeather>;
     @observable dailyData: Array<DailyWeather>;
+    @observable temp_current_time: Date;
     constructor(repsonse: AxiosResponse) {
         this.lat = repsonse?.data?.coord?.lat;
         this.lon = repsonse?.data?.coord?.lon;
@@ -40,6 +41,19 @@ export class City {
         this.wind_degree = repsonse?.data?.wind?.deg;
         this.hourlyData = new Array<HourlyWeather>();
         this.dailyData = new Array<DailyWeather>();
+        this.temp_current_time = new Date();
+        this.startRolling();
+    }
+
+    startRolling(){
+        setTimeout(() => {
+            this.setTime();
+            this.startRolling();
+        }, 1000);
+    }
+
+    setTime(){
+        this.temp_current_time = new Date();
     }
 
     public set addHourlyData(newHourlyData: HourlyWeather) {

@@ -1,4 +1,4 @@
-import { action, observable } from 'mobx'
+import { action, computed, observable } from 'mobx'
 import { City } from '../../components/pojo/City'
 
 class CityStore {
@@ -10,6 +10,10 @@ class CityStore {
 
     @action removeCity(index:number){
         this.listCity = this.listCity.filter((item,i)=>i!==index);
+    }
+
+    @computed get isEmpty(){
+        return this.listCity.length===0;
     }
 
 }

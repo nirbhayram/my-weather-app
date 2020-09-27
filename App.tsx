@@ -6,9 +6,6 @@ import BottomSection from './components/BottomSheet/BottomSection';
 import MainScreen from './components/MainScreen';
 
 const App = () => {
-	const [place, setPlace] = React.useState("kodinar");
-	const [loading, setLoading] = React.useState(false);
-	const [cityValue, setCityValue] = React.useState(Object);
 
 	const renderContent = () => (
 		<BottomSection />
