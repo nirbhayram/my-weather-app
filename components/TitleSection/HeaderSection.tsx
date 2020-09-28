@@ -94,6 +94,7 @@ export default HeaderSection
 const styles = StyleSheet.create({
     navigationControl: {
         flex: 0.3,
+        flexBasis:'auto',
         padding: 20,
         flexDirection: "row",
         justifyContent: "space-between",

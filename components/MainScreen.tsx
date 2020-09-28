@@ -29,12 +29,14 @@ export default MainScreen
 const styles = StyleSheet.create({
     titleBanner: {
         flex: 1,
+        flexBasis: 'auto',
         alignItems: "center",
         justifyContent: "center",
         paddingTop: 15,
     },
     heroSection: {
         flex: 0.8,
+        flexBasis:'auto',
         alignItems: "center",
         justifyContent: "center",
         paddingTop: 15,
@@ -42,6 +44,7 @@ const styles = StyleSheet.create({
     },
     forcastSection: {
         flex: 1,
+        flexBasis:'auto',
         fontSize: 20,
         justifyContent: "flex-start",
         alignItems: "center",

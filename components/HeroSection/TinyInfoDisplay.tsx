@@ -22,13 +22,10 @@ export default TinyInfoDisplay
 
 const styles = StyleSheet.create({
     labelView: {
-        minWidth: 90,
+        // minWidth: 90,
         flexDirection: "column",
-        flex: 1,
         paddingTop: 10,
         paddingBottom: 10,
-        flexGrow: 1,
-        // backgroundColor:"#000"
     },
     labelViewTextView: {
         justifyContent: "center",

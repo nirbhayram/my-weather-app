@@ -29,6 +29,7 @@ export default Title
 const styles = StyleSheet.create({
     textContainer: {
         flex: 0.7,
+        flexBasis:'auto',
         flexDirection: "column",
         justifyContent: "flex-start",
         alignItems: "center"
