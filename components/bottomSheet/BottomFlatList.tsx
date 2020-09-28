@@ -92,7 +92,7 @@ const BottomSectionFlatList = observer(() => {
                     :
                     (
                         <FlatList
-                            data={store.listCity[0].dailyData.slice().filter((item,i)=>i<7)}
+                            data={store.listCity[0].dailyData.slice().filter((item,i)=>i<10)}
                             renderItem={renderItem}
                             keyExtractor={item => item.date.toString()}
                         />
@@ -113,16 +113,17 @@ const styles = StyleSheet.create({
         flexDirection: "column",
         backgroundColor: 'rgba(255,255,255,0.6)',
         borderRadius: 15,
+        marginBottom:10
     },
     titleContainer: {
         flexDirection: "row",
         justifyContent: "space-between",
         alignItems: "center",
-        paddingTop: "2%",
-        paddingBottom: "2%"
+        paddingTop: 5,
+        paddingBottom: 5
     },
     titleContainerDate: {
-        padding: "2%",
+        padding: 5,
         flexDirection: "row",
         justifyContent: "flex-start",
         alignItems: "center"

@@ -85,8 +85,8 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         justifyContent: "space-between",
         alignItems: "center",
-        paddingTop: "2%",
-        paddingBottom: "5%"
+        paddingTop: 2,
+        paddingBottom: 5
     },
     titleContainerDate: {
         flexDirection: "row",
@@ -100,13 +100,13 @@ const styles = StyleSheet.create({
     },
     dateText: {
         fontSize: 15,
-        paddingLeft: "5%",
+        paddingLeft: 5,
         fontWeight: "bold",
         color: "#5C5C5C"
     },
     temperatureText: {
         fontSize: 20,
-        paddingRight: "2%",
+        paddingRight: 4,
         fontWeight: "bold",
         color: "#5C5C5C"
     }

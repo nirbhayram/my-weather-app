@@ -18,10 +18,10 @@ const BottomSectionHeroSection = observer(() => {
                             <BottomHeroTitleSection />
                             <View style={styles.horizontalRuler}></View>
                             <View style={styles.contentContainer}>
-                                <BottomHeroSectionLabel keyText='Humidity' valueText={`${store.listCity[0].dailyData[0].humidity} %`} />
-                                <BottomHeroSectionLabel keyText='Wind' valueText={`${store.listCity[0].dailyData[0].wind_speed} m/s`}  />
-                                <BottomHeroSectionLabel keyText='UV Index' valueText={`${store.listCity[0].dailyData[0].uvi}`} />
-                                <BottomHeroSectionLabel keyText='Rain' valueText={`${store.listCity[0].dailyData[0].probablity_precipitation*100} %`} />
+                                <BottomHeroSectionLabel keyText='Humidity' valueText={`${parseFloat(`${store.listCity[0].dailyData[0].humidity}`).toFixed(2)} %`} />
+                                <BottomHeroSectionLabel keyText='Wind' valueText={`${parseFloat(`${store.listCity[0].dailyData[0].wind_speed}`).toFixed(2)} m/s`}  />
+                                <BottomHeroSectionLabel keyText='UV Index' valueText={`${parseFloat(`${store.listCity[0].dailyData[0].uvi}`).toFixed(2)}`} />
+                                <BottomHeroSectionLabel keyText='Rain' valueText={`${parseFloat(`${store.listCity[0].dailyData[0].probablity_precipitation*100}`).toFixed(2)} %`} />
                             </View>
                         </>
                     )
@@ -39,9 +39,9 @@ const styles = StyleSheet.create({
         // backgroundColor: "#000",
     },
     horizontalRuler: {
-        height: "2%",
+        height: 3,
         backgroundColor: "#EBEBEB",
-        marginBottom: "2%"
+        marginBottom: 2
     },
     contentContainer: {
         flexDirection: "row",

@@ -38,16 +38,16 @@ const styles = StyleSheet.create({
         alignItems: "center",
     },
     titleBarIcon: {
-        borderBottomColor: '#EBEBEB',
+        borderBottomColor: '#5c5c5c',
         borderBottomWidth: 4,
         paddingTop: 10,
         marginBottom: 20,
-        width: "20%",
+        width: 80,
         justifyContent: "center",
         alignItems: "center"
     },
     titleContainer: {
-        width: "100%",
+        alignSelf: 'stretch',
         flexDirection: "row",
         justifyContent: "space-between"
     },

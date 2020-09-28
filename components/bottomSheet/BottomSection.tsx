@@ -1,12 +1,12 @@
 import React from 'react'
-import { StyleSheet, View } from 'react-native'
+import { Dimensions, StyleSheet, View } from 'react-native'
 import BottomSectionFlatList from './BottomFlatList'
 import BottomSectionHeroSection from './BottomHeroSection'
 import BottomSectionTitle from './BottomTitleSection'
 
 const BottomSection = () => {
     return (
-        <View style={styles.container}>
+        <View style={[styles.container,{height:"100%"}]}>
             <View style={styles.titleSection}>
                 <BottomSectionTitle />
             </View>
@@ -27,16 +27,19 @@ const styles = StyleSheet.create({
         flexDirection: "column",
         justifyContent: "flex-start",
         backgroundColor: "#f0f3f5",
-        height: "100%",
-        paddingHorizontal: 20
+        paddingHorizontal: 20,
     },
     titleSection: {
-        height: "15%"
+        flexBasis:'auto',
+        marginBottom:20
     },
     heroSection: {
-        height: "23%"
+        flexBasis:'auto',
+        marginBottom:10
     },
     scrollView: {
-        height: "58%"
+        flexBasis:'auto',
+        flexShrink:1,
+        justifyContent:'center',
     }
 })
