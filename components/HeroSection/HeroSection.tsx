@@ -20,12 +20,12 @@ const HeroSection = observer(() => {
                 ) :
                     (
                         <>
-                            <TinyInfoDisplay icon='sun' text={getTime(store.listCity[0].dailyData[0].sunrise)} load='false' />
-                            <TinyInfoDisplay icon="umbrella-beach" text={getTime(store.listCity[0].dailyData[0].sunset)} load='false' />
-                            <TinyInfoDisplay icon='wind' text={`${store.listCity[0].dailyData[0].wind_speed} m/s`} load='false' />
-                            <TinyInfoDisplay icon='cloud-sun-rain' text={`${store.listCity[0].dailyData[0].probablity_precipitation*100} %`} load='false' />
-                            <TinyInfoDisplay icon='bolt' text={`UV: ${store.listCity[0].dailyData[0].uvi}`} load='false' />
-                            <TinyInfoDisplay icon='tint' text={`${store.listCity[0].dailyData[0].dew_drops}`} load='false' />
+                            <TinyInfoDisplay icon='sun' text={getTime(store.listCity[0].dailyData[0].sunrise)} />
+                            <TinyInfoDisplay icon="umbrella-beach" text={getTime(store.listCity[0].dailyData[0].sunset)}  />
+                            <TinyInfoDisplay icon='wind' text={`${parseFloat(`${store.listCity[0].dailyData[0].wind_speed}`).toFixed(2)} m/s`}  />
+                            <TinyInfoDisplay icon='cloud-sun-rain' text={`${parseFloat(`${store.listCity[0].dailyData[0].probablity_precipitation*100}`).toFixed(2)} %`}  />
+                            <TinyInfoDisplay icon='bolt' text={`UV: ${parseFloat(`${store.listCity[0].dailyData[0].uvi}`).toFixed(2)}`}  />
+                            <TinyInfoDisplay icon='tint' text={parseFloat(`${store.listCity[0].dailyData[0].dew_drops}`).toFixed(2)}  />
                         </>
                     )
             }
