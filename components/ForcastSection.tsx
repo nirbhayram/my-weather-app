@@ -76,11 +76,11 @@ const styles = StyleSheet.create({
     componentTitleText: {
         color: "#fff",
         fontSize: 15,
-        paddingBottom: 10,
+        paddingBottom: 5,
     },
     componentTitleTextNow: {
         fontSize: 15,
-        paddingBottom: 10,
+        paddingBottom: 5,
     },
     componentIcon: {
         paddingBottom: 10,
@@ -88,14 +88,14 @@ const styles = StyleSheet.create({
     componentBottomText: {
         color: "#fff",
         fontSize: 15,
-        paddingBottom: 10,
+        paddingBottom: 5,
     },
     componentBottomTextNow: {
         fontSize: 15,
-        paddingBottom: 10,
+        paddingBottom: 5,
     },
     imageView:{
         width:50,
-        height:40
+        height:50,
     }
 })

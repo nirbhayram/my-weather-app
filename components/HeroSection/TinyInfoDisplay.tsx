@@ -22,7 +22,6 @@ export default TinyInfoDisplay
 
 const styles = StyleSheet.create({
     labelView: {
-        // minWidth: 90,
         flexDirection: "column",
         paddingTop: 10,
         paddingBottom: 10,
