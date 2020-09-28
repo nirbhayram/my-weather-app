@@ -11,7 +11,7 @@ const Item = observer(({ time, icon, text }) => (
             style={styles.imageView}
             source={{uri:`http://openweathermap.org/img/wn/${icon}@2x.png`}}
         />
-        <Text style={[time === "Now" ? styles.componentBottomTextNow : styles.componentBottomText]}>{text}</Text>
+        <Text style={[time === "Now" ? styles.componentBottomTextNow : styles.componentBottomText]}>{text}°</Text>
     </View>
 ))
 
@@ -33,7 +33,7 @@ const ForcastSection = observer(() => {
                 ) : (
                         <FlatList
                             horizontal={true}
-                            data={store.listCity[0].hourlyData.slice().filter((item,i)=>i<5)}
+                            data={store.listCity[0].hourlyData.slice().filter((item,i)=>i<10)}
                             renderItem={renderItem}
                             keyExtractor={item => `${item.time.getTime()}`}
                         />
