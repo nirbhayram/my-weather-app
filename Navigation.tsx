@@ -43,7 +43,10 @@ const Navigation = observer(({ navigation }) => {
 
     const Item = (data: Object) => (
 
-        <TouchableOpacity onPress={() => { store.changeCity(data.cityName);goToMainScreen() }}>
+        <TouchableOpacity onPress={() => {
+            store.changeCity(data.indexCity);
+            goToMainScreen()
+        }}>
             <View style={styles.flatListView}>
                 <LinearGradient colors={["#4064e0", "#b6c5fb"]} style={styles.flatListItemView}>
                     <Text style={styles.flatListTextView}>{data.cityName}</Text>
@@ -54,10 +57,6 @@ const Navigation = observer(({ navigation }) => {
                 </LinearGradient>
             </View>
         </TouchableOpacity>
-    );
-
-    const renderItem = ({ item }) => (
-        <Item cityName={item.name} icon={item.weather.icon} />
     );
 
     const DialogBox = () => {
@@ -174,6 +173,10 @@ const Navigation = observer(({ navigation }) => {
             </View >
         )
     }
+
+    const renderItem = ({ item, index }) => (
+        <Item cityName={item.name} icon={item.weather.icon} indexCity={index} />
+    );
 
     return (
         <SafeAreaView style={[styles.container]}>

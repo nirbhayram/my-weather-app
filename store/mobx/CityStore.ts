@@ -16,15 +16,10 @@ class CityStore {
         return this.listCity.length === 0;
     }
 
-    @action changeCity(name: string) {
-        const tempList: Array<City> = this.listCity.slice();
-        tempList.forEach((item: City, index: number) => {
-            if (item.name === name) {
-                const tempCity: City = this.listCity[0];
-                this.listCity[0] = this.listCity[index];
-                this.listCity[index] = tempCity;
-            }
-        })
+    @action changeCity(index: number) {
+        const tempCity: City = this.listCity[0];
+        this.listCity[0] = this.listCity[index];
+        this.listCity[index] = tempCity;
     }
 
 }
