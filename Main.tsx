@@ -5,11 +5,15 @@ import { LinearGradient } from "expo-linear-gradient";
 import BottomSection from './components/BottomSheet/BottomSection';
 import MainScreen from './components/MainScreen';
 
-const Main = () => {
+const Main = ({navigation}) => {
 
 	const renderContent = () => (
 		<BottomSection />
 	);
+
+	const navigateToNavigationScreen = ()=>{
+		navigation.navigate('Navigation');
+	}
 
 	const sheetRef = React.useRef(null);
 
@@ -20,7 +24,7 @@ const Main = () => {
 					barStyle="light-content"
 				/>
 				<SafeAreaView style={styles.container}>
-					<MainScreen />
+					<MainScreen navigateToNavigationScreen={navigateToNavigationScreen} />
 				</SafeAreaView>
 			</LinearGradient>
 			<BottomSheet
