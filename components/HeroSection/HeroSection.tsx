@@ -21,22 +21,22 @@ const HeroSection = observer(() => {
                     (
                         <>
                             <View style={[styles.infoDisplay,{minWidth:Dimensions.get('screen').width/4}]}>
-                                <TinyInfoDisplay icon='sun' text={getTime(store.listCity[0].dailyData[0].sunrise)} />
+                                <TinyInfoDisplay icon='sun' text={getTime(store.listCity[store.currentIndex].dailyData[0].sunrise)} />
                             </View>
                             <View style={[styles.infoDisplay,{minWidth:Dimensions.get('screen').width/4}]}>
-                                <TinyInfoDisplay icon="umbrella-beach" text={getTime(store.listCity[0].dailyData[0].sunset)} />
+                                <TinyInfoDisplay icon="umbrella-beach" text={getTime(store.listCity[store.currentIndex].dailyData[0].sunset)} />
                             </View>
                             <View style={[styles.infoDisplay,{minWidth:Dimensions.get('screen').width/4}]}>
-                                <TinyInfoDisplay icon='wind' text={`${parseFloat(`${store.listCity[0].dailyData[0].wind_speed}`).toFixed(2)} m/s`} />
+                                <TinyInfoDisplay icon='wind' text={`${parseFloat(`${store.listCity[store.currentIndex].dailyData[0].wind_speed}`).toFixed(2)} m/s`} />
                             </View>
                             <View style={[styles.infoDisplay,{minWidth:Dimensions.get('screen').width/4}]}>
-                                <TinyInfoDisplay icon='cloud-sun-rain' text={`${parseFloat(`${store.listCity[0].dailyData[0].probablity_precipitation * 100}`).toFixed(2)} %`} />
+                                <TinyInfoDisplay icon='cloud-sun-rain' text={`${parseFloat(`${store.listCity[store.currentIndex].dailyData[0].probablity_precipitation * 100}`).toFixed(2)} %`} />
                             </View>
                             <View style={[styles.infoDisplay,{minWidth:Dimensions.get('screen').width/4}]}>
-                                <TinyInfoDisplay icon='bolt' text={`UV: ${parseFloat(`${store.listCity[0].dailyData[0].uvi}`).toFixed(2)}`} />
+                                <TinyInfoDisplay icon='bolt' text={`UV: ${parseFloat(`${store.listCity[store.currentIndex].dailyData[0].uvi}`).toFixed(2)}`} />
                             </View>
                             <View style={[styles.infoDisplay,{minWidth:Dimensions.get('screen').width/4}]}>
-                                <TinyInfoDisplay icon='tint' text={parseFloat(`${store.listCity[0].dailyData[0].dew_drops}`).toFixed(2)} />
+                                <TinyInfoDisplay icon='tint' text={parseFloat(`${store.listCity[store.currentIndex].dailyData[0].dew_drops}`).toFixed(2)} />
                             </View>
                         </>
                     )

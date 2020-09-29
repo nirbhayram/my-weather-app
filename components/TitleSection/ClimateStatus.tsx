@@ -2,7 +2,6 @@ import { observer } from 'mobx-react'
 import { Spinner } from 'native-base'
 import React from 'react'
 import { Image, StyleSheet, Text, View } from 'react-native'
-import { Icon } from 'react-native-elements'
 import store from '../../store/mobx/CityStore'
 
 const ClimateStatus = observer(() => {
@@ -16,11 +15,11 @@ const ClimateStatus = observer(() => {
                         <>
                             <Image
                                 style={styles.imageView}
-                                source={{uri:`http://openweathermap.org/img/wn/${store.listCity[0].weather.icon}@2x.png`}}
+                                source={{uri:`http://openweathermap.org/img/wn/${store.listCity[store.currentIndex].weather.icon}@2x.png`}}
                             />
                             <View style={{ flexDirection: "column", justifyContent: "center", alignItems: "flex-start" }}>
-                                <Text style={styles.climateStatusTemperature}>{store.listCity[0].temperature}°</Text>
-                                <Text style={styles.climateStatusDescription}>{store.listCity[0].weather.main}</Text>
+                                <Text style={styles.climateStatusTemperature}>{store.listCity[store.currentIndex].temperature}°</Text>
+                                <Text style={styles.climateStatusDescription}>{store.listCity[store.currentIndex].weather.main}</Text>
                             </View>
                         </>
                     )

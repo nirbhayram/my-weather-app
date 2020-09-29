@@ -2,6 +2,9 @@ import { action, computed, observable } from 'mobx'
 import { City } from '../../components/pojo/City'
 
 class CityStore {
+
+    @observable currentIndex:number = 0;
+
     @observable listCity: Array<City> = []
 
     @action setCity(city: City) {
@@ -17,9 +20,7 @@ class CityStore {
     }
 
     @action changeCity(index: number) {
-        const tempCity: City = this.listCity[0];
-        this.listCity[0] = this.listCity[index];
-        this.listCity[index] = tempCity;
+        this.currentIndex = index;
     }
 
 }

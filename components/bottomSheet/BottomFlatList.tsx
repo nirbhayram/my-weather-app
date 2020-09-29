@@ -92,7 +92,7 @@ const BottomSectionFlatList = observer(() => {
                     :
                     (
                         <FlatList
-                            data={store.listCity[0].dailyData.slice().filter((item,i)=>i<10)}
+                            data={store.listCity[store.currentIndex].dailyData.slice().filter((item,i)=>i<10)}
                             renderItem={renderItem}
                             keyExtractor={item => item.date.toString()}
                         />

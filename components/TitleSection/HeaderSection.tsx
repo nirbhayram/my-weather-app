@@ -1,10 +1,6 @@
-import { AxiosError } from 'axios';
 import React from 'react'
 import { Dimensions, StyleSheet, Text, View } from 'react-native'
 import { Icon } from "react-native-elements";
-import store from '../../store/mobx/CityStore';
-import { City } from '../pojo/City';
-import { getCityAtmosphereDetails } from '../utils/RestUtils';
 
 const HeaderSection = ({navigateToNavigationScreen}) => {
     return (
