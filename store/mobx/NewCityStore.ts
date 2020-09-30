@@ -1,5 +1,6 @@
 import { AxiosError } from "axios";
 import { action, observable } from "mobx";
+import Toast from "react-native-root-toast";
 import useRestCall from "../../components/hooks/useRestCall";
 import { City } from "../../components/pojo/City";
 
@@ -12,7 +13,7 @@ export class CityStoreObject {
 
     EXPIRY_IN_MINUTE: number = 1;
 
-    constructor(cityName:string) {
+    constructor(cityName: string) {
         this.cityName = cityName;
         this.isLoading = true;
     }
@@ -53,8 +54,34 @@ class NewCityStore {
                 this.cities.set(cityName, cityStoreObject);
                 onSuccessExecution();
             }, onFailedExecution);
-        }else{
-            onSuccessExecution();
+        } else {
+            Toast.show('City updated', {
+                duration: Toast.durations.SHORT,
+                position: Toast.positions.CENTER,
+                shadow: true,
+                animation: true,
+                hideOnPress: true,
+                delay: 0,
+                onShow: () => {
+                },
+                onShown: () => {
+                },
+                onHide: () => {
+                },
+                onHidden: () => {
+                }
+            });
+            const cityStoreObject = this.cities.get(cityName);
+            if (typeof (cityStoreObject) !== undefined && Date.now() > cityStoreObject.expiry) {
+                cityStoreObject.loadingStarted()
+                useRestCall(cityName, (city: City) => {
+                    cityStoreObject.setCity(city);
+                    onSuccessExecution();
+                }, (error: AxiosError) => {
+                    console.log(error);
+                    onFailedExecution();
+                });
+            }
         }
     }
 
@@ -73,6 +100,6 @@ class NewCityStore {
 
 }
 
-const store:NewCityStore = new NewCityStore();
+const store: NewCityStore = new NewCityStore();
 
 export default store;

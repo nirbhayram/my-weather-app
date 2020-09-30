@@ -1,4 +1,3 @@
-import { AxiosError } from 'axios';
 import { LinearGradient } from 'expo-linear-gradient'
 import { observer } from 'mobx-react';
 import { Button, Spinner } from 'native-base';
@@ -8,28 +7,7 @@ import { Input } from 'react-native-elements';
 import { FlatList, TouchableOpacity } from 'react-native-gesture-handler';
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { Dialog } from 'react-native-simple-dialogs';
-import { City } from './components/pojo/City';
-import { getCityAtmosphereDetails } from './components/utils/RestUtils';
 import store, {CityStoreObject} from './store/mobx/NewCityStore';
-import Toast from "react-native-root-toast";
-
-const DATA = [
-    {
-        cityName: 'kodinar',
-        icon: '10d',
-        id: 'sdasdasdasd'
-    },
-    {
-        cityName: 'Pune',
-        icon: '10d',
-        id: 'bvdkavbksdv'
-    },
-    {
-        cityName: 'Ahmedabad',
-        icon: '10d',
-        id: 'aksfbdkfbakfbk'
-    },
-];
 
 const Navigation = observer(({ navigation }) => {
 
@@ -82,23 +60,7 @@ const Navigation = observer(({ navigation }) => {
                                         setDialogVisible(false);
                                     }, () => {
                                         setLoading(false);
-                                        setDialogVisible(false)
-                                        Toast.show('Are you sure you spell city correctly?', {
-                                            duration: Toast.durations.SHORT,
-                                            position: Toast.positions.CENTER,
-                                            shadow: true,
-                                            animation: true,
-                                            hideOnPress: true,
-                                            delay: 0,
-                                            onShow: () => {
-                                            },
-                                            onShown: () => {
-                                            },
-                                            onHide: () => {
-                                            },
-                                            onHidden: () => {
-                                            }
-                                        });
+                                        setDialogVisible(false);
                                     })
                                 }}>
                                     <Text style={{ fontSize: 15, color: 'white', fontWeight: 'bold' }}>Add city</Text>
