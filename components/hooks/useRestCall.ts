@@ -1,5 +1,6 @@
 import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from "axios";
 import { City, DailyWeather, HourlyWeather } from "../pojo/City";
+import { API_KEY } from "../../secrets";
 
 const printLogs = (city: City) => {
     console.log('city name' + city.name);
@@ -60,7 +61,7 @@ const printLogs = (city: City) => {
 const useRestCall =  async (cityName: string, afterSuccessExecution: Function, afterFailedExecution:Function) => {
     let config: AxiosRequestConfig = {
         method: "get",
-        url: `http://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=c1e64b484782aada5e07d493b0c358fb&units=metric`,
+        url: `http://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${API_KEY}&units=metric`,
         headers: {},
     };
 
@@ -88,7 +89,7 @@ const useRestCall =  async (cityName: string, afterSuccessExecution: Function, a
 const getCityHourlyAndDailyReport = async (lat: number, lon: number,city: City) => {
     let config: AxiosRequestConfig = {
         method: "get",
-        url: `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely,current&appid=c1e64b484782aada5e07d493b0c358fb&units=metric`,
+        url: `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely,current&appid=${API_KEY}&units=metric`,
         headers: {},
     };
     let response =  await axios(config);

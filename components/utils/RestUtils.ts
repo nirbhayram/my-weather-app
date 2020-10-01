@@ -1,4 +1,5 @@
 import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from "axios";
+import { API_KEY } from "../../secrets";
 import {City, DailyWeather, HourlyWeather} from "../pojo/City";
 
 export const getCityAtmosphereDetails = async (
@@ -8,7 +9,7 @@ export const getCityAtmosphereDetails = async (
 ) => {
     let config: AxiosRequestConfig = {
         method: "get",
-        url: `http://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=c1e64b484782aada5e07d493b0c358fb&units=metric`,
+        url: `http://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${API_KEY}&units=metric`,
         headers: {},
     };
 
@@ -35,7 +36,7 @@ export const getCityAtmosphereDetails = async (
 const getCityHourlyAndDailyReport = async (lat: number, lon: number,city: City) => {
     let config: AxiosRequestConfig = {
         method: "get",
-        url: `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely,current&appid=c1e64b484782aada5e07d493b0c358fb&units=metric`,
+        url: `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely,current&appid=${API_KEY}&units=metric`,
         headers: {},
     };
     let response =  await axios(config);
