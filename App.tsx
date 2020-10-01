@@ -1,48 +1,28 @@
+// In App.js in a new project
+
 import * as React from 'react';
-import { StyleSheet, SafeAreaView, StatusBar } from 'react-native';
-import BottomSheet from 'reanimated-bottom-sheet';
-import { LinearGradient } from "expo-linear-gradient";
-import BottomSection from './components/BottomSheet/BottomSection';
-import MainScreen from './components/MainScreen';
+import { View, Text } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import Main from './Main';
+import Navigation from './Navigation';
 
-const App = () => {
+const Stack = createStackNavigator();
 
-	const renderContent = () => (
-		<BottomSection />
-	);
-
-	const sheetRef = React.useRef(null);
-
+function App() {
 	return (
-		<>
-			<LinearGradient colors={["#4064e0", "#b6c5fb"]} style={styles.container}>
-				<StatusBar
-					barStyle="light-content"
-				/>
-				<SafeAreaView style={styles.container}>
-					<MainScreen />
-				</SafeAreaView>
-			</LinearGradient>
-			<BottomSheet
-				initialSnap={2}
-				ref={sheetRef}
-				snapPoints={[`75%`, `12%`, `12%`]}
-				borderRadius={20}
-				renderContent={renderContent}
-			/>
-		</>
+		<NavigationContainer>
+			<Stack.Navigator
+				screenOptions={{
+					headerShown: false,
+				}}
+				initialRouteName={'Navigation'}
+			>
+				<Stack.Screen name="Home" component={Main} />
+				<Stack.Screen name="Navigation" component={Navigation} />
+			</Stack.Navigator>
+		</NavigationContainer>
 	);
-
 }
-
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		alignItems: "center",
-		justifyContent: "center",
-		paddingTop: 15,
-	}
-});
-
 
 export default App;

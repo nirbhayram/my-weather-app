@@ -15,8 +15,8 @@ const Title = observer(() => {
                     </>
                     ) : (
                         <>
-                            <Text style={styles.primary_title}>{store.listCity[0].name}</Text>
-                            <Text style={styles.secondary_title}> {store.listCity[0].temp_current_time.toString()} </Text>
+                            <Text style={styles.primary_title}>{store.listCity[store.currentIndex].name}</Text>
+                            <Text style={styles.secondary_title}> {store.listCity[store.currentIndex].temp_current_time.toString()} </Text>
                         </>
                     )
             }

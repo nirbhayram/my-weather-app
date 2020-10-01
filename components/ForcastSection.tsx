@@ -33,7 +33,7 @@ const ForcastSection = observer(() => {
                 ) : (
                         <FlatList
                             horizontal={true}
-                            data={store.listCity[0].hourlyData.slice().filter((item,i)=>i<10)}
+                            data={store.listCity[store.currentIndex].hourlyData.slice().filter((item,i)=>i<10)}
                             renderItem={renderItem}
                             keyExtractor={item => `${item.time.getTime()}`}
                         />

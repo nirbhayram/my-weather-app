@@ -8,6 +8,9 @@
     "eject": "expo eject"
   },
   "dependencies": {
+    "@react-native-community/masked-view": "0.1.10",
+    "@react-navigation/native": "^5.7.5",
+    "@react-navigation/stack": "^5.9.2",
     "axios": "^0.20.0",
     "expo": "~38.0.8",
     "expo-font": "~8.2.1",
@@ -22,6 +25,10 @@
     "react-native-elements": "^2.3.2",
     "react-native-gesture-handler": "~1.6.0",
     "react-native-reanimated": "~1.9.0",
+    "react-native-root-toast": "^3.2.1",
+    "react-native-safe-area-context": "~3.0.7",
+    "react-native-screens": "~2.9.0",
+    "react-native-simple-dialogs": "^1.3.0",
     "react-native-web": "~0.11.7",
     "reanimated-bottom-sheet": "^1.0.0-alpha.22"
   },
