@@ -11,6 +11,5 @@ web-build/
 secrets.ts
 .vscode/*
 .expo-shared/*
-
 # macOS
 .DS_Store
