@@ -99,9 +99,9 @@ class NewCityStore {
 
     @computed
     public get getCityStoreObject(): CityStoreObject {
-        if (this.cities.has(this.currentCityName)) {
-            const cityStoreObject: CityStoreObject = this.cities.get(this.currentCityName);
-            if (cityStoreObject.expiry < Date.now()) {
+        const cityStoreObject: CityStoreObject | undefined = this.cities.get(this.currentCityName);
+        if (cityStoreObject) {
+            if (this.getNumber(cityStoreObject.expiry) < Date.now()) {
                 cityStoreObject.loadingStarted()
                 useRestCall(this.currentCityName, (city: City) => {
                     cityStoreObject.setCity(city);
@@ -112,6 +112,9 @@ class NewCityStore {
         return new CityStoreObject(this.currentCityName);
     }
 
+    getNumber = (param: number | undefined): number=>{
+        return param ? param : 0;
+    }
 
 }
 

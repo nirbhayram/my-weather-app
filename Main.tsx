@@ -4,17 +4,18 @@ import BottomSheet from 'reanimated-bottom-sheet';
 import { LinearGradient } from "expo-linear-gradient";
 import BottomSection from './components/BottomSheet/BottomSection';
 import MainScreen from './components/MainScreen';
+import { NavigationContainerRef } from '@react-navigation/native';
 
-const Main = ({navigation}) => {
+const Main = (prop:{ navigation:NavigationContainerRef }) => {
 
 	const renderContent = () => (
 		<>
-		{/* <BottomSection /> */}
+			<BottomSection />
 		</>
 	);
 
-	const navigateToNavigationScreen = ()=>{
-		navigation.navigate('Navigation');
+	const navigateToNavigationScreen = () => {
+		prop.navigation.navigate('Navigation');
 	}
 
 	const sheetRef = React.useRef(null);

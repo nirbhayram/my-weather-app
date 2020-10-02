@@ -2,38 +2,39 @@ import { observer } from 'mobx-react';
 import { Spinner } from 'native-base';
 import React from 'react'
 import { StyleSheet, Text, View, FlatList, Image } from 'react-native'
-import store from "../store/mobx/CityStore";
+import store from "../store/mobx/NewCityStore";
+import { City, HourlyWeather } from './pojo/City';
 
-const Item = observer(({ time, icon, text }) => (
-    <View style={[time === "Now" ? styles.componentNow : styles.component]}>
-        <Text style={[time === "Now" ? styles.componentTitleTextNow : styles.componentTitleText]}>{time}</Text>
+const Item = observer((data: { time: string, icon: string, text: number }) => (
+    <View style={[data.time === "Now" ? styles.componentNow : styles.component]}>
+        <Text style={[data.time === "Now" ? styles.componentTitleTextNow : styles.componentTitleText]}>{data.time}</Text>
         <Image
             style={styles.imageView}
-            source={{uri:`http://openweathermap.org/img/wn/${icon}@2x.png`}}
+            source={{ uri: `http://openweathermap.org/img/wn/${data.icon}@2x.png` }}
         />
-        <Text style={[time === "Now" ? styles.componentBottomTextNow : styles.componentBottomText]}>{text}°</Text>
+        <Text style={[data.time === "Now" ? styles.componentBottomTextNow : styles.componentBottomText]}>{data.text}°</Text>
     </View>
 ))
 
 const ForcastSection = observer(() => {
 
-    function getTime(date:Date):string{
+    function getTime(date: Date): string {
         return `${date.getHours()}:${date.getMinutes()}`;
     }
 
-    const renderItem = ({ item }) => (
-        <Item time={getTime(item.time)} icon={item.weather.icon} text={item.temperature} />
+    const renderItem = (data: { item: HourlyWeather }) => (
+        <Item time={getTime(data.item.time)} icon={data.item.weather.icon} text={data.item.temperature} />
     );
 
     return (
         <>
             {
-                store.isEmpty ? (
+                store.getCityStoreObject.isLoading ? (
                     <Spinner color='white' />
                 ) : (
                         <FlatList
                             horizontal={true}
-                            data={store.listCity[store.currentIndex].hourlyData.slice().filter((item,i)=>i<10)}
+                            data={store.getCityStoreObject.city?.hourlyData.slice().filter((item, i) => i < 10)}
                             renderItem={renderItem}
                             keyExtractor={item => `${item.time.getTime()}`}
                         />
@@ -94,8 +95,8 @@ const styles = StyleSheet.create({
         fontSize: 15,
         paddingBottom: 5,
     },
-    imageView:{
-        width:50,
-        height:50,
+    imageView: {
+        width: 50,
+        height: 50,
     }
 })

@@ -2,14 +2,14 @@ import React from 'react'
 import { Dimensions, StyleSheet, Text, View } from 'react-native'
 import { Icon } from "react-native-elements";
 
-const HeaderSection = ({navigateToNavigationScreen}) => {
+const HeaderSection = (prop:{navigateToNavigationScreen:Function}) => {
     return (
         <View style={[styles.navigationControl,{width:Dimensions.get('window').width}]}>
             <Icon
                 name='navicon'
                 type='font-awesome'
                 color='#fff'
-                onPress={()=>{navigateToNavigationScreen()}}
+                onPress={()=>{prop.navigateToNavigationScreen()}}
                 size={25} />
             <Icon
                 name='bell-o'

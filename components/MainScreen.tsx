@@ -6,19 +6,19 @@ import ClimateStatus from './TitleSection/ClimateStatus'
 import HeaderSection from './TitleSection/HeaderSection'
 import Title from './TitleSection/Title'
 
-const MainScreen = ({navigateToNavigationScreen}) => {
+const MainScreen = (prop:{navigateToNavigationScreen:Function}) => {
     return (
         <>
             <View style={styles.titleBanner}>
-                <HeaderSection navigateToNavigationScreen={navigateToNavigationScreen}/>
+                <HeaderSection navigateToNavigationScreen={prop.navigateToNavigationScreen}/>
                 <Title />
-                {/* <ClimateStatus /> */}
+                <ClimateStatus />
             </View>
             <View style={styles.heroSection}>
-                {/* <HeroSection /> */}
+                <HeroSection />
             </View>
             <View style={styles.forcastSection}>
-                {/* <ForcastSection /> */}
+                <ForcastSection />
             </View>
         </>
     )

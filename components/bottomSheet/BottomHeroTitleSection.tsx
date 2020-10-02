@@ -1,7 +1,7 @@
 
 import React from 'react'
 import { StyleSheet, Text, View, Image } from 'react-native'
-import store from '../../store/mobx/CityStore'
+import store from '../../store/mobx/NewCityStore'
 
 const BottomHeroTitleSection = () => {
 
@@ -53,8 +53,8 @@ const BottomHeroTitleSection = () => {
         }
     }
 
-    const getDate = (date: Date): string => {
-        return `${getDayFromNumber(date)}, ${date.getDate()} ${getMonthFromNumber(date)}`
+    const getDate = (date: Date| undefined): string => {
+        return date ?`${getDayFromNumber(date)}, ${date.getDate()} ${getMonthFromNumber(date)}`:``;
     }
 
     return (
@@ -62,13 +62,13 @@ const BottomHeroTitleSection = () => {
             <View style={styles.titleContainerDate}>
                 <Image
                     style={styles.imageView}
-                    source={{uri:`http://openweathermap.org/img/wn/${store.listCity[store.currentIndex].dailyData[0].weather.icon}@2x.png`}}
+                    source={{uri:`http://openweathermap.org/img/wn/${store.getCityStoreObject.city?.dailyData[0].weather.icon}@2x.png`}}
                 />
-                <Text style={styles.dateText}>{getDate(store.listCity[store.currentIndex].dailyData[0].date)}</Text>
+                <Text style={styles.dateText}>{getDate(store.getCityStoreObject.city?.dailyData[0].date)}</Text>
             </View>
             <View style={styles.titleContainerTemprature}>
-                <Text style={styles.temperatureText}>{store.listCity[store.currentIndex].dailyData[0].temperature_max}°</Text>
-                <Text>{store.listCity[store.currentIndex].dailyData[0].temperature_min}°</Text>
+                <Text style={styles.temperatureText}>{store.getCityStoreObject.city?.dailyData[0].temperature_max}°</Text>
+                <Text>{store.getCityStoreObject.city?.dailyData[0].temperature_min}°</Text>
             </View>
         </View>
     )

@@ -1,3 +1,4 @@
+import { NavigationContainerRef } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient'
 import { observer } from 'mobx-react';
 import { Button, Spinner } from 'native-base';
@@ -7,26 +8,24 @@ import { Input } from 'react-native-elements';
 import { FlatList, TouchableOpacity } from 'react-native-gesture-handler';
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { Dialog } from 'react-native-simple-dialogs';
-import store, {CityStoreObject} from './store/mobx/NewCityStore';
+import store, { CityStoreObject } from './store/mobx/NewCityStore';
 
-const Navigation = observer(({ navigation }) => {
+const Navigation = observer((prop: { navigation: NavigationContainerRef }) => {
 
     const [dialogVisible, setDialogVisible] = useState(false);
 
     const [loading, setLoading] = useState(false);
 
     const goToMainScreen = () => {
-        navigation.navigate('Home');
+        prop.navigation.navigate('Home');
     }
 
-    const Item = (data: Object) => (
+    const Item = (data: { cityName: string, icon: string }) => (
 
         <TouchableOpacity onPress={() => {
             if (store.setCurrentCityName(data.cityName)) {
                 goToMainScreen();
             }
-            // store.changeCity(data.indexCity);
-            // goToMainScreen()
         }}>
             <View style={styles.flatListView}>
                 <LinearGradient colors={["#4064e0", "#b6c5fb"]} style={styles.flatListItemView}>
@@ -76,8 +75,8 @@ const Navigation = observer(({ navigation }) => {
         )
     }
 
-    const renderItem = ({ item, index }) => (
-        <Item cityName={item.city.name} icon={item.city.weather.icon} indexCity={index} />
+    const renderItem = (data: { item: CityStoreObject, index: number }) => (
+        <Item cityName={data.item.city?.name ? data.item.city?.name : ''} icon={data.item.city?.weather.icon ? data.item.city?.weather.icon : ''} />
     );
 
     return (
@@ -86,7 +85,7 @@ const Navigation = observer(({ navigation }) => {
                 style={[{ width: Dimensions.get('screen').width }, styles.flatList]}
                 data={Array.from(store.cities.values())}
                 renderItem={renderItem}
-                keyExtractor={(item:CityStoreObject) => item.cityName}
+                keyExtractor={(item: CityStoreObject) => item.cityName}
             />
             <View style={styles.inputView}>
                 <Button block style={{ backgroundColor: "#b6c5fb" }} onPress={() => {
