@@ -103,7 +103,7 @@ class NewCityStore {
         if (cityStoreObject) {
             if (this.getNumber(cityStoreObject.expiry) < Date.now()) {
                 cityStoreObject.loadingStarted()
-                useRestCall(this.currentCityName, (city: City) => {
+                useRestCall(cityStoreObject.cityName, (city: City) => {
                     cityStoreObject.setCity(city);
                 }, (error: AxiosError) => { console.log(error) });
             }
