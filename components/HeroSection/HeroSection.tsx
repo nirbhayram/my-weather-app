@@ -2,7 +2,7 @@ import { observer } from 'mobx-react';
 import { Spinner } from 'native-base';
 import React from 'react'
 import { Dimensions, StyleSheet, View } from 'react-native'
-import store from '../../store/mobx/NewCityStore';
+import store from '../../store/mobx/CityStore';
 import TinyInfoDisplay from './TinyInfoDisplay';
 
 const HeroSection = observer(() => {

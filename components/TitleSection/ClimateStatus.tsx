@@ -2,7 +2,7 @@ import { observer } from 'mobx-react'
 import { Spinner } from 'native-base'
 import React from 'react'
 import { Image, StyleSheet, Text, View } from 'react-native'
-import store from '../../store/mobx/NewCityStore'
+import store from '../../store/mobx/CityStore'
 
 const ClimateStatus = observer(() => {
     return (

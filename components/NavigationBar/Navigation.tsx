@@ -9,7 +9,7 @@ import { FlatList, TouchableOpacity } from 'react-native-gesture-handler';
 import Toast from 'react-native-root-toast';
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { Dialog } from 'react-native-simple-dialogs';
-import store, { CityStoreObject } from '../../store/mobx/NewCityStore';
+import store, { CityStoreObject } from '../../store/mobx/CityStore';
 
 const Navigation = observer((prop: { navigation: NavigationContainerRef }) => {
 
@@ -24,9 +24,19 @@ const Navigation = observer((prop: { navigation: NavigationContainerRef }) => {
     const Item = (data: { cityName: string, icon: string }) => (
 
         <TouchableOpacity onPress={() => {
-            if (store.setCurrentCityName(data.cityName)) {
-                goToMainScreen();
-            }
+            store.setCurrentCityName(data.cityName)
+                .then(() => {
+                    goToMainScreen();
+                }).catch(() => {
+                    Toast.show('Something went wrong :(', {
+                        duration: Toast.durations.SHORT,
+                        position: Toast.positions.CENTER,
+                        shadow: true,
+                        animation: true,
+                        hideOnPress: true,
+                        delay: 0
+                    });
+                })
         }}>
             <View style={styles.flatListView}>
                 <LinearGradient colors={["#4064e0", "#b6c5fb"]} style={styles.flatListItemView}>
@@ -67,7 +77,6 @@ const Navigation = observer((prop: { navigation: NavigationContainerRef }) => {
                                             hideOnPress: true,
                                             delay: 0
                                         });
-                                        console.log(`Inside Navigation | inside DialogBox | value of city name received ${cityName}`)
                                         setLoading(false);
                                         setDialogVisible(false);
                                     }).catch((error) => {
@@ -79,7 +88,6 @@ const Navigation = observer((prop: { navigation: NavigationContainerRef }) => {
                                             hideOnPress: true,
                                             delay: 0
                                         });
-                                        console.log(`Inside Navigation | inside DialogBox | caught an exception ${error}`)
                                         setLoading(false);
                                         setDialogVisible(false);
                                     })
