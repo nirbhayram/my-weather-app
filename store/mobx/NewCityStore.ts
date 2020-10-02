@@ -58,11 +58,10 @@ class NewCityStore {
 
     @action
     public setCurrentCityName(cityName: string): boolean {
-        cityName = cityName.toLowerCase();
         console.log(`city name ${cityName}`)
         console.log(`all keys ${Array.from(this.cities.keys())}`)
         if (this.cities.has(cityName)) {
-            this.currentCityName = cityName.toLowerCase();
+            this.currentCityName = cityName;
             return true;
         } else {
             Toast.show('something went wrong!', {
@@ -79,12 +78,11 @@ class NewCityStore {
 
     @action
     setCity(cityName: string, onSuccessExecution: Function, onFailedExecution: Function) {
-        cityName = cityName.toLowerCase()
         if (!this.cities.has(cityName)) {
             useRestCall(cityName, (city: City) => {
                 const cityStoreObject: CityStoreObject = new CityStoreObject(cityName);
                 cityStoreObject.setCity(city);
-                this.cities.set(cityName, cityStoreObject);
+                this.cities.set(city.name, cityStoreObject);
                 onSuccessExecution();
             }, onFailedExecution);
         } else {
