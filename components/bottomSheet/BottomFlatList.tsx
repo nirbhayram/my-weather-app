@@ -2,8 +2,8 @@ import { observer } from 'mobx-react';
 import { Spinner } from 'native-base';
 import React from 'react'
 import { StyleSheet, Text, View, FlatList, Image } from 'react-native'
-import store from '../../store/mobx/NewCityStore';
-import { DailyWeather } from '../pojo/City';
+import store from '../../store/mobx/CityStore';
+import { DailyWeather } from '../object/City';
 
 const getDayFromNumber = (date: Date): string => {
     switch (date.getDay()) {

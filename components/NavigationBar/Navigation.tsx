@@ -9,7 +9,7 @@ import { FlatList, TouchableOpacity } from 'react-native-gesture-handler';
 import Toast from 'react-native-root-toast';
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { Dialog } from 'react-native-simple-dialogs';
-import store, { CityStoreObject } from '../../store/mobx/NewCityStore';
+import store, { CityStoreObject } from '../../store/mobx/CityStore';
 
 const Navigation = observer((prop: { navigation: NavigationContainerRef }) => {
 

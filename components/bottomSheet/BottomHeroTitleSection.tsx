@@ -1,7 +1,7 @@
 
 import React from 'react'
 import { StyleSheet, Text, View, Image } from 'react-native'
-import store from '../../store/mobx/NewCityStore'
+import store from '../../store/mobx/CityStore'
 
 const BottomHeroTitleSection = () => {
 
