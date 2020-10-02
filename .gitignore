@@ -8,9 +8,9 @@ npm-debug.*
 *.mobileprovision
 *.orig.*
 web-build/
-.expo-shared/*
-.vscode/*
-secrets.ts
 
+secrets.ts
+.vscode/*
+.expo-shared/*
 # macOS
 .DS_Store
