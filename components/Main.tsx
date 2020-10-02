@@ -2,8 +2,8 @@ import * as React from 'react';
 import { StyleSheet, SafeAreaView, StatusBar } from 'react-native';
 import BottomSheet from 'reanimated-bottom-sheet';
 import { LinearGradient } from "expo-linear-gradient";
-import BottomSection from './components/BottomSheet/BottomSection';
-import MainScreen from './components/MainScreen';
+import BottomSection from './BottomSheet/BottomSection';
+import MainScreen from './MainScreen/MainScreen';
 import { NavigationContainerRef } from '@react-navigation/native';
 
 const Main = (prop:{ navigation:NavigationContainerRef }) => {

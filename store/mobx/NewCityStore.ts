@@ -77,24 +77,28 @@ class NewCityStore {
     }
 
     @action
-    setCity(cityName: string, onSuccessExecution: Function, onFailedExecution: Function) {
-        if (!this.cities.has(cityName)) {
-            useRestCall(cityName, (city: City) => {
-                const cityStoreObject: CityStoreObject = new CityStoreObject(cityName);
-                cityStoreObject.setCity(city);
-                this.cities.set(city.name, cityStoreObject);
-                onSuccessExecution();
-            }, onFailedExecution);
-        } else {
-            Toast.show('City updated', {
-                duration: Toast.durations.SHORT,
-                position: Toast.positions.CENTER,
-                shadow: true,
-                animation: true,
-                hideOnPress: true,
-                delay: 0
-            });
-        }
+    setCity(cityName: string): Promise<string> {
+        return new Promise((resolve, reject) => {
+            if (!this.cities.has(cityName)) {
+                useRestCall(cityName)
+                    .then(
+                        (city: City) => {
+                            const cityStoreObject: CityStoreObject = new CityStoreObject(cityName);
+                            cityStoreObject.setCity(city);
+                            this.cities.set(city.name, cityStoreObject);
+                            resolve(`${city.name}`);
+                        })
+                    .catch(
+                        (error) => {
+                            console.log(`Caught an exception${error} `)
+                            reject(error);
+                        }
+                    );
+            }
+            else {
+                resolve(cityName);
+            }
+        })
     }
 
     @computed
@@ -103,16 +107,20 @@ class NewCityStore {
         if (cityStoreObject) {
             if (this.getNumber(cityStoreObject.expiry) < Date.now()) {
                 cityStoreObject.loadingStarted()
-                useRestCall(cityStoreObject.cityName, (city: City) => {
-                    cityStoreObject.setCity(city);
-                }, (error: AxiosError) => { console.log(error) });
+                useRestCall(cityStoreObject.cityName)
+                    .then((city:City)=>{
+                        cityStoreObject.setCity(city);
+                    })
+                    .catch((error)=>{
+                        console.log(`Caught an exception ${error}`);
+                    })
             }
             return cityStoreObject;
         }
         return new CityStoreObject(this.currentCityName);
     }
 
-    getNumber = (param: number | undefined): number=>{
+    getNumber = (param: number | undefined): number => {
         return param ? param : 0;
     }
 

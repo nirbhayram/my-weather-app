@@ -6,9 +6,10 @@ import React, { useState } from 'react'
 import { StyleSheet, Text, View, Image, Dimensions } from 'react-native'
 import { Input } from 'react-native-elements';
 import { FlatList, TouchableOpacity } from 'react-native-gesture-handler';
+import Toast from 'react-native-root-toast';
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { Dialog } from 'react-native-simple-dialogs';
-import store, { CityStoreObject } from './store/mobx/NewCityStore';
+import store, { CityStoreObject } from '../../store/mobx/NewCityStore';
 
 const Navigation = observer((prop: { navigation: NavigationContainerRef }) => {
 
@@ -57,10 +58,28 @@ const Navigation = observer((prop: { navigation: NavigationContainerRef }) => {
                                 </Input>
                                 <Button block style={{ backgroundColor: "#b6c5fb" }} onPress={() => {
                                     setLoading(true)
-                                    store.setCity(city, () => {
+                                    store.setCity(city).then((cityName: string) => {
+                                        Toast.show('City updated', {
+                                            duration: Toast.durations.SHORT,
+                                            position: Toast.positions.CENTER,
+                                            shadow: true,
+                                            animation: true,
+                                            hideOnPress: true,
+                                            delay: 0
+                                        });
+                                        console.log(`Inside Navigation | inside DialogBox | value of city name received ${cityName}`)
                                         setLoading(false);
                                         setDialogVisible(false);
-                                    }, () => {
+                                    }).catch((error) => {
+                                        Toast.show('Have you splelled city correctly ?', {
+                                            duration: Toast.durations.SHORT,
+                                            position: Toast.positions.CENTER,
+                                            shadow: true,
+                                            animation: true,
+                                            hideOnPress: true,
+                                            delay: 0
+                                        });
+                                        console.log(`Inside Navigation | inside DialogBox | caught an exception ${error}`)
                                         setLoading(false);
                                         setDialogVisible(false);
                                     })

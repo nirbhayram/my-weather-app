@@ -2,8 +2,8 @@ import { observer } from 'mobx-react';
 import { Spinner } from 'native-base';
 import React from 'react'
 import { StyleSheet, Text, View, FlatList, Image } from 'react-native'
-import store from "../store/mobx/NewCityStore";
-import { City, HourlyWeather } from './pojo/City';
+import store from "../../store/mobx/NewCityStore";
+import { City, HourlyWeather } from '../pojo/City';
 
 const Item = observer((data: { time: string, icon: string, text: number }) => (
     <View style={[data.time === "Now" ? styles.componentNow : styles.component]}>

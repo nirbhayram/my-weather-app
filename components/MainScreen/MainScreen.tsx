@@ -1,10 +1,10 @@
 import React from 'react'
 import { Dimensions, StyleSheet, Text, View } from 'react-native'
-import ForcastSection from './ForcastSection'
-import HeroSection from './HeroSection/HeroSection'
-import ClimateStatus from './TitleSection/ClimateStatus'
-import HeaderSection from './TitleSection/HeaderSection'
-import Title from './TitleSection/Title'
+import ForcastSection from '../ForcastSection/ForcastSection'
+import HeroSection from '../HeroSection/HeroSection'
+import ClimateStatus from '../TitleSection/ClimateStatus'
+import HeaderSection from '../TitleSection/HeaderSection'
+import Title from '../TitleSection/Title'
 
 const MainScreen = (prop:{navigateToNavigationScreen:Function}) => {
     return (
