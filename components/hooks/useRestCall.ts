@@ -3,7 +3,7 @@ import { factory } from "../utils/Logger";
 import { City, DailyWeather, HourlyWeather } from "../object/City";
 import { API_KEY } from "../../secrets";
 
-const log = factory.getLogger("model.Product");
+const log = factory.getLogger("userRestCall");
 
 const printLogs = (city: City) => {
     log.info('city name' + city.name);
@@ -83,12 +83,12 @@ const useRestCall = (cityName: string): Promise<City> => {
                         execute(city);
                     }
                     ).catch((error) => {
-                        log.error(error);
+                        log.debug(`Caught an exception while calling rest api ${error}`);
                         reject(error);
                     })
             })
-            .catch(error=>{
-                log.error(error);
+            .catch(error => {
+                log.debug(`Caught an exception while calling rest api ${error}`);
                 reject(error);
             });
     })
@@ -96,20 +96,19 @@ const useRestCall = (cityName: string): Promise<City> => {
 
 const getCityHourlyAndDailyReport = async (lat: number, lon: number, city: City): Promise<string> => {
     log.info(`inside getCityHourlyAndDailyReport`)
-    return new Promise(async (resolve, reject) => {
+    return new Promise((resolve, reject) => {
         let config: AxiosRequestConfig = {
             method: "get",
             url: `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely,current&appid=${API_KEY}&units=metric`,
             headers: {},
         };
-        try {
-            let response = await axios(config);
+        axios(config).then(response => {
             setHourlyAndDailyData(response.data, city);
             resolve('')
-        } catch (e) {
-            log.error(e);
-            reject(e)
-        }
+        }).catch(error => {
+            log.debug(`Caught an exception while calling rest api ${error}`);
+            reject(error)
+        });
     })
 };
 

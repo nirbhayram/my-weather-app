@@ -1,8 +1,9 @@
-import { AxiosError } from "axios";
 import { action, computed, observable } from "mobx";
-import Toast from "react-native-root-toast";
 import useRestCall from "../../components/hooks/useRestCall";
 import { City } from "../../components/object/City";
+import { factory } from "../../components/utils/Logger";
+
+const log = factory.getLogger("City store");
 
 export class CityStoreObject {
 
@@ -57,27 +58,22 @@ class NewCityStore {
     }
 
     @action
-    public setCurrentCityName(cityName: string): boolean {
-        console.log(`city name ${cityName}`)
-        console.log(`all keys ${Array.from(this.cities.keys())}`)
-        if (this.cities.has(cityName)) {
-            this.currentCityName = cityName;
-            return true;
-        } else {
-            Toast.show('something went wrong!', {
-                duration: Toast.durations.SHORT,
-                position: Toast.positions.CENTER,
-                shadow: true,
-                animation: true,
-                hideOnPress: true,
-                delay: 0
-            });
-            return false;
-        }
+    public setCurrentCityName(cityName: string): Promise<boolean> {
+        return new Promise((resolve, reject) => {
+            if (this.cities.has(cityName)) {
+                this.currentCityName = cityName;
+                log.debug(`city name ${cityName}`)
+                resolve(true);
+            } else {
+                log.debug(`city name ${cityName} not found.`)
+                reject();
+            }
+        })
     }
 
     @action
     setCity(cityName: string): Promise<string> {
+        log.debug(`inside setCity`)
         return new Promise((resolve, reject) => {
             if (!this.cities.has(cityName)) {
                 useRestCall(cityName)
@@ -90,7 +86,7 @@ class NewCityStore {
                         })
                     .catch(
                         (error) => {
-                            console.log(`Caught an exception${error} `)
+                            log.debug(`Caught an exception${error} `)
                             reject(error);
                         }
                     );
@@ -103,16 +99,17 @@ class NewCityStore {
 
     @computed
     public get getCityStoreObject(): CityStoreObject {
+        log.debug(`inside getCityStoreObject`)
         const cityStoreObject: CityStoreObject | undefined = this.cities.get(this.currentCityName);
         if (cityStoreObject) {
             if (this.getNumber(cityStoreObject.expiry) < Date.now()) {
                 cityStoreObject.loadingStarted()
                 useRestCall(cityStoreObject.cityName)
-                    .then((city:City)=>{
+                    .then((city: City) => {
                         cityStoreObject.setCity(city);
                     })
-                    .catch((error)=>{
-                        console.log(`Caught an exception ${error}`);
+                    .catch((error) => {
+                        log.debug(`Caught an exception ${error}`);
                     })
             }
             return cityStoreObject;
