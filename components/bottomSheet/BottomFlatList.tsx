@@ -2,7 +2,8 @@ import { observer } from 'mobx-react';
 import { Spinner } from 'native-base';
 import React from 'react'
 import { StyleSheet, Text, View, FlatList, Image } from 'react-native'
-import store from '../../store/mobx/CityStore';
+import store from '../../store/mobx/NewCityStore';
+import { DailyWeather } from '../pojo/City';
 
 const getDayFromNumber = (date: Date): string => {
     switch (date.getDay()) {
@@ -56,7 +57,7 @@ const getDate = (date: Date): string => {
     return `${getDayFromNumber(date)}, ${date.getDate()} ${getMonthFromNumber(date)}`
 }
 
-const Item = observer((data) => (
+const Item = observer((data: { icon: string, date: string, maxTemperature: number, minTemperature: number }) => (
     <View style={styles.titleContainer}>
         <View style={styles.titleContainerDate}>
             <Image
@@ -74,25 +75,25 @@ const Item = observer((data) => (
 
 const BottomSectionFlatList = observer(() => {
 
-    const renderItem = ({ item }) => (
+    const renderItem = (data: { item: DailyWeather }) => (
         <Item
-            icon={item.weather.icon}
-            date={getDate(item.date)}
-            maxTemperature={item.temperature_max}
-            minTemperature={item.temperature_min} />
+            icon={data.item.weather.icon}
+            date={getDate(data.item.date)}
+            maxTemperature={data.item.temperature_max}
+            minTemperature={data.item.temperature_min} />
     );
 
 
     return (
         <View style={styles.container}>
             {
-                store.isEmpty ? (
+                store.getCityStoreObject.isLoading ? (
                     <Spinner color='#5c5c5c' />
                 )
                     :
                     (
                         <FlatList
-                            data={store.listCity[store.currentIndex].dailyData.slice().filter((item,i)=>i<10)}
+                            data={store.getCityStoreObject.city?.dailyData.slice().filter((item, i) => i < 10)}
                             renderItem={renderItem}
                             keyExtractor={item => item.date.toString()}
                         />
@@ -113,7 +114,7 @@ const styles = StyleSheet.create({
         flexDirection: "column",
         backgroundColor: 'rgba(255,255,255,0.6)',
         borderRadius: 15,
-        marginBottom:10
+        marginBottom: 10
     },
     titleContainer: {
         flexDirection: "row",

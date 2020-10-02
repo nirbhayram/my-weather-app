@@ -8,24 +8,17 @@ import store from '../../store/mobx/CityStore';
 const BottomSectionTitle = observer(() => {
     return (
         <View style={styles.container}>
-            {
-                store.isEmpty ? (
-                    <Spinner color='#5C5C5C' />
-                ) : (<>
-                    <View style={styles.titleBarIcon}></View>
-                    <View style={styles.titleContainer}>
-                        <Text style={styles.titleText}>
-                            Next 7 days
+            <View style={styles.titleBarIcon}></View>
+            <View style={styles.titleContainer}>
+                <Text style={styles.titleText}>
+                    Next 7 days
                         </Text>
-                        <Icon
-                            name='ellipsis-h'
-                            type='font-awesome-5'
-                            color='#5C5C5C'
-                            size={30} />
-                    </View>
-                </>)
-            }
-
+                <Icon
+                    name='ellipsis-h'
+                    type='font-awesome-5'
+                    color='#5C5C5C'
+                    size={30} />
+            </View>
         </View>
     )
 })

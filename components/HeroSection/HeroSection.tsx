@@ -2,41 +2,45 @@ import { observer } from 'mobx-react';
 import { Spinner } from 'native-base';
 import React from 'react'
 import { Dimensions, StyleSheet, View } from 'react-native'
-import store from '../../store/mobx/CityStore';
+import store from '../../store/mobx/NewCityStore';
 import TinyInfoDisplay from './TinyInfoDisplay';
 
 const HeroSection = observer(() => {
-    function getTime(date: Date): string {
-        return `${date.getHours()}:${date.getMinutes()}`
+    function getTime(date: Date | undefined): string {
+        return date ? `${date.getHours()}:${date.getMinutes()}` : ``;
+    }
+
+    function getNumber(param: number | undefined): number {
+        return param ? param : 0;
     }
 
     return (
         <View style={[styles.container,]}>
             {
-                store.isEmpty ? (
+                store.getCityStoreObject.isLoading ? (
                     <>
                         <Spinner color='white' />
                     </>
                 ) :
                     (
                         <>
-                            <View style={[styles.infoDisplay,{minWidth:Dimensions.get('screen').width/4}]}>
-                                <TinyInfoDisplay icon='sun' text={getTime(store.listCity[store.currentIndex].dailyData[0].sunrise)} />
+                            <View style={[styles.infoDisplay, { minWidth: Dimensions.get('screen').width / 4 }]}>
+                                <TinyInfoDisplay icon='sun' text={getTime(store.getCityStoreObject.city?.dailyData[0].sunrise)} />
                             </View>
-                            <View style={[styles.infoDisplay,{minWidth:Dimensions.get('screen').width/4}]}>
-                                <TinyInfoDisplay icon="umbrella-beach" text={getTime(store.listCity[store.currentIndex].dailyData[0].sunset)} />
+                            <View style={[styles.infoDisplay, { minWidth: Dimensions.get('screen').width / 4 }]}>
+                                <TinyInfoDisplay icon="umbrella-beach" text={getTime(store.getCityStoreObject.city?.dailyData[0].sunset)} />
                             </View>
-                            <View style={[styles.infoDisplay,{minWidth:Dimensions.get('screen').width/4}]}>
-                                <TinyInfoDisplay icon='wind' text={`${parseFloat(`${store.listCity[store.currentIndex].dailyData[0].wind_speed}`).toFixed(2)} m/s`} />
+                            <View style={[styles.infoDisplay, { minWidth: Dimensions.get('screen').width / 4 }]}>
+                                <TinyInfoDisplay icon='wind' text={`${parseFloat(`${store.getCityStoreObject.city?.dailyData[0].wind_speed}`).toFixed(2)} m/s`} />
                             </View>
-                            <View style={[styles.infoDisplay,{minWidth:Dimensions.get('screen').width/4}]}>
-                                <TinyInfoDisplay icon='cloud-sun-rain' text={`${parseFloat(`${store.listCity[store.currentIndex].dailyData[0].probablity_precipitation * 100}`).toFixed(2)} %`} />
+                            <View style={[styles.infoDisplay, { minWidth: Dimensions.get('screen').width / 4 }]}>
+                                <TinyInfoDisplay icon='cloud-sun-rain' text={`${parseFloat(`${getNumber(store.getCityStoreObject.city?.dailyData[0].probablity_precipitation) * 100}`).toFixed(2)} %`} />
                             </View>
-                            <View style={[styles.infoDisplay,{minWidth:Dimensions.get('screen').width/4}]}>
-                                <TinyInfoDisplay icon='bolt' text={`UV: ${parseFloat(`${store.listCity[store.currentIndex].dailyData[0].uvi}`).toFixed(2)}`} />
+                            <View style={[styles.infoDisplay, { minWidth: Dimensions.get('screen').width / 4 }]}>
+                                <TinyInfoDisplay icon='bolt' text={`UV: ${parseFloat(`${getNumber(store.getCityStoreObject.city?.dailyData[0].uvi)}`).toFixed(2)}`} />
                             </View>
-                            <View style={[styles.infoDisplay,{minWidth:Dimensions.get('screen').width/4}]}>
-                                <TinyInfoDisplay icon='tint' text={parseFloat(`${store.listCity[store.currentIndex].dailyData[0].dew_drops}`).toFixed(2)} />
+                            <View style={[styles.infoDisplay, { minWidth: Dimensions.get('screen').width / 4 }]}>
+                                <TinyInfoDisplay icon='tint' text={parseFloat(`${getNumber(store.getCityStoreObject.city?.dailyData[0].dew_drops)}`).toFixed(2)} />
                             </View>
                         </>
                     )
@@ -63,9 +67,9 @@ const styles = StyleSheet.create({
         flexGrow: 1,
         flexBasis: 'auto'
     },
-    infoDisplay:{
-        flex:1,
-        flexBasis:'auto',
-        flexGrow:1
+    infoDisplay: {
+        flex: 1,
+        flexBasis: 'auto',
+        flexGrow: 1
     }
 })

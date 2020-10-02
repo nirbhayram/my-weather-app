@@ -2,24 +2,24 @@ import { observer } from 'mobx-react'
 import { Spinner } from 'native-base'
 import React from 'react'
 import { Image, StyleSheet, Text, View } from 'react-native'
-import store from '../../store/mobx/CityStore'
+import store from '../../store/mobx/NewCityStore'
 
 const ClimateStatus = observer(() => {
     return (
         <View style={styles.climateStatus}>
             {
-                store.isEmpty ?
+                store.getCityStoreObject.isLoading ?
                     (
                         <Spinner color='white'/>
                     ) : (
                         <>
                             <Image
                                 style={styles.imageView}
-                                source={{uri:`http://openweathermap.org/img/wn/${store.listCity[store.currentIndex].weather.icon}@2x.png`}}
+                                source={{uri:`http://openweathermap.org/img/wn/${store.getCityStoreObject.city?.weather.icon}@2x.png`}}
                             />
                             <View style={{ flexDirection: "column", justifyContent: "center", alignItems: "flex-start" }}>
-                                <Text style={styles.climateStatusTemperature}>{store.listCity[store.currentIndex].temperature}°</Text>
-                                <Text style={styles.climateStatusDescription}>{store.listCity[store.currentIndex].weather.main}</Text>
+                                <Text style={styles.climateStatusTemperature}>{store.getCityStoreObject.city?.temperature}°</Text>
+                                <Text style={styles.climateStatusDescription}>{store.getCityStoreObject.city?.weather.main}</Text>
                             </View>
                         </>
                     )
