@@ -22,6 +22,9 @@ const Navigation = observer(({ navigation }) => {
     const Item = (data: Object) => (
 
         <TouchableOpacity onPress={() => {
+            if (store.setCurrentCityName(data.cityName)) {
+                goToMainScreen();
+            }
             // store.changeCity(data.indexCity);
             // goToMainScreen()
         }}>

@@ -12,13 +12,13 @@ const MainScreen = ({navigateToNavigationScreen}) => {
             <View style={styles.titleBanner}>
                 <HeaderSection navigateToNavigationScreen={navigateToNavigationScreen}/>
                 <Title />
-                <ClimateStatus />
+                {/* <ClimateStatus /> */}
             </View>
             <View style={styles.heroSection}>
-                <HeroSection />
+                {/* <HeroSection /> */}
             </View>
             <View style={styles.forcastSection}>
-                <ForcastSection />
+                {/* <ForcastSection /> */}
             </View>
         </>
     )

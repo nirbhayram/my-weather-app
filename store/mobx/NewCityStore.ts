@@ -1,15 +1,22 @@
 import { AxiosError } from "axios";
-import { action, observable } from "mobx";
+import { action, computed, observable } from "mobx";
 import Toast from "react-native-root-toast";
 import useRestCall from "../../components/hooks/useRestCall";
 import { City } from "../../components/pojo/City";
 
 export class CityStoreObject {
 
-    @observable city: City | undefined;
-    @observable cityName: string;
-    @observable expiry: number | undefined;
-    @observable isLoading: boolean;
+    @observable
+    city: City | undefined;
+
+    @observable
+    cityName: string;
+
+    @observable
+    expiry: number | undefined;
+
+    @observable
+    isLoading: boolean;
 
     EXPIRY_IN_MINUTE: number = 1;
 
@@ -18,34 +25,60 @@ export class CityStoreObject {
         this.isLoading = true;
     }
 
-    @action setCity(city: City) {
+    @action
+    setCity(city: City) {
         this.city = city;
-        this.expiry = Date.now() + this.EXPIRY_IN_MINUTE * 1000;
+        this.expiry = Date.now() + this.EXPIRY_IN_MINUTE * 1000 * 60;
         this.loadingComplete();
     }
 
-    public get getCity(): City | undefined {
-        return this.city;
-    }
-
-    @action loadingComplete() {
+    @action
+    loadingComplete() {
         this.isLoading = false;
     }
 
-    @action loadingStarted() {
+    @action
+    loadingStarted() {
         this.isLoading = true;
     }
 }
 
 class NewCityStore {
 
-    @observable cities: Map<string, CityStoreObject>;
+    @observable
+    cities: Map<string, CityStoreObject>;
+
+    @observable
+    currentCityName: string;
 
     constructor() {
         this.cities = new Map<string, CityStoreObject>();
+        this.currentCityName = "";
     }
 
-    @action setCity(cityName: string, onSuccessExecution: Function, onFailedExecution: Function) {
+    @action
+    public setCurrentCityName(cityName: string): boolean {
+        cityName = cityName.toLowerCase();
+        console.log(`city name ${cityName}`)
+        console.log(`all keys ${Array.from(this.cities.keys())}`)
+        if (this.cities.has(cityName)) {
+            this.currentCityName = cityName.toLowerCase();
+            return true;
+        } else {
+            Toast.show('something went wrong!', {
+                duration: Toast.durations.SHORT,
+                position: Toast.positions.CENTER,
+                shadow: true,
+                animation: true,
+                hideOnPress: true,
+                delay: 0
+            });
+            return false;
+        }
+    }
+
+    @action
+    setCity(cityName: string, onSuccessExecution: Function, onFailedExecution: Function) {
         cityName = cityName.toLowerCase()
         if (!this.cities.has(cityName)) {
             useRestCall(cityName, (city: City) => {
@@ -61,42 +94,26 @@ class NewCityStore {
                 shadow: true,
                 animation: true,
                 hideOnPress: true,
-                delay: 0,
-                onShow: () => {
-                },
-                onShown: () => {
-                },
-                onHide: () => {
-                },
-                onHidden: () => {
-                }
+                delay: 0
             });
-            const cityStoreObject = this.cities.get(cityName);
-            if (typeof (cityStoreObject) !== undefined && Date.now() > cityStoreObject.expiry) {
+        }
+    }
+
+    @computed
+    public get getCityStoreObject(): CityStoreObject {
+        if (this.cities.has(this.currentCityName)) {
+            const cityStoreObject: CityStoreObject = this.cities.get(this.currentCityName);
+            if (cityStoreObject.expiry < Date.now()) {
                 cityStoreObject.loadingStarted()
-                useRestCall(cityName, (city: City) => {
+                useRestCall(this.currentCityName, (city: City) => {
                     cityStoreObject.setCity(city);
-                    onSuccessExecution();
-                }, (error: AxiosError) => {
-                    console.log(error);
-                    onFailedExecution();
-                });
+                }, (error: AxiosError) => { console.log(error) });
             }
+            return cityStoreObject;
         }
+        return new CityStoreObject(this.currentCityName);
     }
 
-    public getCity(cityName: string): CityStoreObject | undefined {
-        cityName = cityName.toLowerCase()
-        const cityStoreObject = this.cities.get(cityName);
-
-        if (typeof (cityStoreObject) !== undefined && Date.now() > cityStoreObject.expiry) {
-            cityStoreObject.loadingStarted()
-            useRestCall(cityName, (city: City) => {
-                cityStoreObject.setCity(city);
-            }, (error: AxiosError) => { console.log(error) });
-        }
-        return cityStoreObject;
-    }
 
 }
 

@@ -2,21 +2,21 @@ import { observer } from 'mobx-react'
 import { Spinner } from 'native-base'
 import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
-import store from '../../store/mobx/CityStore'
+import store from '../../store/mobx/NewCityStore'
 
 
 const Title = observer(() => {
     return (
         <View style={[styles.textContainer]}>
             {
-                store.isEmpty ?
+                store.getCityStoreObject.isLoading ?
                     (<>
                         <Spinner color='white'/>
                     </>
                     ) : (
                         <>
-                            <Text style={styles.primary_title}>{store.listCity[store.currentIndex].name}</Text>
-                            <Text style={styles.secondary_title}> {store.listCity[store.currentIndex].temp_current_time.toString()} </Text>
+                            <Text style={styles.primary_title}>{store.getCityStoreObject.city?.name}</Text>
+                            <Text style={styles.secondary_title}> {store.getCityStoreObject.city?.temp_current_time.toString()} </Text>
                         </>
                     )
             }

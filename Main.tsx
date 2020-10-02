@@ -8,7 +8,9 @@ import MainScreen from './components/MainScreen';
 const Main = ({navigation}) => {
 
 	const renderContent = () => (
-		<BottomSection />
+		<>
+		{/* <BottomSection /> */}
+		</>
 	);
 
 	const navigateToNavigationScreen = ()=>{
