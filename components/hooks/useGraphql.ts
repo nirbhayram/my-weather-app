@@ -1,21 +1,19 @@
-import { useQuery, UseQueryResponse, UseQueryState } from "urql";
+import { OperationContext, useQuery, UseQueryArgs, UseQueryResponse, UseQueryState } from "urql";
 import gql from 'graphql-tag'
 
 const CHECK_CITY_NAME = gql`
     query($city:String!) {
         getCityByName(name:$city){
             name
-            weather{
-                summary{
-                    icon
-                }
+            current{
+                icon
             }
         }
     }
 `
 
 const GET_CITY_DETAILS = gql`
-    query($city:String) {
+    query($city:String!) {
         getCityByName(name:$city){
             name
             current{
@@ -53,7 +51,7 @@ export const checkCity = (cityName: string): UseQueryResponse<any> => {
     })
 };
 
-export const getCity = (cityName: string): UseQueryResponse<any> => {
+export const getCityDetails = (cityName: string) => {
     return useQuery({
         query: GET_CITY_DETAILS,
         variables: { city: cityName }

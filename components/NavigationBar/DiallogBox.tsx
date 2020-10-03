@@ -28,7 +28,7 @@ const DialogBox = (prop: { setDialogVisible: Function }) => {
         // console.log(result)
         if (result.data?.getCityByName?.name) {
             const key: string = data?.getCityByName?.name ? result.data?.getCityByName?.name : '';
-            const icon: string = data?.getCityByName?.weather?.summary?.icon ? result.data?.getCityByName?.weather?.summary?.icon : ''
+            const icon: string = data?.getCityByName?.current?.icon ? data?.getCityByName?.current?.icon : ''
             console.log(`key : ${key} icon : ${icon} name: ${city}`)
             store.addCity(key, icon, city);
         } else {
