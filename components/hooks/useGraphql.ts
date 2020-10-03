@@ -14,11 +14,48 @@ const CHECK_CITY_NAME = gql`
     }
 `
 
+const GET_CITY_DETAILS = gql`
+    query($city:String) {
+        getCityByName(name:$city){
+            name
+            current{
+            temperature
+            icon
+            main
+            sunrise
+            sunset
+            pop
+            uv
+            dewDrops
+            windSpeed
+            humidity
+            }
+            hourData{
+            time
+            icon
+            temperature
+            }
+            dailyData{
+            date
+            icon
+            minTemperature
+            maxTemperature
+            }
+        }
+    }
+`
+
 export const checkCity = (cityName: string): UseQueryResponse<any> => {
-    console.log(`inside checkCity | ${cityName}`);
     return useQuery({
         query: CHECK_CITY_NAME,
-        variables: { city:cityName },
+        variables: { city: cityName },
         pause: true,
     })
 };
+
+export const getCity = (cityName: string): UseQueryResponse<any> => {
+    return useQuery({
+        query: GET_CITY_DETAILS,
+        variables: { city: cityName }
+    })
+}

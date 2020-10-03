@@ -2,6 +2,7 @@ import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
 import { factory } from "../utils/Logger";
 import { City, DailyWeather, HourlyWeather } from "../object/City";
 import { API_KEY } from "../../secrets";
+import { JSONObject } from "typescript-logging";
 
 const log = factory.getLogger("userRestCall");
 
