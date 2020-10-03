@@ -1,110 +1,33 @@
 import { NavigationContainerRef } from '@react-navigation/native';
-import { LinearGradient } from 'expo-linear-gradient'
 import { observer } from 'mobx-react';
-import { Button, Spinner } from 'native-base';
+import { Button} from 'native-base';
 import React, { useState } from 'react'
 import { StyleSheet, Text, View, Image, Dimensions } from 'react-native'
-import { Input } from 'react-native-elements';
-import { FlatList, TouchableOpacity } from 'react-native-gesture-handler';
-import Toast from 'react-native-root-toast';
+import { FlatList } from 'react-native-gesture-handler';
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { Dialog } from 'react-native-simple-dialogs';
 import store, { CityStoreObject } from '../../store/mobx/CityStore';
+import { useGraphql } from '../hooks/useGraphql';
+import NavigationItem from './NavigationItem';
+import DialogBox from "./DiallogBox";
 
 const Navigation = observer((prop: { navigation: NavigationContainerRef }) => {
 
     const [dialogVisible, setDialogVisible] = useState(false);
 
-    const [loading, setLoading] = useState(false);
-
     const goToMainScreen = () => {
         prop.navigation.navigate('Home');
     }
 
-    const Item = (data: { cityName: string, icon: string }) => (
-
-        <TouchableOpacity onPress={() => {
-            store.setCurrentCityName(data.cityName)
-                .then(() => {
-                    goToMainScreen();
-                }).catch(() => {
-                    Toast.show('Something went wrong :(', {
-                        duration: Toast.durations.SHORT,
-                        position: Toast.positions.CENTER,
-                        shadow: true,
-                        animation: true,
-                        hideOnPress: true,
-                        delay: 0
-                    });
-                })
-        }}>
-            <View style={styles.flatListView}>
-                <LinearGradient colors={["#4064e0", "#b6c5fb"]} style={styles.flatListItemView}>
-                    <Text style={styles.flatListTextView}>{data.cityName}</Text>
-                    <Image
-                        style={styles.flatListImageView}
-                        source={{ uri: `http://openweathermap.org/img/wn/${data.icon}@2x.png` }}
-                    />
-                </LinearGradient>
-            </View>
-        </TouchableOpacity>
-    );
-
-    const DialogBox = () => {
-
-        const [city, setCity] = useState('')
-
-        return (
-            <View>
-                {
-                    loading ? (
-                        <Spinner color='black' />
-                    ) : (
-                            <>
-                                <Input placeholder='eg: kodinar'
-                                    onChangeText={(text) => setCity(text)}
-                                >
-                                    {city}
-                                </Input>
-                                <Button block style={{ backgroundColor: "#b6c5fb" }} onPress={() => {
-                                    setLoading(true)
-                                    store.setCity(city).then((cityName: string) => {
-                                        Toast.show('City updated', {
-                                            duration: Toast.durations.SHORT,
-                                            position: Toast.positions.CENTER,
-                                            shadow: true,
-                                            animation: true,
-                                            hideOnPress: true,
-                                            delay: 0
-                                        });
-                                        setLoading(false);
-                                        setDialogVisible(false);
-                                    }).catch((error) => {
-                                        Toast.show('Have you splelled city correctly ?', {
-                                            duration: Toast.durations.SHORT,
-                                            position: Toast.positions.CENTER,
-                                            shadow: true,
-                                            animation: true,
-                                            hideOnPress: true,
-                                            delay: 0
-                                        });
-                                        setLoading(false);
-                                        setDialogVisible(false);
-                                    })
-                                }}>
-                                    <Text style={{ fontSize: 15, color: 'white', fontWeight: 'bold' }}>Add city</Text>
-                                </Button>
-                            </>
-                        )
-                }
-
-            </View >
-        )
-    }
-
     const renderItem = (data: { item: CityStoreObject, index: number }) => (
-        <Item cityName={data.item.city?.name ? data.item.city?.name : ''} icon={data.item.city?.weather.icon ? data.item.city?.weather.icon : ''} />
+        <NavigationItem goToMainScreen={goToMainScreen} cityName={data.item.city?.name ? data.item.city?.name : ''} icon={data.item.city?.weather.icon ? data.item.city?.weather.icon : ''} />
     );
+
+    // const [res, executeQraphql] = useGraphql('kodinar');
+
+    // if (res.fetching) console.log('stil fetching')
+    // else console.log(`repsonse: ${JSON.stringify(res)}`)
+    // if (res.error) console.log(`repsonse: ${JSON.stringify(res)}`)
 
     return (
         <SafeAreaView style={[styles.container]}>
@@ -128,7 +51,7 @@ const Navigation = observer((prop: { navigation: NavigationContainerRef }) => {
                 onTouchOutside={() => setDialogVisible(false)}
                 animationType="fade"
             >
-                <DialogBox />
+                <DialogBox setDialogVisible={setDialogVisible} />
             </Dialog>
         </SafeAreaView>
     )
@@ -153,30 +76,5 @@ const styles = StyleSheet.create({
         margin: 10,
         alignSelf: 'stretch',
         flexBasis: 'auto',
-    },
-    flatListView: {
-        margin: 5,
-        alignSelf: 'stretch',
-        borderRadius: 10
-    },
-    flatListItemView: {
-        flexDirection: 'row',
-        height: 80,
-        alignSelf: 'stretch',
-        margin: 5,
-        borderRadius: 10,
-        justifyContent: 'space-between',
-        alignItems: 'center'
-    },
-    flatListTextView: {
-        padding: 30,
-        fontSize: 18,
-        color: 'white',
-        fontWeight: 'bold',
-    },
-    flatListImageView: {
-        padding: 30,
-        width: 60,
-        height: 60
     }
 })
