@@ -16,6 +16,7 @@
     "expo-font": "~8.2.1",
     "expo-linear-gradient": "~8.2.1",
     "expo-status-bar": "^1.0.2",
+    "graphql": "^15.3.0",
     "mobx": "^5.15.7",
     "mobx-react": "^6.3.0",
     "native-base": "^2.13.14",
@@ -31,7 +32,8 @@
     "react-native-simple-dialogs": "^1.3.0",
     "react-native-web": "~0.11.7",
     "reanimated-bottom-sheet": "^1.0.0-alpha.22",
-    "typescript-logging": "^1.0.0"
+    "typescript-logging": "^1.0.0",
+    "urql": "^1.10.1"
   },
   "devDependencies": {
     "@babel/core": "^7.8.6",
