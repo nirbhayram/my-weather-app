@@ -19,27 +19,27 @@ const GET_CITY_DETAILS = gql`
         getCityByName(name:$city){
             name
             current{
-            temperature
-            icon
-            main
-            sunrise
-            sunset
-            pop
-            uv
-            dewDrops
-            windSpeed
-            humidity
+                temperature
+                icon
+                main
+                sunrise
+                sunset
+                pop
+                uv
+                dewDrops
+                windSpeed
+                humidity
             }
             hourData{
-            time
-            icon
-            temperature
+                time
+                icon
+                temperature
             }
             dailyData{
-            date
-            icon
-            minTemperature
-            maxTemperature
+                date
+                icon
+                minTemperature
+                maxTemperature
             }
         }
     }
