@@ -19,11 +19,15 @@ export class CityStoreObject {
     @observable
     isLoading: boolean;
 
+    @observable
+    icon: string | undefined;
+
     EXPIRY_IN_MINUTE: number = 1;
 
-    constructor(cityName: string) {
+    constructor(cityName: string, icon?: string) {
         this.cityName = cityName;
         this.isLoading = true;
+        this.icon = icon
     }
 
     @action
@@ -95,6 +99,15 @@ class NewCityStore {
                 resolve(cityName);
             }
         })
+    }
+
+    @action
+    addCity(key: string, icon: string, cityName:string) {
+        cityName=cityName.toUpperCase();
+        const cityStoreObject:CityStoreObject = new CityStoreObject(cityName, icon);
+        cityStoreObject.expiry = Date.now()-1;
+        cityStoreObject.loadingComplete();
+        this.cities.set(cityName, cityStoreObject);
     }
 
     @computed

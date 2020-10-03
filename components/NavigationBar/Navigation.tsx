@@ -1,6 +1,6 @@
 import { NavigationContainerRef } from '@react-navigation/native';
 import { observer } from 'mobx-react';
-import { Button} from 'native-base';
+import { Button } from 'native-base';
 import React, { useState } from 'react'
 import { StyleSheet, Text, View, Image, Dimensions } from 'react-native'
 import { FlatList } from 'react-native-gesture-handler';
@@ -20,7 +20,7 @@ const Navigation = observer((prop: { navigation: NavigationContainerRef }) => {
     }
 
     const renderItem = (data: { item: CityStoreObject, index: number }) => (
-        <NavigationItem goToMainScreen={goToMainScreen} cityName={data.item.city?.name ? data.item.city?.name : ''} icon={data.item.city?.weather.icon ? data.item.city?.weather.icon : ''} />
+        <NavigationItem goToMainScreen={goToMainScreen} cityName={data.item.cityName ? data.item.cityName : 'undefined'} icon={data.item.icon ? data.item.icon : ''} />
     );
 
     // const [res, executeQraphql] = useGraphql('kodinar');
