@@ -1,6 +1,6 @@
 import { observer } from 'mobx-react'
 import { Spinner } from 'native-base'
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import store from '../../store/mobx/CityStore'
 
@@ -18,7 +18,7 @@ const Title = observer(() => {
                     ) : (
                         <>
                             <Text style={styles.primary_title}>{city?.name}</Text>
-                            <Text style={styles.secondary_title}> {city?.name} </Text>
+                            <Text style={styles.secondary_title}> {new Date(city?.dt*1000).toString()} </Text>
                         </>
                     )
             }

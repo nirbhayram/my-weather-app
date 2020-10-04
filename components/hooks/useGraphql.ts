@@ -16,6 +16,7 @@ const GET_CITY_DETAILS = gql`
     query($city:String!) {
         getCityByName(name:$city){
             name
+            dt
             current{
                 temperature
                 icon
@@ -55,6 +56,7 @@ export const checkCity = (cityName: string): UseQueryResponse<any> => {
 export const getCityDetails = (cityName: string) => {
     return useQuery({
         query: GET_CITY_DETAILS,
-        variables: { city: cityName }
+        variables: { city: cityName },
+        requestPolicy:'network-only'
     })
 }

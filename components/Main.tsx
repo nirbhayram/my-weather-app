@@ -12,6 +12,9 @@ import store from '../store/mobx/CityStore';
 const Main = (prop:{ navigation:NavigationContainerRef }) => {
 
 	const [response,executeQuery] = getCityDetails(store.currentCityName)
+	React.useEffect(() => {
+		executeQuery()
+	}, [])
 	store.response = response;
 
 	const renderContent = () => (

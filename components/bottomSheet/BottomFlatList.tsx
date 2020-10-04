@@ -67,8 +67,8 @@ const Item = observer((data: { icon: string, date: string, maxTemperature: numbe
             <Text style={{ fontSize: 13, paddingLeft: "5%", fontWeight: "bold", color: "#5C5C5C" }}>{data.date}</Text>
         </View>
         <View style={styles.titleContainerTemprature}>
-            <Text style={{ fontSize: 17, paddingRight: "5%", fontWeight: "bold", color: "#5C5C5C" }}>{data.maxTemperature}</Text>
-            <Text style={{ paddingRight: "5%" }}>{data.minTemperature}</Text>
+            <Text style={{ fontSize: 17, paddingRight: "5%", fontWeight: "bold", color: "#5C5C5C" }}>{parseFloat(`${data.maxTemperature}`).toFixed(2)}</Text>
+            <Text style={{ paddingRight: "5%" }}>{parseFloat(`${data.minTemperature}`).toFixed(2)}</Text>
         </View>
     </View>
 ));
