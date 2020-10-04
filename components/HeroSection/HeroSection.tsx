@@ -7,8 +7,8 @@ import TinyInfoDisplay from './TinyInfoDisplay';
 
 const HeroSection = observer(() => {
 
-    const fetching = store?.response?.fetching || store?.response?.error ? true : false;
-    const city  = store?.response?.data?.getCityByName
+    const fetching = store.fetching
+    const city  = store.city
 
     function getTime(date: Date | undefined): string {
         return date ? `${date.getHours()}:${date.getMinutes()}` : ``;

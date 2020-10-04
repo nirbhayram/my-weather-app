@@ -8,8 +8,8 @@ import BottomHeroTitleSection from './BottomHeroTitleSection';
 
 const BottomSectionHeroSection = observer(() => {
 
-    const fetching = store?.response?.fetching || store?.response?.error ? true : false;
-    const city = store?.response?.data?.getCityByName
+    const fetching = store.fetching
+    const city = store.city
 
     function getNumber(param: number | undefined): number {
         return param ? param : 0;

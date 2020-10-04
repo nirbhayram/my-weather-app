@@ -22,12 +22,6 @@ const Navigation = observer((prop: { navigation: NavigationContainerRef }) => {
         <NavigationItem goToMainScreen={goToMainScreen} cityName={data.item.cityName ? data.item.cityName : 'undefined'} icon={data.item.icon ? data.item.icon : ''} />
     );
 
-    // const [res, executeQraphql] = useGraphql('kodinar');
-
-    // if (res.fetching) console.log('stil fetching')
-    // else console.log(`repsonse: ${JSON.stringify(res)}`)
-    // if (res.error) console.log(`repsonse: ${JSON.stringify(res)}`)
-
     return (
         <SafeAreaView style={[styles.container]}>
             <FlatList

@@ -75,8 +75,8 @@ const Item = observer((data: { icon: string, date: string, maxTemperature: numbe
 
 const BottomSectionFlatList = observer(() => {
 
-    const fetching = store?.response?.fetching || store?.response?.error ? true : false;
-    const city = store?.response?.data?.getCityByName
+    const fetching = store.fetching
+    const city = store.city
 
     const renderItem = (data: { item: {date:number,icon:string,minTemperature:number,maxTemperature:number} }) => (
         <Item

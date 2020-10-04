@@ -6,8 +6,8 @@ import store from '../../store/mobx/CityStore'
 
 
 const Title = observer(() => {
-    const fetching = store?.response?.fetching || store?.response?.error ? true : false;
-    const city = store?.response?.data?.getCityByName
+    const fetching = store.fetching;
+    const city = store.city
     return (
         <View style={[styles.textContainer]}>
             {

@@ -5,7 +5,7 @@ import store from '../../store/mobx/CityStore'
 
 const BottomHeroTitleSection = () => {
 
-    const city = store?.response?.data?.getCityByName
+    const city = store.city
 
     const getDayFromNumber = (date: Date): string => {
         switch (date.getDay()) {

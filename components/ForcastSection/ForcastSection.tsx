@@ -18,8 +18,8 @@ const Item = observer((data: { time: string, icon: string, text: number }) => (
 
 const ForcastSection = observer(() => {
 
-    const fetching = store?.response?.fetching || store?.response?.error ? true : false;
-    const city = store?.response?.data?.getCityByName
+    const fetching = store.fetching
+    const city = store.city
 
     function getTime(date: Date): string {
         return `${date.getHours()}:${date.getMinutes()}`;
