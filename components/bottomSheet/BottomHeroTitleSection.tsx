@@ -5,6 +5,8 @@ import store from '../../store/mobx/CityStore'
 
 const BottomHeroTitleSection = () => {
 
+    const city = store?.response?.data?.getCityByName
+
     const getDayFromNumber = (date: Date): string => {
         switch (date.getDay()) {
             case 0:
@@ -62,13 +64,13 @@ const BottomHeroTitleSection = () => {
             <View style={styles.titleContainerDate}>
                 <Image
                     style={styles.imageView}
-                    source={{uri:`http://openweathermap.org/img/wn/${store.getCityStoreObject.city?.dailyData[0].weather.icon}@2x.png`}}
+                    source={{uri:`http://openweathermap.org/img/wn/${city?.dailyData[0]?.icon}@2x.png`}}
                 />
-                <Text style={styles.dateText}>{getDate(store.getCityStoreObject.city?.dailyData[0].date)}</Text>
+                <Text style={styles.dateText}>{getDate(new Date(city?.dailyData[0]?.date*1000))}</Text>
             </View>
             <View style={styles.titleContainerTemprature}>
-                <Text style={styles.temperatureText}>{store.getCityStoreObject.city?.dailyData[0].temperature_max}°</Text>
-                <Text>{store.getCityStoreObject.city?.dailyData[0].temperature_min}°</Text>
+                <Text style={styles.temperatureText}>{city.dailyData[0].maxTemperature}°</Text>
+                <Text>{city.dailyData[0].minTemperature}°</Text>
             </View>
         </View>
     )

@@ -75,27 +75,30 @@ const Item = observer((data: { icon: string, date: string, maxTemperature: numbe
 
 const BottomSectionFlatList = observer(() => {
 
-    const renderItem = (data: { item: DailyWeather }) => (
+    const fetching = store?.response?.fetching || store?.response?.error ? true : false;
+    const city = store?.response?.data?.getCityByName
+
+    const renderItem = (data: { item: {date:number,icon:string,minTemperature:number,maxTemperature:number} }) => (
         <Item
-            icon={data.item.weather.icon}
-            date={getDate(data.item.date)}
-            maxTemperature={data.item.temperature_max}
-            minTemperature={data.item.temperature_min} />
+            icon={data.item.icon}
+            date={getDate(new Date(data.item.date*1000))}
+            maxTemperature={data.item.maxTemperature}
+            minTemperature={data.item.minTemperature} />
     );
 
 
     return (
         <View style={styles.container}>
             {
-                store.getCityStoreObject.isLoading ? (
+                fetching ? (
                     <Spinner color='#5c5c5c' />
                 )
                     :
                     (
                         <FlatList
-                            data={store.getCityStoreObject.city?.dailyData.slice().filter((item, i) => i < 10)}
+                            data={city.dailyData}
                             renderItem={renderItem}
-                            keyExtractor={item => item.date.toString()}
+                            keyExtractor={item => `${item.date}`}
                         />
                     )
             }

@@ -7,7 +7,6 @@ import { FlatList } from 'react-native-gesture-handler';
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { Dialog } from 'react-native-simple-dialogs';
 import store, { CityStoreObject } from '../../store/mobx/CityStore';
-import { useGraphql } from '../hooks/useGraphql';
 import NavigationItem from './NavigationItem';
 import DialogBox from "./DiallogBox";
 

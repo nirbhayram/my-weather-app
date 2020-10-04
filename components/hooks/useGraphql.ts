@@ -48,6 +48,7 @@ export const checkCity = (cityName: string): UseQueryResponse<any> => {
         query: CHECK_CITY_NAME,
         variables: { city: cityName },
         pause: true,
+        requestPolicy:'network-only'
     })
 };
 

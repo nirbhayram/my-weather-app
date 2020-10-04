@@ -11,7 +11,7 @@ import store from '../store/mobx/CityStore';
 
 const Main = (prop:{ navigation:NavigationContainerRef }) => {
 
-	const [response,executeQuery] = getCityDetails('kodinar')
+	const [response,executeQuery] = getCityDetails(store.currentCityName)
 	store.response = response;
 
 	const renderContent = () => (

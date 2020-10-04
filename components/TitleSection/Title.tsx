@@ -18,7 +18,7 @@ const Title = observer(() => {
                     ) : (
                         <>
                             <Text style={styles.primary_title}>{city?.name}</Text>
-                            <Text style={styles.secondary_title}> {store.getCityStoreObject.city?.temp_current_time.toString()} </Text>
+                            <Text style={styles.secondary_title}> {city?.name} </Text>
                         </>
                     )
             }
