@@ -18,25 +18,28 @@ const Item = observer((data: { time: string, icon: string, text: number }) => (
 
 const ForcastSection = observer(() => {
 
+    const fetching = store?.response?.fetching || store?.response?.error ? true : false;
+    const city = store?.response?.data?.getCityByName
+
     function getTime(date: Date): string {
         return `${date.getHours()}:${date.getMinutes()}`;
     }
 
-    const renderItem = (data: { item: HourlyWeather }) => (
-        <Item time={getTime(data.item.time)} icon={data.item.weather.icon} text={data.item.temperature} />
+    const renderItem = (data: { item: { time: number, icon: string, temperature: number } }) => (
+        <Item time={getTime(new Date(data.item.time * 1000))} icon={data.item.icon} text={data.item.temperature} />
     );
 
     return (
         <>
             {
-                store.getCityStoreObject.isLoading ? (
+                fetching ? (
                     <Spinner color='white' />
                 ) : (
                         <FlatList
                             horizontal={true}
-                            data={store.getCityStoreObject.city?.hourlyData.slice().filter((item, i) => i < 10)}
+                            data={city.hourData}
                             renderItem={renderItem}
-                            keyExtractor={item => `${item.time.getTime()}`}
+                            keyExtractor={item => `${item.time}`}
                         />
                     )
             }

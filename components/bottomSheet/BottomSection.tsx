@@ -5,6 +5,7 @@ import BottomSectionHeroSection from './BottomHeroSection'
 import BottomSectionTitle from './BottomTitleSection'
 
 const BottomSection = () => {
+
     return (
         <View style={[styles.container,{height:"100%"}]}>
             <View style={styles.titleSection}>

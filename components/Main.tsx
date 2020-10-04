@@ -5,8 +5,17 @@ import { LinearGradient } from "expo-linear-gradient";
 import BottomSection from './BottomSheet/BottomSection';
 import MainScreen from './MainScreen/MainScreen';
 import { NavigationContainerRef } from '@react-navigation/native';
+import { getCityDetails } from "./hooks/useGraphql";
+import { UseQueryState } from 'urql';
+import store from '../store/mobx/CityStore';
 
 const Main = (prop:{ navigation:NavigationContainerRef }) => {
+
+	const [response,executeQuery] = getCityDetails(store.currentCityName)
+	React.useEffect(() => {
+		executeQuery()
+	}, [])
+	store.response = response;
 
 	const renderContent = () => (
 		<>

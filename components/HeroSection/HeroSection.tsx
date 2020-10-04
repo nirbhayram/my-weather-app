@@ -6,6 +6,10 @@ import store from '../../store/mobx/CityStore';
 import TinyInfoDisplay from './TinyInfoDisplay';
 
 const HeroSection = observer(() => {
+
+    const fetching = store?.response?.fetching || store?.response?.error ? true : false;
+    const city  = store?.response?.data?.getCityByName
+
     function getTime(date: Date | undefined): string {
         return date ? `${date.getHours()}:${date.getMinutes()}` : ``;
     }
@@ -17,7 +21,7 @@ const HeroSection = observer(() => {
     return (
         <View style={[styles.container,]}>
             {
-                store.getCityStoreObject.isLoading ? (
+                fetching ? (
                     <>
                         <Spinner color='white' />
                     </>
@@ -25,22 +29,22 @@ const HeroSection = observer(() => {
                     (
                         <>
                             <View style={[styles.infoDisplay, { minWidth: Dimensions.get('screen').width / 4 }]}>
-                                <TinyInfoDisplay icon='sun' text={getTime(store.getCityStoreObject.city?.dailyData[0].sunrise)} />
+                                <TinyInfoDisplay icon='sun' text={getTime(new Date(city.current.sunrise *1000))} />
                             </View>
                             <View style={[styles.infoDisplay, { minWidth: Dimensions.get('screen').width / 4 }]}>
-                                <TinyInfoDisplay icon="umbrella-beach" text={getTime(store.getCityStoreObject.city?.dailyData[0].sunset)} />
+                                <TinyInfoDisplay icon="umbrella-beach" text={getTime(new Date(city.current.sunset*1000))} />
                             </View>
                             <View style={[styles.infoDisplay, { minWidth: Dimensions.get('screen').width / 4 }]}>
-                                <TinyInfoDisplay icon='wind' text={`${parseFloat(`${store.getCityStoreObject.city?.dailyData[0].wind_speed}`).toFixed(2)} m/s`} />
+                                <TinyInfoDisplay icon='wind' text={`${parseFloat(`${city.current.windSpeed}`).toFixed(2)} m/s`} />
                             </View>
                             <View style={[styles.infoDisplay, { minWidth: Dimensions.get('screen').width / 4 }]}>
-                                <TinyInfoDisplay icon='cloud-sun-rain' text={`${parseFloat(`${getNumber(store.getCityStoreObject.city?.dailyData[0].probablity_precipitation) * 100}`).toFixed(2)} %`} />
+                                <TinyInfoDisplay icon='cloud-sun-rain' text={`${parseFloat(`${getNumber(city.current.pop) * 100}`).toFixed(2)} %`} />
                             </View>
                             <View style={[styles.infoDisplay, { minWidth: Dimensions.get('screen').width / 4 }]}>
-                                <TinyInfoDisplay icon='bolt' text={`UV: ${parseFloat(`${getNumber(store.getCityStoreObject.city?.dailyData[0].uvi)}`).toFixed(2)}`} />
+                                <TinyInfoDisplay icon='bolt' text={`UV: ${parseFloat(`${getNumber(city.current.uv)}`).toFixed(2)}`} />
                             </View>
                             <View style={[styles.infoDisplay, { minWidth: Dimensions.get('screen').width / 4 }]}>
-                                <TinyInfoDisplay icon='tint' text={parseFloat(`${getNumber(store.getCityStoreObject.city?.dailyData[0].dew_drops)}`).toFixed(2)} />
+                                <TinyInfoDisplay icon='tint' text={parseFloat(`${getNumber(city.current.dewDrops)}`).toFixed(2)} />
                             </View>
                         </>
                     )

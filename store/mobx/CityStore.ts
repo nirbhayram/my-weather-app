@@ -1,4 +1,5 @@
 import { action, computed, observable } from "mobx";
+import { UseQueryState } from "urql";
 import useRestCall from "../../components/hooks/useRestCall";
 import { City } from "../../components/object/City";
 import { factory } from "../../components/utils/Logger";
@@ -56,6 +57,9 @@ class NewCityStore {
     @observable
     currentCityName: string;
 
+    @observable
+    response: UseQueryState<any> | undefined
+
     constructor() {
         this.cities = new Map<string, CityStoreObject>();
         this.currentCityName = "";
@@ -102,10 +106,10 @@ class NewCityStore {
     }
 
     @action
-    addCity(key: string, icon: string, cityName:string) {
-        cityName=cityName.toUpperCase();
-        const cityStoreObject:CityStoreObject = new CityStoreObject(cityName, icon);
-        cityStoreObject.expiry = Date.now()-1;
+    addCity(key: string, icon: string, cityName: string) {
+        cityName = cityName.toUpperCase();
+        const cityStoreObject: CityStoreObject = new CityStoreObject(cityName, icon);
+        cityStoreObject.expiry = Date.now() - 1;
         cityStoreObject.loadingComplete();
         this.cities.set(cityName, cityStoreObject);
     }

@@ -6,17 +6,19 @@ import store from '../../store/mobx/CityStore'
 
 
 const Title = observer(() => {
+    const fetching = store?.response?.fetching || store?.response?.error ? true : false;
+    const city = store?.response?.data?.getCityByName
     return (
         <View style={[styles.textContainer]}>
             {
-                store.getCityStoreObject.isLoading ?
+                fetching ?
                     (<>
-                        <Spinner color='white'/>
+                        <Spinner color='white' />
                     </>
                     ) : (
                         <>
-                            <Text style={styles.primary_title}>{store.getCityStoreObject.city?.name}</Text>
-                            <Text style={styles.secondary_title}> {store.getCityStoreObject.city?.temp_current_time.toString()} </Text>
+                            <Text style={styles.primary_title}>{city?.name}</Text>
+                            <Text style={styles.secondary_title}> {new Date(city?.dt*1000).toString()} </Text>
                         </>
                     )
             }
@@ -29,7 +31,7 @@ export default Title
 const styles = StyleSheet.create({
     textContainer: {
         flex: 0.7,
-        flexBasis:'auto',
+        flexBasis: 'auto',
         flexDirection: "column",
         justifyContent: "flex-start",
         alignItems: "center"

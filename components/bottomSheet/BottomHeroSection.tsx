@@ -8,6 +8,9 @@ import BottomHeroTitleSection from './BottomHeroTitleSection';
 
 const BottomSectionHeroSection = observer(() => {
 
+    const fetching = store?.response?.fetching || store?.response?.error ? true : false;
+    const city = store?.response?.data?.getCityByName
+
     function getNumber(param: number | undefined): number {
         return param ? param : 0;
     }
@@ -15,17 +18,17 @@ const BottomSectionHeroSection = observer(() => {
     return (
         <View style={styles.container}>
             {
-                store.getCityStoreObject.isLoading ? (
+                fetching ? (
                     <Spinner color='#5C5C5C' />
                 ) : (
                         <>
                             <BottomHeroTitleSection />
                             <View style={styles.horizontalRuler}></View>
                             <View style={styles.contentContainer}>
-                                <BottomHeroSectionLabel keyText='Humidity' valueText={`${parseFloat(`${store.getCityStoreObject.city?.dailyData[0].humidity}`).toFixed(2)} %`} />
-                                <BottomHeroSectionLabel keyText='Wind' valueText={`${parseFloat(`${store.getCityStoreObject.city?.dailyData[0].wind_speed}`).toFixed(2)} m/s`} />
-                                <BottomHeroSectionLabel keyText='UV Index' valueText={`${parseFloat(`${store.getCityStoreObject.city?.dailyData[0].uvi}`).toFixed(2)}`} />
-                                <BottomHeroSectionLabel keyText='Rain' valueText={`${parseFloat(`${getNumber(store.getCityStoreObject.city?.dailyData[0].probablity_precipitation) * 100}`).toFixed(2)} %`} />
+                                <BottomHeroSectionLabel keyText='Humidity' valueText={`${parseFloat(`${city.current.humidity}`).toFixed(2)} %`} />
+                                <BottomHeroSectionLabel keyText='Wind' valueText={`${parseFloat(`${city.current.windSpeed}`).toFixed(2)} m/s`} />
+                                <BottomHeroSectionLabel keyText='UV Index' valueText={`${parseFloat(`${city.current.uv}`).toFixed(2)}`} />
+                                <BottomHeroSectionLabel keyText='Rain' valueText={`${parseFloat(`${getNumber(city.current.pop) * 100}`).toFixed(2)} %`} />
                             </View>
                         </>
                     )

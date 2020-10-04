@@ -28,8 +28,7 @@ const DialogBox = (prop: { setDialogVisible: Function }) => {
         // console.log(result)
         if (result.data?.getCityByName?.name) {
             const key: string = data?.getCityByName?.name ? result.data?.getCityByName?.name : '';
-            const icon: string = data?.getCityByName?.weather?.summary?.icon ? result.data?.getCityByName?.weather?.summary?.icon : ''
-            console.log(`key : ${key} icon : ${icon} name: ${city}`)
+            const icon: string = data?.getCityByName?.current?.icon ? data?.getCityByName?.current?.icon : ''
             store.addCity(key, icon, city);
         } else {
             Toast.show('Have you splelled city correctly ?', {
