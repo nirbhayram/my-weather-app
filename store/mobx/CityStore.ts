@@ -4,23 +4,10 @@ import { factory } from "../../components/utils/Logger";
 
 const log = factory.getLogger("City store");
 
-export class CityStoreObject {
-    @observable
-    icon: string;
+class Cities {
 
     @observable
-    cityName: string;
-
-    constructor(name: string, icon: string) {
-        this.cityName = name;
-        this.icon = icon
-    }
-}
-
-class NewCityStore {
-
-    @observable
-    cities: Map<string, CityStoreObject>;
+    cities: Map<string, CityMapValue>;
 
     @observable
     currentCityName: string;
@@ -32,10 +19,12 @@ class NewCityStore {
     get fetching() { return (store?.response?.fetching || store?.response?.error ? true : false) }
 
     @computed
-    get city() { return (store?.response?.data?.getCityByName) }
+    get city(): City {
+        return (store?.response?.data?.getCityByName)
+    }
 
     constructor() {
-        this.cities = new Map<string, CityStoreObject>();
+        this.cities = new Map<string, CityMapValue>();
         this.currentCityName = "";
     }
 
@@ -54,14 +43,54 @@ class NewCityStore {
     }
 
     @action
-    addCity(key: string, icon: string, cityName: string) {
+    addCity(icon: string, cityName: string) {
         cityName = cityName.toUpperCase();
-        const cityStoreObject: CityStoreObject = new CityStoreObject(cityName, icon);
+        const cityStoreObject: CityMapValue = {
+            icon:icon,
+            cityName:cityName
+        };
         this.cities.set(cityName, cityStoreObject);
     }
 
 }
 
-const store: NewCityStore = new NewCityStore();
+interface CityMapValue {
+    icon: string
+    cityName: string
+}
+interface Current {
+    temperature: number
+    icon: string
+    main: string
+    sunrise: number
+    sunset: number
+    pop: number
+    uv: number
+    dewDrops: number
+    windSpeed: number
+    humidity: number
+}
+
+interface DailyData {
+    date: number
+    icon: string
+    minTemperature: number
+    maxTemperature: number
+}
+
+interface HourData {
+    time: number
+    icon: string
+    temperature: number
+}
+interface City {
+    name: string
+    dt: number
+    current: Current
+    hourData: HourData[]
+    dailyData: DailyData[]
+}
+
+const store: Cities = new Cities();
 
 export default store;

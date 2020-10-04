@@ -27,9 +27,8 @@ const DialogBox = (prop: { setDialogVisible: Function }) => {
     if (loading && fetching == false) {
         // console.log(result)
         if (result.data?.getCityByName?.name) {
-            const key: string = data?.getCityByName?.name ? result.data?.getCityByName?.name : '';
             const icon: string = data?.getCityByName?.current?.icon ? data?.getCityByName?.current?.icon : ''
-            store.addCity(key, icon, city);
+            store.addCity(icon, city);
         } else {
             Toast.show('Have you splelled city correctly ?', {
                 duration: Toast.durations.SHORT,

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Dimensions, StyleSheet, Text, View } from 'react-native'
+import {  StyleSheet, View } from 'react-native'
 import ForcastSection from '../ForcastSection/ForcastSection'
 import HeroSection from '../HeroSection/HeroSection'
 import ClimateStatus from '../TitleSection/ClimateStatus'

@@ -3,6 +3,7 @@ import { Spinner } from 'native-base';
 import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import store from '../../store/mobx/CityStore';
+import { getFixedDigitNumber } from '../utils/Utilities';
 import BottomHeroSectionLabel from "./BottomHeroSectionLabel";
 import BottomHeroTitleSection from './BottomHeroTitleSection';
 
@@ -10,10 +11,6 @@ const BottomSectionHeroSection = observer(() => {
 
     const fetching = store.fetching
     const city = store.city
-
-    function getNumber(param: number | undefined): number {
-        return param ? param : 0;
-    }
 
     return (
         <View style={styles.container}>
@@ -25,10 +22,10 @@ const BottomSectionHeroSection = observer(() => {
                             <BottomHeroTitleSection />
                             <View style={styles.horizontalRuler}></View>
                             <View style={styles.contentContainer}>
-                                <BottomHeroSectionLabel keyText='Humidity' valueText={`${parseFloat(`${city.current.humidity}`).toFixed(2)} %`} />
-                                <BottomHeroSectionLabel keyText='Wind' valueText={`${parseFloat(`${city.current.windSpeed}`).toFixed(2)} m/s`} />
-                                <BottomHeroSectionLabel keyText='UV Index' valueText={`${parseFloat(`${city.current.uv}`).toFixed(2)}`} />
-                                <BottomHeroSectionLabel keyText='Rain' valueText={`${parseFloat(`${getNumber(city.current.pop) * 100}`).toFixed(2)} %`} />
+                                <BottomHeroSectionLabel keyText='Humidity' valueText={`${getFixedDigitNumber(city.current.humidity)} %`} />
+                                <BottomHeroSectionLabel keyText='Wind' valueText={`${getFixedDigitNumber(city.current.windSpeed)} m/s`} />
+                                <BottomHeroSectionLabel keyText='UV Index' valueText={getFixedDigitNumber(city.current.uv)} />
+                                <BottomHeroSectionLabel keyText='Rain' valueText={`${getFixedDigitNumber(city.current.pop*100)} %`} />
                             </View>
                         </>
                     )
@@ -43,7 +40,6 @@ export default BottomSectionHeroSection
 const styles = StyleSheet.create({
     container: {
         flexDirection: "column",
-        // backgroundColor: "#000",
     },
     horizontalRuler: {
         height: 3,

@@ -1,10 +1,8 @@
 import { observer } from 'mobx-react'
-import { stringifyKey } from 'mobx/lib/internal'
 import { Spinner } from 'native-base'
-import React, { useCallback, useEffect, useState } from 'react'
+import React from 'react'
 import { Image, StyleSheet, Text, View } from 'react-native'
 import store from '../../store/mobx/CityStore'
-import { City } from '../object/City'
 
 const ClimateStatus = observer(() => {
 
