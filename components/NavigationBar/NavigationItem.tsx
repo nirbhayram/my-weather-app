@@ -3,13 +3,13 @@ import React from 'react'
 import {Image, StyleSheet, Text, View} from 'react-native'
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import Toast from 'react-native-root-toast';
-import store from '../../store/mobx/CityStore';
+import {useSetCityName} from "../../hooks/useSetCityName";
 
 const NavigationItem = (data: { cityName: string, icon: string, goToMainScreen: Function }) => {
     return (
 
         <TouchableOpacity onPress={() => {
-            const flag: boolean = store.setCurrentCityName(data.cityName)
+            const flag: boolean = useSetCityName(data.cityName)
             if (flag) {
                 data.goToMainScreen();
             } else {

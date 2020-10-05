@@ -1,10 +1,10 @@
 import {Button, Spinner} from 'native-base';
 import React, {useCallback, useState} from 'react'
 import {Input} from 'react-native-elements';
-import {StyleSheet, Text, View} from 'react-native'
+import {Text, View} from 'react-native'
 import Toast from 'react-native-root-toast';
-import store from '../../store/mobx/CityStore';
-import {checkCity} from '../../hooks/useGraphql';
+import useValidateCityName from "../../hooks/useValidateCityName";
+import useAddCity from "../../hooks/useAddCity";
 
 
 const DialogBox = (prop: { setDialogVisible: Function }) => {
@@ -12,20 +12,17 @@ const DialogBox = (prop: { setDialogVisible: Function }) => {
     const [city, setCity] = useState('')
     const [loading, setLoading] = useState(false)
 
-    const [result, executeQuery] = checkCity(city);
+    const [fetching, result, error, executeQuery] = useValidateCityName(city);
 
     const onButtonPress = useCallback(() => {
         setLoading(true);
         executeQuery();
     }, [executeQuery]);
 
-    const { data, fetching, error } = result;
-
-    if (loading && fetching == false) {
-        // console.log(result)
-        if (result.data?.getCityByName?.name) {
-            const icon: string = data?.getCityByName?.current?.icon ? data?.getCityByName?.current?.icon : ''
-            store.addCity(icon, city);
+    if (loading && !fetching) {
+        if (result) {
+            const icon: string = result?.current?.icon ?? result?.current?.icon
+            useAddCity(icon, city);
         } else {
             Toast.show('Have you splelled city correctly ?', {
                 duration: Toast.durations.SHORT,
@@ -47,27 +44,25 @@ const DialogBox = (prop: { setDialogVisible: Function }) => {
         <View>
             {
                 loading ? (
-                    <Spinner color='black' />
+                    <Spinner color='black'/>
                 ) : (
-                        <>
-                            <Input placeholder='eg: kodinar'
-                                onChangeText={(text) => setCity(text)}
-                            >
-                                {city}
-                            </Input>
-                            <Button block style={{ backgroundColor: "#b6c5fb" }} onPress={() => {
-                                onButtonPress();
-                            }}>
-                                <Text style={{ fontSize: 15, color: 'white', fontWeight: 'bold' }}>Add city</Text>
-                            </Button>
-                        </>
-                    )
+                    <>
+                        <Input placeholder='eg: kodinar'
+                               onChangeText={(text) => setCity(text)}
+                        >
+                            {city}
+                        </Input>
+                        <Button block style={{backgroundColor: "#b6c5fb"}} onPress={() => {
+                            onButtonPress();
+                        }}>
+                            <Text style={{fontSize: 15, color: 'white', fontWeight: 'bold'}}>Add city</Text>
+                        </Button>
+                    </>
+                )
             }
 
-        </View >
+        </View>
     )
 }
 
 export default DialogBox
-
-const styles = StyleSheet.create({})

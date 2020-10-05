@@ -1,8 +1,6 @@
 import {useQuery, UseQueryResponse} from "urql";
-import gql from 'graphql-tag'
-import {City} from "../store/mobx/CityStore";
 
-const CHECK_CITY_NAME = gql`
+const CHECK_CITY_NAME = `
     query($city:String!) {
         getCityByName(name:$city){
             name
@@ -13,7 +11,7 @@ const CHECK_CITY_NAME = gql`
     }
 `
 
-const GET_CITY_DETAILS = gql`
+const GET_CITY_DETAILS = `
     query($city:String!) {
         cityDetails:getCityByName(name:$city){
             name
