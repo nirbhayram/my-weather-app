@@ -1,4 +1,4 @@
-import { OperationContext, useQuery, UseQueryArgs, UseQueryResponse, UseQueryState } from "urql";
+import {useQuery, UseQueryResponse} from "urql";
 import gql from 'graphql-tag'
 
 const CHECK_CITY_NAME = gql`

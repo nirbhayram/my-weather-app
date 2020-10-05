@@ -1,4 +1,4 @@
-import { LoggerFactory, LoggerFactoryOptions, LFService, LogGroupRule, LogLevel } from "typescript-logging";
+import {LFService, LoggerFactoryOptions, LogGroupRule, LogLevel} from "typescript-logging";
 
 // Create options instance and specify 2 LogGroupRules:
 // * One for any logger with a name starting with model, to log on debug
