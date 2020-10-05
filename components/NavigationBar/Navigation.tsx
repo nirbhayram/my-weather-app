@@ -1,34 +1,36 @@
-import { NavigationContainerRef } from '@react-navigation/native';
-import { observer } from 'mobx-react';
-import { Button } from 'native-base';
-import React, { useState } from 'react'
-import { StyleSheet, Text, View, Image, Dimensions } from 'react-native'
-import { FlatList } from 'react-native-gesture-handler';
-import { SafeAreaView } from 'react-native-safe-area-context'
-import { Dialog } from 'react-native-simple-dialogs';
-import store, { CityStoreObject } from '../../store/mobx/CityStore';
+import {NavigationContainerRef} from '@react-navigation/native';
+import {observer} from 'mobx-react';
+import {Button} from 'native-base';
+import React, {useState} from 'react'
+import {Dimensions, StyleSheet, Text, View} from 'react-native'
+import {FlatList} from 'react-native-gesture-handler';
+import {SafeAreaView} from 'react-native-safe-area-context'
+import {Dialog} from 'react-native-simple-dialogs';
 import NavigationItem from './NavigationItem';
 import DialogBox from "./DiallogBox";
+import useGetCities from "../../hooks/useGetCities";
+import {CityMapValue} from "../../utils/typeDef";
 
 const Navigation = observer((prop: { navigation: NavigationContainerRef }) => {
 
-    const [dialogVisible, setDialogVisible] = useState(false);
+        const [dialogVisible, setDialogVisible] = useState(false);
 
-    const goToMainScreen = () => {
-        prop.navigation.navigate('Home');
-    }
+        const goToMainScreen = () => {
+            prop.navigation.navigate('Home');
+        }
 
-    const renderItem = (data: { item: CityStoreObject, index: number }) => (
-        <NavigationItem goToMainScreen={goToMainScreen} cityName={data.item.cityName ? data.item.cityName : 'undefined'} icon={data.item.icon ? data.item.icon : ''} />
-    );
+        const renderItem = (data: { item: CityMapValue, index: number }) => (
+            <NavigationItem goToMainScreen={goToMainScreen} cityName={data.item.cityName ? data.item.cityName : 'undefined'}
+                            icon={data.item.icon ? data.item.icon : ''}/>
+        );
 
     return (
         <SafeAreaView style={[styles.container]}>
             <FlatList
-                style={[{ width: Dimensions.get('screen').width }, styles.flatList]}
-                data={Array.from(store.cities.values())}
+                style={[{width: Dimensions.get('screen').width}, styles.flatList]}
+                data={useGetCities()}
                 renderItem={renderItem}
-                keyExtractor={(item: CityStoreObject) => item.cityName}
+                keyExtractor={(item: CityMapValue) => item.cityName}
             />
             <View style={styles.inputView}>
                 <Button block style={{ backgroundColor: "#b6c5fb" }} onPress={() => {
