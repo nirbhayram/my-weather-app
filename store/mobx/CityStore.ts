@@ -1,6 +1,6 @@
-import { action, computed, observable } from "mobx";
-import { UseQueryState } from "urql";
-import { factory } from "../../components/utils/Logger";
+import {action, computed, observable} from "mobx";
+import {UseQueryState} from "urql";
+import {factory} from "../../utils/Logger";
 
 const log = factory.getLogger("City store");
 

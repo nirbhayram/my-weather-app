@@ -1,9 +1,9 @@
-import { observer } from 'mobx-react';
-import { Spinner } from 'native-base';
+import {observer} from 'mobx-react';
+import {Spinner} from 'native-base';
 import React from 'react'
-import { StyleSheet, Text, View, FlatList, Image } from 'react-native'
+import {FlatList} from 'react-native'
 import store from "../../store/mobx/CityStore";
-import { getTime } from '../utils/Utilities';
+import {getTime} from '../../utils/Utilities';
 import FlatlistItem from './FlatlistItem';
 
 const ForcastSection = observer(() => {

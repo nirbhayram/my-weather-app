@@ -1,16 +1,16 @@
-import { observer } from 'mobx-react';
+import {observer} from 'mobx-react';
 import React from 'react'
-import { Image, StyleSheet, Text, View } from 'react-native'
-import { getFixedDigitNumber } from '../utils/Utilities';
+import {Image, StyleSheet, Text, View} from 'react-native'
+import {getFixedDigitNumber} from '../../utils/Utilities';
 
 const FlatlistItem = observer((data: { icon: string, date: string, maxTemperature: number, minTemperature: number }) => (
     <View style={styles.titleContainer}>
         <View style={styles.titleContainerDate}>
             <Image
                 style={styles.imageView}
-                source={{ uri: `http://openweathermap.org/img/wn/${data.icon}@2x.png` }}
+                source={{uri: `http://openweathermap.org/img/wn/${data.icon}@2x.png`}}
             />
-            <Text style={{ fontSize: 13, paddingLeft: "5%", fontWeight: "bold", color: "#5C5C5C" }}>{data.date}</Text>
+            <Text style={{fontSize: 13, paddingLeft: "5%", fontWeight: "bold", color: "#5C5C5C"}}>{data.date}</Text>
         </View>
         <View style={styles.titleContainerTemprature}>
             <Text style={{ fontSize: 17, paddingRight: "5%", fontWeight: "bold", color: "#5C5C5C" }}>{getFixedDigitNumber(data.maxTemperature)}</Text>

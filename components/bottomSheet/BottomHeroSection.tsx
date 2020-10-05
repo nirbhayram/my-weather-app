@@ -1,9 +1,9 @@
-import { observer } from 'mobx-react';
-import { Spinner } from 'native-base';
+import {observer} from 'mobx-react';
+import {Spinner} from 'native-base';
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import {StyleSheet, View} from 'react-native'
 import store from '../../store/mobx/CityStore';
-import { getFixedDigitNumber } from '../utils/Utilities';
+import {getFixedDigitNumber} from '../../utils/Utilities';
 import BottomHeroSectionLabel from "./BottomHeroSectionLabel";
 import BottomHeroTitleSection from './BottomHeroTitleSection';
 

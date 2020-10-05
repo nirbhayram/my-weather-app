@@ -1,15 +1,15 @@
-import { observer } from 'mobx-react';
-import { Spinner } from 'native-base';
+import {observer} from 'mobx-react';
+import {Spinner} from 'native-base';
 import React from 'react'
-import { Dimensions, StyleSheet, View } from 'react-native'
+import {Dimensions, StyleSheet, View} from 'react-native'
 import store from '../../store/mobx/CityStore';
-import { getTime, getFixedDigitNumber } from '../utils/Utilities';
+import {getFixedDigitNumber, getTime} from '../../utils/Utilities';
 import TinyInfoDisplay from './TinyInfoDisplay';
 
 const HeroSection = observer(() => {
 
     const fetching = store.fetching
-    const city  = store.city
+    const city = store.city
 
     return (
         <View style={[styles.container,]}>

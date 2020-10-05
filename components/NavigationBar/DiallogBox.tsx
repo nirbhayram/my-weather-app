@@ -1,17 +1,14 @@
-import { Button, Spinner } from 'native-base';
-import React, { useCallback, useEffect, useState } from 'react'
-import { Input } from 'react-native-elements';
-import { StyleSheet, Text, View } from 'react-native'
+import {Button, Spinner} from 'native-base';
+import React, {useCallback, useState} from 'react'
+import {Input} from 'react-native-elements';
+import {StyleSheet, Text, View} from 'react-native'
 import Toast from 'react-native-root-toast';
 import store from '../../store/mobx/CityStore';
-import { useQuery, UseQueryState } from 'urql';
-import gql from 'graphql-tag'
-import { checkCity } from '../hooks/useGraphql';
-
+import {checkCity} from '../../hooks/useGraphql';
 
 
 const DialogBox = (prop: { setDialogVisible: Function }) => {
-    const { setDialogVisible } = prop;
+    const {setDialogVisible} = prop;
     const [city, setCity] = useState('')
     const [loading, setLoading] = useState(false)
 
