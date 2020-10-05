@@ -1,18 +1,19 @@
-
 import React from 'react'
-import { Dimensions, StyleSheet, Text, View } from 'react-native'
-import { Icon } from 'react-native-elements'
+import {Dimensions, StyleSheet, Text, View} from 'react-native'
+import {Icon} from 'react-native-elements'
 
-const TinyInfoDisplay = ({ icon = "sun-o", text = "6:15 am" }) => {
+const TinyInfoDisplay = ({icon = "sun-o", text = "6:15 am"}) => {
     return (
-        <View style={styles.labelView}>
-            <Icon
-                name={icon}
-                type='font-awesome-5'
-                color='#EBEBEB'
-                size={25} />
-            <View style={styles.labelViewTextView}>
-                <Text style={styles.labelViewTextViewText}>{text}</Text>
+        <View style={[styles.infoDisplay, {minWidth: Dimensions.get('screen').width / 4}]}>
+            <View style={styles.labelView}>
+                <Icon
+                    name={icon}
+                    type='font-awesome-5'
+                    color='#EBEBEB'
+                    size={25}/>
+                <View style={styles.labelViewTextView}>
+                    <Text style={styles.labelViewTextViewText}>{text}</Text>
+                </View>
             </View>
         </View>
     )
@@ -34,5 +35,10 @@ const styles = StyleSheet.create({
         color: "#EBEBEB",
         fontSize: 15,
         padding: 10
+    },
+    infoDisplay: {
+        flex: 1,
+        flexBasis: 'auto',
+        flexGrow: 1
     }
 })

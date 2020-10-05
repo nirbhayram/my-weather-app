@@ -1,7 +1,7 @@
 import {observer} from 'mobx-react';
 import React from 'react'
 import {Image, StyleSheet, Text, View} from 'react-native'
-import {getFixedDigitNumber} from '../../utils/Utilities';
+import {getFixedDigitNumber} from '../../utils/utilities';
 
 const FlatlistItem = observer((data: { icon: string, date: string, maxTemperature: number, minTemperature: number }) => (
     <View style={styles.titleContainer}>

@@ -1,17 +1,6 @@
-import {useQuery, UseQueryResponse} from "urql";
-import gql from 'graphql-tag'
-import {City} from "../store/mobx/CityStore";
-
-const CHECK_CITY_NAME = gql`
-    query($city:String!) {
-        getCityByName(name:$city){
-            name
-            current{
-                icon
-            }
-        }
-    }
-`
+import {useQuery} from "urql";
+import store from "../store/mobx/CityStore";
+import gql from "graphql-tag";
 
 const GET_CITY_DETAILS = gql`
     query($city:String!) {
@@ -45,19 +34,13 @@ const GET_CITY_DETAILS = gql`
     }
 `
 
-export const checkCity = (cityName: string): UseQueryResponse<any> => {
-    return useQuery({
-        query: CHECK_CITY_NAME,
-        variables: {city: cityName},
-        pause: true,
-        requestPolicy: 'network-only'
-    })
-};
-
-export const getCityDetails = (cityName: string) => {
-    return useQuery({
+const useFetchCity = (cityName: string) => {
+    const [response, executeQuery] = useQuery({
         query: GET_CITY_DETAILS,
         variables: {city: cityName},
         requestPolicy: 'network-only'
     })
+    store.city = response.data?.cityDetails;
 }
+
+export default useFetchCity;

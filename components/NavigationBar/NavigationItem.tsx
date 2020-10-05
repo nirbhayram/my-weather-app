@@ -1,34 +1,34 @@
-import { LinearGradient } from 'expo-linear-gradient';
+import {LinearGradient} from 'expo-linear-gradient';
 import React from 'react'
-import { Image, StyleSheet, Text, View } from 'react-native'
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import {Image, StyleSheet, Text, View} from 'react-native'
+import {TouchableOpacity} from 'react-native-gesture-handler';
 import Toast from 'react-native-root-toast';
 import store from '../../store/mobx/CityStore';
 
-const NavigationItem = (data: { cityName: string, icon: string, goToMainScreen:Function }) => {
+const NavigationItem = (data: { cityName: string, icon: string, goToMainScreen: Function }) => {
     return (
 
         <TouchableOpacity onPress={() => {
-            store.setCurrentCityName(data.cityName)
-                .then(() => {
-                    data.goToMainScreen();
-                }).catch(() => {
-                    Toast.show('Something went wrong :(', {
-                        duration: Toast.durations.SHORT,
-                        position: Toast.positions.CENTER,
-                        shadow: true,
-                        animation: true,
-                        hideOnPress: true,
-                        delay: 0
-                    });
-                })
+            const flag: boolean = store.setCurrentCityName(data.cityName)
+            if (flag) {
+                data.goToMainScreen();
+            } else {
+                Toast.show('Something went wrong :(', {
+                    duration: Toast.durations.SHORT,
+                    position: Toast.positions.CENTER,
+                    shadow: true,
+                    animation: true,
+                    hideOnPress: true,
+                    delay: 0
+                });
+            }
         }}>
             <View style={styles.flatListView}>
                 <LinearGradient colors={["#4064e0", "#b6c5fb"]} style={styles.flatListItemView}>
                     <Text style={styles.flatListTextView}>{data.cityName}</Text>
                     <Image
                         style={styles.flatListImageView}
-                        source={{ uri: `http://openweathermap.org/img/wn/${data.icon}@2x.png` }}
+                        source={{uri: `http://openweathermap.org/img/wn/${data.icon}@2x.png`}}
                     />
                 </LinearGradient>
             </View>

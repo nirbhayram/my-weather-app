@@ -1,50 +1,55 @@
-import {observer} from 'mobx-react';
 import {Spinner} from 'native-base';
 import React from 'react'
-import {Dimensions, StyleSheet, View} from 'react-native'
-import store from '../../store/mobx/CityStore';
-import {getFixedDigitNumber, getTime} from '../../utils/Utilities';
+import {StyleSheet, View} from 'react-native'
+import {getFixedDigitNumber, getTime} from '../../utils/utilities';
 import TinyInfoDisplay from './TinyInfoDisplay';
+import {City} from "../../utils/typeDef";
+import useGetCity from "../../hooks/useGetCity";
 
-const HeroSection = observer(() => {
-
-    const fetching = store.fetching
-    const city = store.city
-
+const HeroSection = () => {
+    const city: City | undefined = useGetCity();
     return (
         <View style={[styles.container,]}>
             {
-                fetching ? (
-                    <>
-                        <Spinner color='white' />
-                    </>
-                ) :
+                city ? (
+                        [
+                            {
+                                icon: 'sun',
+                                text: getTime(new Date(city.current.sunrise * 1000))
+                            },
+                            {
+                                icon: 'umbrella-beach',
+                                text: getTime(new Date(city.current.sunset * 1000))
+                            },
+                            {
+                                icon: 'wind',
+                                text: getFixedDigitNumber(city.current.windSpeed)
+                            },
+                            {
+                                icon: 'cloud-sun-rain',
+                                text: getFixedDigitNumber(city.current.pop * 100)
+                            },
+                            {
+                                icon: 'bolt',
+                                text: getFixedDigitNumber(city.current.uv)
+                            },
+                            {
+                                icon: 'tint',
+                                text: getFixedDigitNumber(city.current.dewDrops)
+                            },
+                        ].map(
+                            (item) => (
+                                <TinyInfoDisplay key={item.icon} icon={item.icon} text={item.text}/>
+                            )
+                        )
+                    ) :
                     (
-                        <>
-                            <View style={[styles.infoDisplay, { minWidth: Dimensions.get('screen').width / 4 }]}>
-                                <TinyInfoDisplay icon='sun' text={getTime(new Date(city.current.sunrise *1000))} />
-                            </View>
-                            <View style={[styles.infoDisplay, { minWidth: Dimensions.get('screen').width / 4 }]}>
-                                <TinyInfoDisplay icon="umbrella-beach" text={getTime(new Date(city.current.sunset*1000))} />
-                            </View>
-                            <View style={[styles.infoDisplay, { minWidth: Dimensions.get('screen').width / 4 }]}>
-                                <TinyInfoDisplay icon='wind' text={getFixedDigitNumber(city.current.windSpeed)} />
-                            </View>
-                            <View style={[styles.infoDisplay, { minWidth: Dimensions.get('screen').width / 4 }]}>
-                                <TinyInfoDisplay icon='cloud-sun-rain' text={getFixedDigitNumber(city.current.pop*100)} />
-                            </View>
-                            <View style={[styles.infoDisplay, { minWidth: Dimensions.get('screen').width / 4 }]}>
-                                <TinyInfoDisplay icon='bolt' text={getFixedDigitNumber(city.current.uv)} />
-                            </View>
-                            <View style={[styles.infoDisplay, { minWidth: Dimensions.get('screen').width / 4 }]}>
-                                <TinyInfoDisplay icon='tint' text={getFixedDigitNumber(city.current.dewDrops)} />
-                            </View>
-                        </>
+                        <Spinner color='white'/>
                     )
             }
         </View>
     )
-})
+}
 
 export default HeroSection
 

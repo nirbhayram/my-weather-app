@@ -1,30 +1,28 @@
-import { observer } from 'mobx-react'
-import { Spinner } from 'native-base'
+import {Spinner} from 'native-base'
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
-import store from '../../store/mobx/CityStore'
+import {StyleSheet, Text, View} from 'react-native'
+import useGetCity from "../../hooks/useGetCity";
+import {City} from "../../utils/typeDef";
 
 
-const Title = observer(() => {
-    const fetching = store.fetching;
-    const city = store.city
+const Title = () => {
+    const city: City | undefined = useGetCity();
     return (
         <View style={[styles.textContainer]}>
             {
-                fetching ?
-                    (<>
-                        <Spinner color='white' />
+                city ? (
+                    <>
+                        <Text style={styles.primary_title}>{city?.name}</Text>
+                        <Text style={styles.secondary_title}> {new Date(city?.dt * 1000).toString()} </Text>
                     </>
-                    ) : (
-                        <>
-                            <Text style={styles.primary_title}>{city?.name}</Text>
-                            <Text style={styles.secondary_title}> {new Date(city?.dt*1000).toString()} </Text>
-                        </>
-                    )
+
+                ) : (
+                    <Spinner color='white'/>
+                )
             }
         </View>
     )
-})
+}
 
 export default Title
 
@@ -38,7 +36,7 @@ const styles = StyleSheet.create({
     },
     primary_title: {
         fontSize: 20,
-        color: "#fff",
+        color: "#ffffff",
         fontWeight: "bold",
         alignItems: "center"
     },

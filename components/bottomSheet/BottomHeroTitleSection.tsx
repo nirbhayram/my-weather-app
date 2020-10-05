@@ -1,11 +1,11 @@
-
 import React from 'react'
-import { StyleSheet, Text, View, Image } from 'react-native'
-import store from '../../store/mobx/CityStore'
+import {Image, StyleSheet, Text, View} from 'react-native'
+import useGetCity from "../../hooks/useGetCity";
+import {Spinner} from "native-base";
 
 const BottomHeroTitleSection = () => {
 
-    const city = store.city
+    const city = useGetCity()
 
     const getDayFromNumber = (date: Date): string => {
         switch (date.getDay()) {
@@ -55,24 +55,28 @@ const BottomHeroTitleSection = () => {
         }
     }
 
-    const getDate = (date: Date| undefined): string => {
-        return date ?`${getDayFromNumber(date)}, ${date.getDate()} ${getMonthFromNumber(date)}`:``;
+    const getDate = (date: Date | undefined): string => {
+        return date ? `${getDayFromNumber(date)}, ${date.getDate()} ${getMonthFromNumber(date)}` : ``;
     }
 
     return (
-        <View style={styles.titleContainer}>
-            <View style={styles.titleContainerDate}>
-                <Image
-                    style={styles.imageView}
-                    source={{uri:`http://openweathermap.org/img/wn/${city?.dailyData[0]?.icon}@2x.png`}}
-                />
-                <Text style={styles.dateText}>{getDate(new Date(city?.dailyData[0]?.date*1000))}</Text>
+        city ? (
+            <View style={styles.titleContainer}>
+                <View style={styles.titleContainerDate}>
+                    <Image
+                        style={styles.imageView}
+                        source={{uri: `http://openweathermap.org/img/wn/${city?.dailyData[0]?.icon}@2x.png`}}
+                    />
+                    <Text style={styles.dateText}>{getDate(new Date(city?.dailyData[0]?.date * 1000))}</Text>
+                </View>
+                <View style={styles.titleContainerTemprature}>
+                    <Text style={styles.temperatureText}>{city.dailyData[0].maxTemperature}°</Text>
+                    <Text>{city.dailyData[0].minTemperature}°</Text>
+                </View>
             </View>
-            <View style={styles.titleContainerTemprature}>
-                <Text style={styles.temperatureText}>{city.dailyData[0].maxTemperature}°</Text>
-                <Text>{city.dailyData[0].minTemperature}°</Text>
-            </View>
-        </View>
+        ) : (
+            <Spinner color='black'/>
+        )
     )
 }
 
