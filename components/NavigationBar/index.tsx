@@ -6,7 +6,7 @@ import {Dimensions, StyleSheet, Text, View} from 'react-native'
 import {FlatList} from 'react-native-gesture-handler';
 import {SafeAreaView} from 'react-native-safe-area-context'
 import {Dialog} from 'react-native-simple-dialogs';
-import NavigationItem from './NavigationItem';
+import FlatlistItem from './FlatlistItem';
 import DialogBox from "./DiallogBox";
 import useGetCities from "../../hooks/useGetCities";
 import {CityMapValue} from "../../utils/typeDef";
@@ -20,8 +20,9 @@ const Navigation = observer((prop: { navigation: NavigationContainerRef }) => {
         }
 
         const renderItem = (data: { item: CityMapValue, index: number }) => (
-            <NavigationItem goToMainScreen={goToMainScreen} cityName={data.item.cityName ? data.item.cityName : 'undefined'}
-                            icon={data.item.icon ? data.item.icon : ''}/>
+            <FlatlistItem goToMainScreen={goToMainScreen}
+                          cityName={data.item.cityName ? data.item.cityName : 'undefined'}
+                          icon={data.item.icon ? data.item.icon : ''}/>
         );
 
     return (

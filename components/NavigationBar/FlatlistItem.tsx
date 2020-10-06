@@ -5,7 +5,7 @@ import {TouchableOpacity} from 'react-native-gesture-handler';
 import Toast from 'react-native-root-toast';
 import {useSetCityName} from "../../hooks/useSetCityName";
 
-const NavigationItem = (data: { cityName: string, icon: string, goToMainScreen: Function }) => {
+const FlatlistItem = (data: { cityName: string, icon: string, goToMainScreen: Function }) => {
     return (
 
         <TouchableOpacity onPress={() => {
@@ -36,7 +36,7 @@ const NavigationItem = (data: { cityName: string, icon: string, goToMainScreen: 
     );
 }
 
-export default NavigationItem
+export default FlatlistItem
 
 const styles = StyleSheet.create({
     flatListView: {

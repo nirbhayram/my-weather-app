@@ -4,7 +4,7 @@ import useGetCity from "../../hooks/useGetCity";
 import {Spinner} from "native-base";
 import {getDate} from "../../utils/utilities";
 
-const BottomHeroTitleSection = () => {
+const HeroTitleSection = () => {
 
     const city = useGetCity()
 
@@ -29,7 +29,7 @@ const BottomHeroTitleSection = () => {
     )
 }
 
-export default BottomHeroTitleSection
+export default HeroTitleSection
 
 const styles = StyleSheet.create({
     imageView: {

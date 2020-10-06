@@ -1,13 +1,13 @@
 // In App.js in a new project
 
 import * as React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
+import {NavigationContainer} from '@react-navigation/native';
+import {createStackNavigator} from '@react-navigation/stack';
 import Main from './components/Main';
-import Navigation from './components/NavigationBar/Navigation';
-import { createClient, Provider } from 'urql';
+import Navigation from './components/NavigationBar';
+import {createClient, Provider} from 'urql';
 
-const client = createClient({ url: 'http://localhost:4000' });
+const client = createClient({url: `http://localhost:4000`});
 
 const Stack = createStackNavigator();
 

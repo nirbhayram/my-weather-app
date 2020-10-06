@@ -2,7 +2,7 @@ import {Spinner} from 'native-base';
 import React from 'react'
 import {StyleSheet, View} from 'react-native'
 import {getFixedDigitNumber, getTime} from '../../utils/utilities';
-import TinyInfoDisplay from './TinyInfoDisplay';
+import InfoDisplay from './InfoDisplay';
 import {City} from "../../utils/typeDef";
 import useGetCity from "../../hooks/useGetCity";
 
@@ -39,7 +39,7 @@ const HeroSection = () => {
                             },
                         ].map(
                             (item) => (
-                                <TinyInfoDisplay key={item.icon} icon={item.icon} text={item.text}/>
+                                <InfoDisplay key={item.icon} icon={item.icon} text={item.text}/>
                             )
                         )
                     ) :

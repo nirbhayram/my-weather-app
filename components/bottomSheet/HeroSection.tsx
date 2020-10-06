@@ -3,8 +3,8 @@ import {Spinner} from 'native-base';
 import React from 'react'
 import {StyleSheet, View} from 'react-native'
 import {getFixedDigitNumber} from '../../utils/utilities';
-import BottomHeroSectionLabel from "./BottomHeroSectionLabel";
-import BottomHeroTitleSection from './BottomHeroTitleSection';
+import HeroSectionLabel from "./HeroSectionLabel";
+import HeroTitleSection from './HeroTitleSection';
 import useGetCity from "../../hooks/useGetCity";
 
 const BottomSectionHeroSection = observer(() => {
@@ -14,17 +14,17 @@ const BottomSectionHeroSection = observer(() => {
             {
                 city ? (
                     <>
-                        <BottomHeroTitleSection/>
-                        <View style={styles.horizontalRuler}></View>
+                        <HeroTitleSection/>
+                        <View style={styles.horizontalRuler}/>
                         <View style={styles.contentContainer}>
-                            <BottomHeroSectionLabel keyText='Humidity'
-                                                    valueText={`${getFixedDigitNumber(city.current.humidity)} %`}/>
-                            <BottomHeroSectionLabel keyText='Wind'
-                                                    valueText={`${getFixedDigitNumber(city.current.windSpeed)} m/s`}/>
-                            <BottomHeroSectionLabel keyText='UV Index'
-                                                    valueText={getFixedDigitNumber(city.current.uv)}/>
-                            <BottomHeroSectionLabel keyText='Rain'
-                                                    valueText={`${getFixedDigitNumber(city.current.pop * 100)} %`}/>
+                            <HeroSectionLabel keyText='Humidity'
+                                              valueText={`${getFixedDigitNumber(city.current.humidity)} %`}/>
+                            <HeroSectionLabel keyText='Wind'
+                                              valueText={`${getFixedDigitNumber(city.current.windSpeed)} m/s`}/>
+                            <HeroSectionLabel keyText='UV Index'
+                                              valueText={getFixedDigitNumber(city.current.uv)}/>
+                            <HeroSectionLabel keyText='Rain'
+                                              valueText={`${getFixedDigitNumber(city.current.pop * 100)} %`}/>
                         </View>
                     </>
                 ) : (

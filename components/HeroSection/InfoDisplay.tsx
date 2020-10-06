@@ -2,7 +2,7 @@ import React from 'react'
 import {Dimensions, StyleSheet, Text, View} from 'react-native'
 import {Icon} from 'react-native-elements'
 
-const TinyInfoDisplay = ({icon = "sun-o", text = "6:15 am"}) => {
+const InfoDisplay = ({icon = "sun-o", text = "6:15 am"}) => {
     return (
         <View style={[styles.infoDisplay, {minWidth: Dimensions.get('screen').width / 4}]}>
             <View style={styles.labelView}>
@@ -19,7 +19,7 @@ const TinyInfoDisplay = ({icon = "sun-o", text = "6:15 am"}) => {
     )
 }
 
-export default TinyInfoDisplay
+export default InfoDisplay
 
 const styles = StyleSheet.create({
     labelView: {

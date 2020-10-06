@@ -1,7 +1,7 @@
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import {StyleSheet, Text, View} from 'react-native'
 
-const BottomHeroSectionLabel = ({ keyText = "Humidity", valueText = "17%" }) => {
+const HeroSectionLabel = ({keyText = "Humidity", valueText = "17%"}) => {
     return (
         <View style={styles.contentContainerView}>
             <Text style={styles.contentContainerViewKey}>{keyText}</Text>
@@ -10,7 +10,7 @@ const BottomHeroSectionLabel = ({ keyText = "Humidity", valueText = "17%" }) => 
     )
 }
 
-export default BottomHeroSectionLabel
+export default HeroSectionLabel
 
 const styles = StyleSheet.create({
     contentContainerView: {
@@ -26,6 +26,5 @@ const styles = StyleSheet.create({
         fontWeight: "bold",
         color: "#5C5C5C"
     },
-    contentContainerViewValue: {
-    },
+    contentContainerViewValue: {},
 })
