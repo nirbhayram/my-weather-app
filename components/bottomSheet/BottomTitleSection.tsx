@@ -1,21 +1,21 @@
-import { observer } from 'mobx-react';
+import {observer} from 'mobx-react';
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
-import { Icon } from "react-native-elements";
+import {StyleSheet, Text, View} from 'react-native'
+import {Icon} from "react-native-elements";
 
 const BottomSectionTitle = observer(() => {
     return (
         <View style={styles.container}>
-            <View style={styles.titleBarIcon}></View>
+            <View style={styles.titleBarIcon}/>
             <View style={styles.titleContainer}>
                 <Text style={styles.titleText}>
                     Next 7 days
-                        </Text>
+                </Text>
                 <Icon
                     name='ellipsis-h'
                     type='font-awesome-5'
                     color='#5C5C5C'
-                    size={30} />
+                    size={30}/>
             </View>
         </View>
     )

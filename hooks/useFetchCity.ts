@@ -1,8 +1,7 @@
 import {useQuery} from "urql";
 import store from "../store/mobx/CityStore";
-import gql from "graphql-tag";
 
-const GET_CITY_DETAILS = gql`
+const GET_CITY_DETAILS = `
     query($city:String!) {
         cityDetails:getCityByName(name:$city){
             name
