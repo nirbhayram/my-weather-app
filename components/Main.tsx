@@ -2,7 +2,7 @@ import * as React from 'react';
 import {SafeAreaView, StatusBar, StyleSheet} from 'react-native';
 import BottomSheet from 'reanimated-bottom-sheet';
 import {LinearGradient} from "expo-linear-gradient";
-import BottomSheet from './BottomSheet/BottomSheet';
+import Index from './BottomSheet';
 import MainScreen from './MainScreen/MainScreen';
 import {NavigationContainerRef} from '@react-navigation/native';
 import store from '../store/mobx/CityStore';
@@ -13,7 +13,7 @@ const Main = (prop: { navigation: NavigationContainerRef }) => {
     useFetchCity(store.currentCityName)
     const renderContent = () => (
         <>
-            <BottomSheet/>
+            <Index/>
         </>
     );
 
