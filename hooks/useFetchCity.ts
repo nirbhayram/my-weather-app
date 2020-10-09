@@ -34,12 +34,12 @@ const GET_CITY_DETAILS = `
 `
 
 const useFetchCity = (cityName: string) => {
-    const [response, executeQuery] = useQuery({
+    const [response] = useQuery({
         query: GET_CITY_DETAILS,
         variables: {city: cityName},
         requestPolicy: 'network-only'
     })
-    store.city = response.data?.cityDetails;
+    store.setCity(response.data?.cityDetails);
 }
 
 export default useFetchCity;

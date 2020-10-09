@@ -7,17 +7,30 @@ const log = factory.getLogger("City store");
 class Cities {
 
     @observable
-    cities: Map<string, CityMapValue>;
+    private cities: Map<string, CityMapValue>;
 
     @observable
-    currentCityName: string;
+    private currentCityName: string;
 
     @observable
-    city: City | undefined
+    private city: City | undefined
 
     constructor() {
         this.cities = new Map<string, CityMapValue>();
         this.currentCityName = "";
+    }
+
+    @action
+    public setCity(city: City | undefined) {
+        this.city = city;
+    }
+
+    public getCities(): Map<string, CityMapValue> {
+        return this.cities;
+    }
+
+    public getCity(): City | undefined {
+        return this.city;
     }
 
     @action

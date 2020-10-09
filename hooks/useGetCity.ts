@@ -3,7 +3,7 @@ import {City} from "../utils/typeDef";
 import {useObserver} from 'mobx-react'
 
 const useGetCity = (): City | undefined => {
-    return useObserver<City | undefined>(() => (store.city))
+    return useObserver<City | undefined>(() => (store.getCity()))
 }
 
 export default useGetCity;
