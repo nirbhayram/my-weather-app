@@ -33,10 +33,10 @@ const GET_CITY_DETAILS = `
     }
 `
 
-const useFetchCity = (cityName: string) => {
+const useFetchCity = () => {
     const [response] = useQuery({
         query: GET_CITY_DETAILS,
-        variables: {city: cityName},
+        variables: {city: store.getCityName()},
         requestPolicy: 'network-only'
     })
     store.setCity(response.data?.cityDetails);

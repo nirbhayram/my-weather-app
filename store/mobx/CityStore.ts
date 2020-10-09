@@ -33,6 +33,10 @@ class Cities {
         return this.city;
     }
 
+    public getCityName(): string {
+        return this.currentCityName;
+    }
+
     @action
     public setCurrentCityName(cityName: string): boolean {
         if (this.cities.has(cityName)) {

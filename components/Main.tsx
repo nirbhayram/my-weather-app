@@ -1,31 +1,35 @@
 import * as React from 'react';
+import {useCallback} from 'react';
 import {SafeAreaView, StatusBar, StyleSheet} from 'react-native';
 import BottomSheet from 'reanimated-bottom-sheet';
 import {LinearGradient} from "expo-linear-gradient";
-import Index from './BottomSheet';
+import BottomSection from './BottomSheet';
 import MainScreen from './MainScreen';
 import {NavigationContainerRef} from '@react-navigation/native';
-import store from '../store/mobx/CityStore';
 import useFetchCity from "../hooks/useFetchCity";
+import {primaryDarkColor, primaryLightColor} from "../utils/stylesConstants";
 
 const Main = (prop: { navigation: NavigationContainerRef }) => {
+    const {navigation} = prop;
 
-    useFetchCity(store.currentCityName)
+    useFetchCity()
+
     const renderContent = () => (
         <>
-            <Index/>
+            <BottomSection/>
         </>
     );
 
-    const navigateToNavigationScreen = () => {
-        prop.navigation.navigate('Navigation');
-    }
+    const navigateToNavigationScreen = useCallback(() => {
+            navigation.navigate('Navigation');
+        }, [navigation]
+    )
 
     const sheetRef = React.useRef(null);
 
     return (
         <>
-            <LinearGradient colors={["#4064e0", "#b6c5fb"]} style={styles.container}>
+            <LinearGradient colors={[primaryDarkColor, primaryLightColor]} style={styles.container}>
                 <StatusBar
                     barStyle="light-content"
                 />
@@ -53,6 +57,5 @@ const styles = StyleSheet.create({
         paddingTop: 15,
     }
 });
-
 
 export default Main;

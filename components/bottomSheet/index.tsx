@@ -4,7 +4,7 @@ import BottomSectionFlatList from './FlatList'
 import BottomSectionHeroSection from './HeroSection'
 import BottomSectionTitle from './Title'
 
-const Index = () => {
+const BottomSection = () => {
 
     return (
         <View style={[styles.container, {height: "100%"}]}>
@@ -21,7 +21,7 @@ const Index = () => {
     )
 }
 
-export default Index
+export default BottomSection
 
 const styles = StyleSheet.create({
     container: {
