@@ -1,10 +1,10 @@
 import React from 'react'
 import {StyleSheet, View} from 'react-native'
-import ForcastSection from '../ForcastSection'
-import HeroSection from '../HeroSection'
-import ClimateStatus from '../TitleSection/ClimateStatus'
-import HeaderSection from '../TitleSection/HeaderSection'
-import Title from '../TitleSection'
+import ForcastSection from './ForcastSection'
+import HeroSection from './HeroSection'
+import ClimateStatus from './TitleSecondarySection'
+import HeaderSection from './HeaderSection'
+import Title from './TitlePrimarySection'
 
 const MainScreen = (prop: { navigateToNavigationScreen: Function }) => {
     return (
@@ -18,7 +18,7 @@ const MainScreen = (prop: { navigateToNavigationScreen: Function }) => {
                 <HeroSection/>
             </View>
             <View style={styles.forcastSection}>
-                <ForcastSection />
+                <ForcastSection/>
             </View>
         </>
     )
@@ -36,15 +36,15 @@ const styles = StyleSheet.create({
     },
     heroSection: {
         flex: 0.8,
-        flexBasis:'auto',
+        flexBasis: 'auto',
         alignItems: "center",
         justifyContent: "center",
         paddingTop: 15,
-        alignSelf:'stretch'
+        alignSelf: 'stretch'
     },
     forcastSection: {
         flex: 1,
-        flexBasis:'auto',
+        flexBasis: 'auto',
         fontSize: 20,
         justifyContent: "flex-start",
         alignItems: "center",

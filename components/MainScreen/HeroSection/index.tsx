@@ -1,10 +1,10 @@
 import {Spinner} from 'native-base';
 import React from 'react'
 import {StyleSheet, View} from 'react-native'
-import {getFixedDigitNumber, getTime} from '../../utils/utilities';
+import {getFixedDigitNumber, getTime} from '../../../utils/utilities';
 import InfoDisplay from './InfoDisplay';
-import {City} from "../../utils/typeDef";
-import useGetCity from "../../hooks/useGetCity";
+import {City} from "../../../utils/typeDef";
+import useGetCity from "../../../hooks/useGetCity";
 
 const HeroSection = () => {
     const city: City | undefined = useGetCity();

@@ -1,8 +1,8 @@
 import {Spinner} from 'native-base'
 import React from 'react'
 import {StyleSheet, Text, View} from 'react-native'
-import useGetCity from "../../hooks/useGetCity";
-import {City} from "../../utils/typeDef";
+import useGetCity from "../../../hooks/useGetCity";
+import {City} from "../../../utils/typeDef";
 
 
 const Title = () => {

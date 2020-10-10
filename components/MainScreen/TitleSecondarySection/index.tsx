@@ -1,8 +1,8 @@
 import {Spinner} from 'native-base'
 import React from 'react'
 import {Image, StyleSheet, Text, View} from 'react-native'
-import {City} from "../../utils/typeDef";
-import useGetCity from "../../hooks/useGetCity";
+import {City} from "../../../utils/typeDef";
+import useGetCity from "../../../hooks/useGetCity";
 
 const ClimateStatus = () => {
     const city: City | undefined = useGetCity();

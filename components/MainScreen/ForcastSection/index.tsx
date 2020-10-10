@@ -1,10 +1,10 @@
 import {Spinner} from 'native-base';
 import React from 'react'
 import {FlatList} from 'react-native'
-import {getTime} from '../../utils/utilities';
+import {getTime} from '../../../utils/utilities';
 import FlatlistItem from './FlatlistItem';
-import {City} from "../../utils/typeDef";
-import useGetCity from "../../hooks/useGetCity";
+import {City} from "../../../utils/typeDef";
+import useGetCity from "../../../hooks/useGetCity";
 
 const ForcastSection = () => {
 
