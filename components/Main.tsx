@@ -7,7 +7,7 @@ import BottomSection from './BottomSheet';
 import MainScreen from './MainScreen';
 import {NavigationContainerRef} from '@react-navigation/native';
 import useFetchCity from "../hooks/useFetchCity";
-import {PRIMARY_DARK_COLOR, PRIMARY_LIGHT_COLOR} from "../utils/stylesConstants";
+import {NAVIAGTION_SCREEN, PRIMARY_DARK_COLOR, PRIMARY_LIGHT_COLOR} from "../utils/stylesConstants";
 
 const Main = (prop: { navigation: NavigationContainerRef }) => {
     const {navigation} = prop;
@@ -21,7 +21,7 @@ const Main = (prop: { navigation: NavigationContainerRef }) => {
     );
 
     const navigateToNavigationScreen = useCallback(() => {
-            navigation.navigate('Navigation');
+        navigation.navigate(NAVIAGTION_SCREEN);
         }, [navigation]
     )
 
