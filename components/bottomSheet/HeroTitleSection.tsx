@@ -1,12 +1,11 @@
 import React from 'react'
 import {Image, StyleSheet, Text, View} from 'react-native'
-import useGetCity from "../../hooks/useGetCity";
 import {Spinner} from "native-base";
 import {getDate} from "../../utils/utilities";
+import {City} from "../../utils/typeDef";
 
-const HeroTitleSection = () => {
-
-    const city = useGetCity()
+const HeroTitleSection = (prop: { city: City }) => {
+    const {city} = prop;
 
     return (
         city ? (

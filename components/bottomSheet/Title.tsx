@@ -1,25 +1,30 @@
-import {observer} from 'mobx-react';
 import React from 'react'
 import {StyleSheet, Text, View} from 'react-native'
 import {Icon} from "react-native-elements";
+import {ICON_COLOR, ICON_SIZE} from "../../utils/stylesConstants";
 
-const BottomSectionTitle = observer(() => {
+const BottomSectionTitle = () => {
+
+    const title: string = 'Next 7 days'
+    const iconName: string = 'ellipsis-h'
+    const iconType: string = 'font-awesome-5'
+
     return (
         <View style={styles.container}>
             <View style={styles.titleBarIcon}/>
             <View style={styles.titleContainer}>
                 <Text style={styles.titleText}>
-                    Next 7 days
+                    {title}
                 </Text>
                 <Icon
-                    name='ellipsis-h'
-                    type='font-awesome-5'
-                    color='#5C5C5C'
-                    size={30}/>
+                    name={iconName}
+                    type={iconType}
+                    color={ICON_COLOR}
+                    size={ICON_SIZE}/>
             </View>
         </View>
     )
-})
+}
 
 export default BottomSectionTitle
 
@@ -27,9 +32,11 @@ const styles = StyleSheet.create({
     container: {
         justifyContent: "center",
         alignItems: "center",
+        flexBasis: 'auto',
+        marginBottom: 20
     },
     titleBarIcon: {
-        borderBottomColor: '#5c5c5c',
+        borderBottomColor: ICON_COLOR,
         borderBottomWidth: 4,
         paddingTop: 10,
         marginBottom: 20,
@@ -45,7 +52,7 @@ const styles = StyleSheet.create({
     titleText: {
         fontSize: 18,
         fontWeight: "bold",
-        color: "#5C5C5C",
+        color: ICON_COLOR,
         paddingBottom: 20
     }
 })

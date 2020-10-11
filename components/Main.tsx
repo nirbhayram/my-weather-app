@@ -7,7 +7,7 @@ import BottomSection from './BottomSheet';
 import MainScreen from './MainScreen';
 import {NavigationContainerRef} from '@react-navigation/native';
 import useFetchCity from "../hooks/useFetchCity";
-import {primaryDarkColor, primaryLightColor} from "../utils/stylesConstants";
+import {PRIMARY_DARK_COLOR, PRIMARY_LIGHT_COLOR} from "../utils/stylesConstants";
 
 const Main = (prop: { navigation: NavigationContainerRef }) => {
     const {navigation} = prop;
@@ -29,7 +29,7 @@ const Main = (prop: { navigation: NavigationContainerRef }) => {
 
     return (
         <>
-            <LinearGradient colors={[primaryDarkColor, primaryLightColor]} style={styles.container}>
+            <LinearGradient colors={[PRIMARY_DARK_COLOR, PRIMARY_LIGHT_COLOR]} style={styles.container}>
                 <StatusBar
                     barStyle="light-content"
                 />

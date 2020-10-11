@@ -1,12 +1,12 @@
-import {observer} from 'mobx-react';
 import {Spinner} from 'native-base';
 import React from 'react'
 import {FlatList, StyleSheet, View} from 'react-native'
 import {getDate} from '../../utils/utilities';
 import FlatlistItem from './FlatlistItem';
 import useGetCity from "../../hooks/useGetCity";
+import {ICON_COLOR} from "../../utils/stylesConstants";
 
-const BottomSectionFlatList = observer(() => {
+const BottomSectionFlatList = () => {
 
     const city = useGetCity()
 
@@ -31,17 +31,20 @@ const BottomSectionFlatList = observer(() => {
                     )
                     :
                     (
-                        <Spinner color='#5c5c5c'/>
+                        <Spinner color={ICON_COLOR}/>
                     )
             }
         </View>
     )
-})
+}
 
 export default BottomSectionFlatList
 
 const styles = StyleSheet.create({
     container: {
+        flexBasis: 'auto',
+        flexShrink: 1,
+        justifyContent: 'center',
         flexDirection: "column",
         backgroundColor: 'rgba(255,255,255,0.6)',
         borderRadius: 15,

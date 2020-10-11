@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
         flexWrap: "wrap",
         alignContent: "center",
         flexGrow: 1,
-        flexBasis: 'auto'
+        flexBasis: 'auto',
     },
     infoDisplay: {
         flex: 1,
