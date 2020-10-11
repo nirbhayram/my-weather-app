@@ -1,12 +1,12 @@
 import React from 'react'
-import {StyleSheet, View} from 'react-native'
+import {GestureResponderEvent, StyleSheet, View} from 'react-native'
 import ForcastSection from './ForcastSection'
 import HeroSection from './HeroSection'
 import ClimateStatus from './TitleSecondarySection'
 import HeaderSection from './HeaderSection'
 import Title from './TitlePrimarySection'
 
-const MainScreen = (prop: { navigateToNavigationScreen: Function }) => {
+const MainScreen = (prop: { navigateToNavigationScreen: (event: GestureResponderEvent) => void }) => {
     return (
         <>
             <View style={styles.titleBanner}>
