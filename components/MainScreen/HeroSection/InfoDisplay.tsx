@@ -1,10 +1,12 @@
 import React from 'react'
-import {Dimensions, StyleSheet, Text, View} from 'react-native'
+import {StyleSheet, Text, View} from 'react-native'
 import {Icon} from 'react-native-elements'
+import {useDimensions} from "@react-native-community/hooks";
 
 const InfoDisplay = ({icon = "sun-o", text = "6:15 am"}) => {
+    const {width} = useDimensions().window
     return (
-        <View style={[styles.infoDisplay, {minWidth: Dimensions.get('screen').width / 4}]}>
+        <View style={[styles.infoDisplay, {minWidth: width / 4}]}>
             <View style={styles.labelView}>
                 <Icon
                     name={icon}

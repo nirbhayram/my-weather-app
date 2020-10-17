@@ -1,11 +1,13 @@
 import React from 'react'
-import {Dimensions, GestureResponderEvent, StyleSheet, View} from 'react-native'
+import {GestureResponderEvent, StyleSheet, View} from 'react-native'
 import {Icon} from "react-native-elements";
+import {useDimensions} from "@react-native-community/hooks";
 
 const HeaderSection = (prop: { navigateToNavigationScreen: (event: GestureResponderEvent) => void }) => {
+    const {width} = useDimensions().window;
     const {navigateToNavigationScreen} = prop;
     return (
-        <View style={[styles.navigationControl, {width: Dimensions.get('window').width}]}>
+        <View style={[styles.navigationControl, {width: width}]}>
             <Icon
                 name='navicon'
                 type='font-awesome'
