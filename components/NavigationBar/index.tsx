@@ -26,6 +26,7 @@ const Navigation = observer((prop: { navigation: NavigationContainerRef }) => {
                           icon={data.item.icon ? data.item.icon : ''}/>
         );
 
+
         return (
             <SafeAreaView style={[styles.container]}>
                 <FlatList
@@ -48,7 +49,7 @@ const Navigation = observer((prop: { navigation: NavigationContainerRef }) => {
                     onTouchOutside={() => setDialogVisible(false)}
                     animationType="fade"
                 >
-                    {() => (<DialogBox setDialogVisible={setDialogVisible}/>)}
+                    <DialogBox setDialogVisible={setDialogVisible}/>
                 </Dialog>
             </SafeAreaView>
         )
