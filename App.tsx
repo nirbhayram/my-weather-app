@@ -6,27 +6,28 @@ import {createStackNavigator} from '@react-navigation/stack';
 import Main from './components/Main';
 import Navigation from './components/NavigationBar';
 import {createClient, Provider} from 'urql';
+import {GRAPHQL_URL} from "./utils/stylesConstants";
 
-const client = createClient({url: `http://localhost:4000`});
+const client = createClient({url: GRAPHQL_URL});
 
 const Stack = createStackNavigator();
 
 function App() {
-	return (
-		<Provider value={client}>
-			<NavigationContainer>
-				<Stack.Navigator
-					screenOptions={{
-						headerShown: false,
-					}}
-					initialRouteName={'Navigation'}
-				>
-					<Stack.Screen name="Home" component={Main} />
-					<Stack.Screen name="Navigation" component={Navigation} />
-				</Stack.Navigator>
-			</NavigationContainer>
-		</Provider>
-	);
+    return (
+        <Provider value={client}>
+            <NavigationContainer>
+                <Stack.Navigator
+                    screenOptions={{
+                        headerShown: false,
+                    }}
+                    initialRouteName={'Navigation'}
+                >
+                    <Stack.Screen name="Home" component={Main}/>
+                    <Stack.Screen name="Navigation" component={Navigation}/>
+                </Stack.Navigator>
+            </NavigationContainer>
+        </Provider>
+    );
 }
 
 export default App;
