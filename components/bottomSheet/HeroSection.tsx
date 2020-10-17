@@ -1,15 +1,33 @@
+import React from 'react';
 import {Spinner} from 'native-base';
-import React from 'react'
-import {StyleSheet, View} from 'react-native'
+import {StyleSheet, View} from 'react-native';
 import {getFixedDigitNumber} from '../../utils/utilities';
-import HeroSectionLabel from "./HeroSectionLabel";
+import HeroSectionLabel from './HeroSectionLabel';
 import HeroTitleSection from './HeroTitleSection';
-import useGetCity from "../../hooks/useGetCity";
-import {ICON_COLOR} from "../../utils/stylesConstants";
+import useGetCity from '../../hooks/useGetCity';
+import {ICON_COLOR} from '../../utils/stylesConstants';
+
+const styles = StyleSheet.create({
+    container: {
+        flexDirection: 'column',
+        flexBasis: 'auto',
+        marginBottom: 10,
+    },
+    horizontalRuler: {
+        height: 3,
+        backgroundColor: '#EBEBEB',
+        marginBottom: 2,
+    },
+    contentContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        flexWrap: 'wrap',
+        alignContent: 'flex-start',
+    },
+});
 
 const BottomSectionHeroSection = () => {
-
-    const city = useGetCity()
+    const city = useGetCity();
     return (
         <View style={styles.container}>
             {
@@ -26,9 +44,11 @@ const BottomSectionHeroSection = () => {
                                     {keyText: 'Rain', valueText: `${getFixedDigitNumber(city.current.pop * 100)} %`},
                                 ]
                                     .map((item) => (
-                                        <HeroSectionLabel key={item.keyText}
-                                                          keyText={item.keyText}
-                                                          valueText={item.valueText}/>
+                                        <HeroSectionLabel
+                                            key={item.keyText}
+                                            keyText={item.keyText}
+                                            valueText={item.valueText}
+                                        />
                                     ))
                             }
                         </View>
@@ -39,26 +59,7 @@ const BottomSectionHeroSection = () => {
             }
 
         </View>
-    )
-}
+    );
+};
 
-export default BottomSectionHeroSection
-
-const styles = StyleSheet.create({
-    container: {
-        flexDirection: "column",
-        flexBasis: 'auto',
-        marginBottom: 10
-    },
-    horizontalRuler: {
-        height: 3,
-        backgroundColor: "#EBEBEB",
-        marginBottom: 2
-    },
-    contentContainer: {
-        flexDirection: "row",
-        justifyContent: "space-between",
-        flexWrap: "wrap",
-        alignContent: "flex-start"
-    }
-})
+export default BottomSectionHeroSection;

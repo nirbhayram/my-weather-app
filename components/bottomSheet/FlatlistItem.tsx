@@ -1,6 +1,6 @@
 import {observer} from 'mobx-react';
-import React from 'react'
-import {Image, StyleSheet, Text, View} from 'react-native'
+import React from 'react';
+import {Image, StyleSheet, Text, View} from 'react-native';
 import {getFixedDigitNumber} from '../../utils/utilities';
 
 const FlatlistItem = observer((data: { icon: string, date: string, maxTemperature: number, minTemperature: number }) => (
@@ -19,7 +19,7 @@ const FlatlistItem = observer((data: { icon: string, date: string, maxTemperatur
     </View>
 ));
 
-export default FlatlistItem
+export default FlatlistItem;
 
 const styles = StyleSheet.create({
     imageView: {
@@ -44,4 +44,4 @@ const styles = StyleSheet.create({
         justifyContent: "flex-end",
         alignItems: "center"
     },
-})
+});

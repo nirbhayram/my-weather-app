@@ -1,6 +1,6 @@
 import {Spinner} from 'native-base';
-import React from 'react'
-import {FlatList, StyleSheet, View} from 'react-native'
+import React from 'react';
+import {FlatList, StyleSheet, View} from 'react-native';
 import {getDate} from '../../utils/utilities';
 import FlatlistItem from './FlatlistItem';
 import useGetCity from "../../hooks/useGetCity";
@@ -8,7 +8,7 @@ import {ICON_COLOR} from "../../utils/stylesConstants";
 
 const BottomSectionFlatList = () => {
 
-    const city = useGetCity()
+    const city = useGetCity();
 
     const renderItem = (data: { item: { date: number, icon: string, minTemperature: number, maxTemperature: number } }) => (
         <FlatlistItem
@@ -17,7 +17,6 @@ const BottomSectionFlatList = () => {
             maxTemperature={data.item.maxTemperature}
             minTemperature={data.item.minTemperature}/>
     );
-
 
     return (
         <View style={styles.container}>
@@ -35,10 +34,10 @@ const BottomSectionFlatList = () => {
                     )
             }
         </View>
-    )
-}
+    );
+};
 
-export default BottomSectionFlatList
+export default BottomSectionFlatList;
 
 const styles = StyleSheet.create({
     container: {
@@ -50,4 +49,4 @@ const styles = StyleSheet.create({
         borderRadius: 15,
         marginBottom: 10
     },
-})
+});
