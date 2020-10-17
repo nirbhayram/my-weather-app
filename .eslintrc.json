@@ -1,1 +1,23 @@
-{}
+{
+  "extends": [
+    "airbnb"
+  ],
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 11,
+    "sourceType": "module"
+  },
+  "plugins": [
+    "react",
+    "@typescript-eslint",
+    "prettier"
+  ],
+  "rules": {
+    "semi": [
+      "error",
+      "always"
+    ]
+  }
+}
