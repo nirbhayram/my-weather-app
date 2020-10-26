@@ -53,9 +53,7 @@ const DialogBox = (prop: { setDialogVisible: Function }) => {
                     <Button
                         block
                         style={{ backgroundColor: '#b6c5fb' }}
-                        onPress={() => {
-                            onButtonPress();
-                        }}
+                        onPress={onButtonPress}
                     >
                         <Text
                             style={{

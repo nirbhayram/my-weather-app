@@ -40,38 +40,38 @@ const FlatlistItem = (data: {
     icon: string;
     goToMainScreen: Function;
 }) => (
-        <TouchableOpacity
-            onPress={() => {
-                const flag: boolean = useSetCityName(data.cityName);
-                if (flag) {
-                    data.goToMainScreen();
-                } else {
-                    Toast.show('Something went wrong :(', {
-                        duration: Toast.durations.SHORT,
-                        position: Toast.positions.CENTER,
-                        shadow: true,
-                        animation: true,
-                        hideOnPress: true,
-                        delay: 0,
-                    });
-                }
-            }}
-        >
-            <View style={styles.flatListView}>
-                <LinearGradient
-                    colors={['#4064e0', '#b6c5fb']}
-                    style={styles.flatListItemView}
-                >
-                    <Text style={styles.flatListTextView}>{data.cityName}</Text>
-                    <Image
-                        style={styles.flatListImageView}
-                        source={{
-                            uri: `http://openweathermap.org/img/wn/${data.icon}@2x.png`,
-                        }}
-                    />
-                </LinearGradient>
-            </View>
-        </TouchableOpacity>
-    );
+    <TouchableOpacity
+        onPress={() => {
+            const flag: boolean = useSetCityName(data.cityName);
+            if (flag) {
+                data.goToMainScreen();
+            } else {
+                Toast.show('Something went wrong :(', {
+                    duration: Toast.durations.SHORT,
+                    position: Toast.positions.CENTER,
+                    shadow: true,
+                    animation: true,
+                    hideOnPress: true,
+                    delay: 0,
+                });
+            }
+        }}
+    >
+        <View style={styles.flatListView}>
+            <LinearGradient
+                colors={['#4064e0', '#b6c5fb']}
+                style={styles.flatListItemView}
+            >
+                <Text style={styles.flatListTextView}>{data.cityName}</Text>
+                <Image
+                    style={styles.flatListImageView}
+                    source={{
+                        uri: `http://openweathermap.org/img/wn/${data.icon}@2x.png`,
+                    }}
+                />
+            </LinearGradient>
+        </View>
+    </TouchableOpacity>
+);
 
 export default FlatlistItem;

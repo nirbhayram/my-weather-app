@@ -13,25 +13,25 @@ import useGetCities from '../../hooks/useGetCities';
 import { CityMapValue } from '../../utils/typeDef';
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-    borderRadius: 10,
-  },
-  flatList: {
-    flex: 1,
-    flexShrink: 1,
-  },
-  inputView: {
-    margin: 10,
-    alignSelf: 'stretch',
-    flexBasis: 'auto',
-  },
+    container: {
+        flex: 1,
+        flexDirection: 'column',
+        justifyContent: 'flex-start',
+        alignItems: 'center',
+        borderRadius: 10,
+    },
+    flatList: {
+        flex: 1,
+        flexShrink: 1,
+    },
+    inputView: {
+        margin: 10,
+        alignSelf: 'stretch',
+        flexBasis: 'auto',
+    },
 });
 
-const Navigation = observer((prop: { navigation: NavigationContainerRef }) => {
+const Navigation = (prop: { navigation: NavigationContainerRef }) => {
     const { width } = useDimensions().window;
     const [dialogVisible, setDialogVisible] = useState(false);
 
@@ -85,6 +85,6 @@ const Navigation = observer((prop: { navigation: NavigationContainerRef }) => {
             </Dialog>
         </SafeAreaView>
     );
-});
+};
 
 export default Navigation;
