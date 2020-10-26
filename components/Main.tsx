@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useCallback } from 'react';
+import { useCallback, useMemo } from 'react';
 import { SafeAreaView, StatusBar, StyleSheet } from 'react-native';
 import BottomSheet from 'reanimated-bottom-sheet';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -39,12 +39,17 @@ const Main = (prop: { navigation: NavigationContainerRef }) => {
 
     const sheetRef = React.useRef(null);
 
+    const linearGradientProps = useMemo(
+        () => ({
+            colors: [PRIMARY_DARK_COLOR, PRIMARY_LIGHT_COLOR],
+            style: styles.container,
+        }),
+        [],
+    );
+
     return (
         <>
-            <LinearGradient
-                colors={[PRIMARY_DARK_COLOR, PRIMARY_LIGHT_COLOR]}
-                style={styles.container}
-            >
+            <LinearGradient {...linearGradientProps}>
                 <StatusBar barStyle="light-content" />
                 <SafeAreaView style={styles.container}>
                     <MainScreen

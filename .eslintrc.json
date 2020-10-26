@@ -33,6 +33,7 @@
     "react/jsx-indent-props": "off",
     "react/jsx-filename-extension": "off",
     "import/extensions": "off",
-    "import/no-unresolved": "off"
+    "import/no-unresolved": "off",
+    "react/jsx-props-no-spreading": "off"
   }
 }
